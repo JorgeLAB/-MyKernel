@@ -1,0 +1,461 @@
+*http://guides.rubyonrails
+*http://ruby-toolbox.com/
+
+------------------------ Git --------------------------------------- 
+
+sudo apt-get install git 
+git config --global user.name " "
+git config --global user.email "  "
+git init
+git status
+git add arquivo # arquivo agora esta sendo rastreado Untracked file -> stage
+git commit -m "Novo arquivo comitado"
+git log   #mostrará os commits - verifica alteracoes realizadas
+git remote add origin https
+git push origin master # git push -force origin master
+git clone https ... # Faz o clone do repositorio em sua maquina
+git commit -a -m "" #  Envia as modificações para stage e faz o commit
+git log --oneline #Mostra um historico de modificações resumido
+git log --stat #Mostra algo mais completo para sair aperte q
+git diff # Faz a verificação que foi modificado no codigo
+git diff --staged #Faz a verificação até dos arquivos na staged
+git rm index.html #Para descartar um arquivo após o comando ser dado o arquivo ira para área de stage aguardando ser commitado. Uma observação é que ele continuará no repositorio porém deletado.
+git vm origem.html destino.html
+git checkout # Desfaz mudanças que ainda não foram commitada
+git reset # Agora se os arquivos já tiverem sido rastreados
+git reset --hard # Além de tirar o arquivo do stage também volta a seu estado original - Volta para o commit apontado
+sem constar no histórico.
+git revert --no-edit "summet" # Não consegui aplicar
+
+(Como mostrar branch no terminal)
+export PS1='\u@\h\[\033[01;34m\] \w\[\033[0;32m\]$(__git_ps1 " (%s)")\[\033[01;34m\]$\[\033[00m\] '   ** Insirir no final do arquivo .bashrc arquivo homme
+source ~/.bashrc                                                                                      ** Execute no terminal 
+    
+---------------------------------- Git - Diogo  ----------------------------
+
+git checkout <branch_name>                             => Switch Branch
+git checkout -b <branch_name>                          => If Branch not exist, create and Switch
+git branch -D <branch_name>                            => Delete that Branch
+git push origin :<branch_name>                         => Delete Branch remotely
+git add app/views/mobile/checkout/payment.html.haml    => Add file to commit
+git commit -m "18534 - Adding terms check validation"  => Commit changes
+git push -u                                            => Push and set upstream (only first push)
+git push origin feature/18534-term                     => Push local files to Github
+git pull origin feature/18534-relayout                 => Get new files of this Branch in remote
+git merge --no-ff <branch-approved>                    => Merge <branch-approved> with current branch (commit merge)
+git cherry-pick <commit SHA1>                          => Add specific commit at current branch
+git rebase <branch>                                    => Reload specific branch on current branch (if was changed after created)
+git reset --merge ORIG_HEAD                            => Undo merge that was not pushed to origin yet
+git reset --hard HEAD~1                                => Back one commit
+git reset --hard origin/<branch>                       => Reset local branch to remote branch
+git checkout origin/master Gemfile.lock                => Reset specific file from master
+git commit --amend -m "edit msg"                       => Edit last commit (if already pushed use -f)
+git tag 1.55.1                                         => Create tag locally
+git tag --delete 1.55.1                                => Delete tag locally
+git push origin :1.55.1                                => Delete tag remotely
+pull request (PR) direto pelo Github                   => Pull Request
+git fetch --all                                        => Update all remotes locally but not upgrade the commits
+git stash                                              => Save all different files temporary and remove from branch
+git stash pop                                          => Revert git stash
+git stash clear                                        => Delete all stashs
+git show -s --format=%ci <commit>                      => Get time of commit were pushed
+git --no-pager show <branch>:path/to/file              => Print content of file
+
+git config --global user.name "Full Name"              => Set name of user
+git config --global user.email "email@address.com"     => Set email of user 
+
+-------------------- MySQL ----------------------
+
+sudo apt update                                  ** update system 
+sudo apt install mysql-server -y                ** instalação da última versão do mysql
+sudo systemctl status mysql.service              ** vericação de "active server"
+sudo mysql_secure_installation_                  ** instalação de segurança
+yM&$z9^%KzXnL%t4BM1RJ*$Lnsw                      ** senha colocada 
+
+sudo systemctl start mysql.service               ** inicializando o servidor
+ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'                   ** Encontrar o endereço de ip público do seu servidor
+
+mysql -u root -p nome_da_database                ** Acessa o banco
+
+sudo apt-get install apache2                     ** Instalação do apachi
+localhost/                                       ** Acessando o apachi no browser
+
+sudo add-apt-repository ppa:ondrej/php           ** primeiro passo na instalação do php7 ( Adição do repositorio do php7)
+sudo apt-get update                              ** dar um update
+
+sudo apt-get install apache2 php7.0-common php7.0-cli php7.0 libapache2-mod-php7.0                              ** Instalação do php7
+
+
+** Configuração do php para apontar para rota específica 
+sudo nano /etc/apache2/mods-enabled/dir.conf
+
+Modifique para:  DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+
+sudo systemctl restart apache2                    ** reiniciar o servidor web 
+
+use database_that_you_want                        ** use é o comando que carrega a database para ser consultada 
+
+-------------------------- Python--------------------------- 
+
+Criar virtual venv 
+      python3 -m venv .venv
+		source .venv/bin/activate
+      
+Para desativar digite deactive.
+
+python3 -m http.server
+ 
+-------------------------- Rails----------------------------- tro
+David Heinemeier Hansson - DHH
+* Iniciando novo_projeto
+  
+  0) Verifique a versão 
+          ** sudo apt-get install curl
+          ** https://get.rvm.io | bash -s stable --ruby
+          ** Instalação do rvm   
+          ** echo "source $HOME/.rvm/scripts/rvm" >> ~/.bash_profile
+          ** source ~/.bashrc
+          ** rvm                                          ** Versionador ruby
+          ** rvm install 2.0.0 ou rvm install 2.3.3 ...   ** Assim vai um atalho para baixar várias versão de ruby;
+          ** rvm list                                     ** Lista todas as versões de ruby no rvm 
+          ** rvm use 2.0.0 ou rvm use 2.3.3 ...           ** Apontar qual versão você deseja usar.
+          ** gem install rails --no-ri --no-rdoc          ** Caso não tenha o rails esse é o momento de instalar 
+          ** gem list
+  
+  1) init bundle
+          **Some of the frameworks have builtin support for Bundler, e.g. when you run rails new app it will automatically init Bundler.
+          https://bundler.io/v2.0/guides/using_bundler_in_applications.html#getting-started---installing-bundler-and-bundle-init
+          bundle install é empregado quando queremos atualizar as gems.
+
+  2) Um problema muito ruim é quando a versão ruby do system é diferente do rvm, quando há uma troca rvm use ruby-2.6.3 não é modificado no system:
+
+         Problema de permissão:
+         ** su - $USER                                     ** Dá ao usuário permissões de root em home do usuário
+         ** rvm fix-permissions system                     ** Muda o estatos de permissão do rvm - /usr/share/rvm/rubies/
+         ** id
+         ** rvm install ruby-2.6.3                         ** Instala alguma versão do ruby
+         ** rvm list                                       ** Lista todas as versões ruby presente
+         ** rvm use 2.6.3                                  
+         ** gem bundler install                            ** reinstação do bundler o gerenciador de gems
+         ** bundle install
+         ** gem 'thin'                                     ** Um servidor alternativo ao que vem no rails.Por padrão é o webpack
+  3) rails new novo_projeto -d mysql                                                    ** Instalação do mysql
+         ** sudo apt-get install mysql-server mysql-client libmysqlclient-dev           ** Fazer essa instalação do mysql2 antes 
+         ** a mesma senha de root da sua máquina, root, será a mesma de todas os ambientes. Tome cuidado.
+
+  4) Criando arquivos de controle de versão ( dentro da pasta de meu projeto)
+          **.ruby-gemset                                  ** Nome da aplicação que será criada para se trabalhar com a versão no ruby-version
+          **.ruby-vesion                                  ** Escreva a versão do rails que irá trabalhar no arquivo
+  3) Criando banco 
+          ** rake db:create
+          ** rake dbconsole                               ** Fazer consulta
+          ** rails s                                      ** Carregar o servidor o mesmo que rails server
+          ** rails s -e production                        ** Levanta o banco de dados de produção 
+
+  3.1) Lembrar da gem install haml
+
+  4) Criando pagina home e controller_home
+          ** rails g Home index ( rails generation Home index)                           ** Criação de um controller home e uma action index 
+          ** rails g controller home  
+  4.1) Configuração da routes 
+          ** get "home/index"
+             root "home#index"
+
+  4.2)
+          ** rake -T                                                                     ** Exibe um help do gerenciador rake 
+  4.3) Helpers
+          ** localhost: 3000/rails/info/routes                                            ** Mostra todas as rotas
+
+  5) Criando um modelo
+          ** rails g model user
+          ** rails generate scaffold custumer  nome:string email:string obs:string       ** Por convenção do rails os modelos são no singular mas as tabelas serão no plural
+          ** timestamps(created_at e updated_at)                                                            ** Por convenção o rails cria para você um id e chave primária
+          ** rake db:migrate
+  6) Caso necessite desfazer do modelo 
+          ** rails d model user
+  7) Fiz uma migração errada 
+          ** rails db:rollbach           
+!>8) Criando um cadastro de post
+          ** rails g scaffold Post titulo:string descricao:text
+  9) Deleta o banco , cria um banco e faz a migração
+     rake db:drop db:create db:migrate
+
+--------------------------------------------------
+
+Scaffold 
+   rails generate scaffold cliente nome idade: integer --migration= false -s
+   # Bastante interessante: cliente recebe todas as views e controller criados anteriormente na migration 
+ 
+________________________________________________________
+
+Partials 
+   São pedaços de html.erb que podem ser visualizados em outras views.
+   Agora, para ser criado um partial basta criar um arquivo _meupartial na view desejada 
+   logo depois podemos incrementa-lo onde é necessário com render partial: "meupartial".
+   Lembre-se do underscore.  -Reaproveitamento de código erb.
+
+ApplicationHelper - 
+
+________________________________________________________
+
+debugger rails 
+
+  GemFile
+
+  group :development, :test do
+    gem 'pry-byebug'
+  end
+
+  <% require 'pry'; binding.pry %>  # no html.erb
+   - binding.pry # no haml
+   binding.pry  # no ruby
+
+** Como usar o debug
+   insira o codigo flag onde se deseja fazer a pausa, você conseguirar visualizar no inspetor do navegador. Conseguentimento no seu terminal aparecerá um console main pry >, para consulta 
+
+  whereami # retornará sua posição.
+  exit-program # saida bruta
+
+________________________________________________________
+
+Record Rails :: Base
+belongs_to, has_one, has_many, has_and_belongs_to_many_ = https://www.devmedia.com.br/introducao-a-relacionamentos-no-ruby-on-rails/33860
+
+https://guides.rubyonrails.org/active_record_basics.html
+
+________________________________________________________
+
+Docs 
+
+gem server                                             * Comando que inicia o servidor WebRick na porta 8808
+
+
+--------------------------- Ruby --------------------------------------------------------
+
+sudo apt  install ruby-railties                      ** instalation gem rails utilitaries
+
+ruby-lang.org                                             
+
+gem install bundler                                  ** controlodor de versoes de gems 
+irb                                                  ** interpretador ruby
+pry                                                  ** É um interpretador irb bombado como é uma gem tem de ser instalado com syntaxe "raylight"
+
+puts, p e  print                                     ** Imprimindo algo em ruby  
+puts                                                 ** Imprimir no console e pula linha
+p                                                    ** Utilizado como metodo inspect
+print                                                ** imprime no console
+
+# / =begin bloco =end                                ** Comentarios em ruby Pode haver comentarios de linha simples ou bloco (multiplas linhas)
+
+Metodo .class                                        ** Metodo para obter o tipo da variavel.
+
+Strings em Ruby são mutaveis
+O operador << faz a concatenacao de strings na mesma instancia. 
+Ja o operador + faz concatenacao gerando uma nova string.
+
+#{}                                                  ** Interpolacao
+
+Metodo Capitalize - e uma funcao pura que torna a primeira letra da
+palavra maiuscula. Nao ha modificacao direta da variavel.
+
+Metodo terminado em bang(!) - torna definitivo, como assim .
+nome = "jorge"
+puts nome.capitalize! # Jorge
+puts nome # Ainda será Jorge
+
+Symbols são strings só que imutáveis, representado por :palavra.
+
+Condicional if elsif.
+Estrutura de repetição for i in (1..9) end. 
+switch  =>  case variavel when ... when ... when ... end
+
+https://www.sergiotoledo.com.br/tutoriais/ruby/strings-com-ruby
+
+Expressões regulares são limitada por /rio/ =~ "São paulo" ( por barras). O =~ tem a funcao de match.
+*Rubular.com é um site no qual você pode estar encontrando expressoes regulares.
+
+Operador ||= , caso a variável esteja vazia ou seja nil preencha com o valor para atribuido.
+
+Conversão de tipo de string para inteiro string.to_i para o float string.to_f.
+Converter de range para array (1..6).to_a.  
+
+Ruby é uma linguagem considerada puramente orientada a objeto. Tudo em ruby é objeto até os tipos basico.
+
+O metodo .object_id retorna o numero ( identificador unico na memoria heap) do objeto enquanto o .class() retorna o tipo do objeto.
+
+Criando um objeto com novo = Object.new
+
+Uma declaracao de metodo basta introduzir o 'def' no inicio uma particularidade de ruby e que nao precisamos forcar uma
+impressao a ultima linha do metodo e impresso automaticamente, isso para evitar os ruido sintatico.
+Podendo se passar argumentos e parametros.
+
+Agora foi realizado a criacao de uma class e uma instanciacao de variavel.
+Dentro da class sao acrescentados metodos.
+A class e mutavel a qualquer podemos adicionar novos metodos a ela.
+
+Bibliotecas padrao Object e Fixnum - Qualquer classe em ruby pode ser reaberta e redefinida.
+
+Modificadores de acesso = "Atributos em ruby são sempre privados não podemos modifica-los fora da classe, também são
+chamados de variáveis de instância". Encapsulamento @nome ( variavel )
+
+initialize ao um objeto ser criado nos iniciailizamos automaticamentes seus atributos por meio desse metodo. Sendo um
+metodo privado nao pode ser chamado fora da classe.
+
+Syntax Suger do Ruby e uma forma de facilitar legibilidade do codigo.
+
+definindo propriedade de acesso attr_accessor , attr_reader, attr_writer / tem de ser passado um simbolo :nome
+
+Para receber um número qualquer de parametros usamos a sintaxe *(asteristico) - sendo assim def metodo(*param)
+essa variavel param funciona como um array. Esse operador * é chamado de splat
+
+Hash é uma estrutura indexada por qualquer tipo de objeto, confg = Hash.new     confg["nome"] = "Jorge"
+temos tambem uma sintaxe mais explicita {:nome = "jorge", :sobreNome ="Borges"} ou uma sintaxe mais antiga temos {:nome => "Jorge", :sobrenome => "Borges"}
+
+Mas assim como uso do parenteses e opcional no Syntax Sugar, podemos ter a exclusao das chaves na Hash :nome = "Jorge", :sobrenome = "Borges".
+
+Manipulando exceptions 
+
+
+------------------------- Sublime_text dicas------------------------------
+Plugins
+ - Emmet
+ - Alignment
+ - Terminal
+ - PlainTask
+ - AdvancedNewFile 
+ - LoremIpsum
+
+Goto anything - Control + p                                            ** ( Faz uma busca de arquivos)
+Command Palette - Control + shift + p                                  ** ( Faz uma busca por atalho )
+Multiple Selection - Shift + alt + P                                   ** ( Multipla seleção )
+Pesquisa de palavra marcada - Control + D                              ** ( selecione uma palavra e será feita as marcações )
+Distract free mode - Shift + F11                                       ** ( Modo sem distração)
+Modificando layout de tela - alt + shift + 2 < 3 4 5                   ** ( Podemos deixar com uma coluna uma, duas,três ou quatro)
+
+Control + pgup/pgdn                                                    ** Pular entre tabs 
+
+
+Bookmark - Control + F2 ( fazer a marcação)
+           F2 (Para navegar)
+           Shift + F2 (Desmarcar )
+           Control + shift + F2 ( Para desmarcar tudo)
+
+shift + alt + l                                                        ** Lorem Ipsum text
+
+Control + F9                                                           ** Ordem alfabetica um arquivo texto no sublime
+
+Sublime package control instalado 
+plugin   # BracketHighlighter
+plugin alignment #git Gutter
+-
+------------------------- Terminal - Linux  -------------------------------------
+
+>> https://canaltech.com.br/linux/entendendo-a-estrutura-de-diretorios-do-linux/
+>> https://pt.wikibooks.org/wiki/Guia_do_Linux/Iniciante%2BIntermedi%C3%A1rio/Execu%C3%A7%C3%A3o_de_programas/path
+
+
+ctrl+alt+T                                             ** Atalho para o terminal
+$ echo ~                                               ** Shell - pasta home - comando em programação para exibir o conteúdo de uma variável.
+sudo touch "nomeDoArquivo"                             ** Criar arquivo 
+ls                                                     ** Faz a listagem das pastas e arquivos do diretório.
+mv                                                     ** Mover ou renomear um arquivo. mv nomeOrigem nomeDestino
+man - é um comando de glossaryo irá postar os detalhes do commando que você
+deseja empregar.
+rm -R                                                  ** é um comando que remove diretório com arquivos
+sudo -s  ou sudo sudo                                  ** manter o modo administrador
+which <command>                                        ** Comando que mostrar o caminho de outros comandos
+env | grep PATH                                        ** Mostra todos os caminhos criados no PATH
+ps aux                                                 ** Lista todos os processos 
+ln -s <arq1> <arq2>                                    ** Criando um arquivo simbolico
+sudo apt install silversearcher                        ** Instalação igual ao grep só que melhor.
+ps aux | ag bash | awk '{ print $1 }'                  ** Usando pipe para multiplos comandos ps depois uma busca igual a grep com ag e awk para selecionar coluna  
+
+sudo apt-get upgrade                                   ** Fazer atualização de  todos os programas do desk 
+set | less                                             ** Todos os comando bash e.g $USER
+
+subl                                                   ** Chamar o sublime
+*pwd                                                   ** Imprimir na tela seu caminho atual.
+lsb_release -a  | grep Release                         ** Conferir a versao linux - Ubuntu 19.10
+ruby -v                                                ** ruby 2.5.5p157
+gem -v                                                 ** 3.1.2
+rvm list know                                          ** lista todas as versões ruby para mais de um sistema
+cd /                                                   ** Comando que direciona para o diretório raiz
+ll                                                     ** Lista os arquivos com seus permissões
+
+oh my Zsh                                              ** Site para customizar a bash 
+
+/usr/bin                                               ** Encontra-se o binários dos comandos básicos do shell
+
+find 
+
+find . -name arquivo.txt                               ** Busca Simples de arquivo - o ponto indica para buscar no diretório atual e seus sub-diretórios 
+find . -iname arquivo.txt                              ** Busca Simples de arquivo - ignora case-sensitive.
+find . -depth -name diretorio arquivo.txt              ** Busca Simples de diretorio de arquivo especificado.
+find /Documentos/ -name *rquivo*                       ** Busca Com coringas - Basicamente vc não sabe o nome ao certo
+find . -depth -name *.txt                              ** Busca todos os arquivos de tipo txt
+find . -type f -perm 0777 -print                       ** Busca todos os arquivos com permissão 0777
+find . -type f ! -perm 777                             ** Busca todos os aquivos que não possuem a permisão 777
+find /Documentos/Livros/ -empty                        ** Busca diretórios vazios
+find /Documentos/Livros/ -type d -empty                ** Procura sódiretórios vazios
+find /Documentos/Livros/ -type f -empty                ** Procura só arquivos
+find . -type f -name ".*"                              ** Procurar arquivos ocultos
+find . -type f -size +10M                              ** Procurar arquivos com mais de 10 MegaBytes
+find . -type f -size -10M                              ** Procurar arquivos com menos de 10 MegaBytes
+find /Downloads/ -tyoe f -name caelum-ux-usabilidade-wd41.pdf -exec rm -f {} \;                   ** Usando o -exec irá ser executado a remoção do arquivo
+find . -type f -name arquivo.txt | xargs rm -f 
+find . -name "*.*" -exec grep -Hin "Ana" {}\;          **Procurar por arquivos caso haja o nome informado dentro
+find / -user bandit7 -group bandit6 size 33c 
+
+grep 
+
+grep -exec -l "millionth" data.txt                     **Procurar palavra especifica em arquivo
+
+sort                                                   ** Ordena palavras dentro de arquivo
+
+uniq -u                                                ** Faz uma busca de palavras que não se repetem
+
+sleep 5                                                ** "Adormece" o sistema por 5 segundos
+ 
+
+------------------------------------------Tmux - Vim -------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------ PostgreSQL ------------------------------------------------------------
+
+Para a instalação apenas veja o site oficial
+
+pg_ctlcluster 11 main start                           ** Para iniciar o server
+g_ctlcluster 12 main start
+
+sudo apt update
+
+sudo apt install postgresql postgresql-contrib
+
+sudo -i -u postgres                                  ** Entrar, logo depois digita-se psql ( user)
+sudo -u postgres psql
+
+\l                                                   ** lista databases.
+\du                                                  ** verifica a permissao de usuários
+\d                                                   ** Mostra todas as tabelas de um certo banco de dados
+
+----------------------------------------- PhP --------------------------------------------
+
+sudo apt install php7.2-cli                            **Baixando php7
+
+chmod 755 [o nome do executável]                       **Para a instalação do xampp ( dar permissão)
+ls -l [nome  do executável]                            **Verificar permissões.
+sudo apt install net-tools                             ** If occurred error.
+
+
+
+
+
+
+
+
+
+  
