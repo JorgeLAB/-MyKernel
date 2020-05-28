@@ -1,3 +1,5 @@
+*https://guides.github.com/
+*https://www.atlassian.com/br/git/tutorials
 *http://guides.rubyonrails
 *http://ruby-toolbox.com/
 
@@ -10,6 +12,13 @@ git init
 git status
 git add arquivo                                                               => arquivo agora esta sendo rastreado Untracked file -> stage
 git commit -m "Novo arquivo comitado"
+
+git branch <nome>                                                             => Permite criar, listar, apagar e renomear ramificações
+git branch -D  <nome>                                                         => 
+git branch -m <nome>                                                          => renomear branch atual para nome 
+git branch -a                                                                 => Listar todas as branchs remotas
+git push origin --delete <nome>                                               => Excluir uma branch remota ( ou git push origin :<nome>)
+
 git log                                                                       => mostrará os commits - verifica alteracoes realizadas
 git remote add origin https or ssh                                            => Sincronização de repositório remoto e local
 git push -u origin master                                                     => Primeiro push em um repositório remoto
@@ -28,9 +37,11 @@ git reset --hard                                                              =>
 git revert --no-edit "summet"                                                 => Não consegui aplicar
 
 (Como mostrar branch no terminal linux)
-export PS1='\u@\h\[\033[01;34m\] \w\[\033[0;32m\]$(__git_ps1 " (%s)")\[\033[01;34m\]$\[\033[00m\] '   ** Insirir no final do arquivo .bashrc arquivo homme
-source ~/.bashrc                                                                                      ** Execute no terminal 
+export PS1='\u@\h\[\033[01;34m\] \w\[\033[0;32m\]$(__git_ps1 " (%s)")\[\033[01;34m\]$\[\033[00m\] '   => Insirir no final do arquivo .bashrc arquivo homme
+source ~/.bashrc                                                                                      => Execute no terminal o comando (salva o estado).
 (Não esqueça de adicionar uma chave ssh no seu repositório remoto)
+
+(Criando a chave pública e privada ssh)
 
 ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_ed25519 -C "umemaildeRegistro@host.com"
 
