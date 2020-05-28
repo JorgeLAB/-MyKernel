@@ -4,33 +4,37 @@
 ------------------------ Git --------------------------------------- 
 
 sudo apt-get install git 
-git config --global user.name " "
-git config --global user.email "  "
+git config --global user.name "myname "
+git config --global user.email "myemail"
 git init
 git status
-git add arquivo # arquivo agora esta sendo rastreado Untracked file -> stage
+git add arquivo                                                               => arquivo agora esta sendo rastreado Untracked file -> stage
 git commit -m "Novo arquivo comitado"
-git log   #mostrará os commits - verifica alteracoes realizadas
-git remote add origin https
-git push origin master # git push -force origin master
-git clone https ... # Faz o clone do repositorio em sua maquina
-git commit -a -m "" #  Envia as modificações para stage e faz o commit
-git log --oneline #Mostra um historico de modificações resumido
-git log --stat #Mostra algo mais completo para sair aperte q
-git diff # Faz a verificação que foi modificado no codigo
-git diff --staged #Faz a verificação até dos arquivos na staged
-git rm index.html #Para descartar um arquivo após o comando ser dado o arquivo ira para área de stage aguardando ser commitado. Uma observação é que ele continuará no repositorio porém deletado.
-git vm origem.html destino.html
-git checkout # Desfaz mudanças que ainda não foram commitada
-git reset # Agora se os arquivos já tiverem sido rastreados
-git reset --hard # Além de tirar o arquivo do stage também volta a seu estado original - Volta para o commit apontado
-sem constar no histórico.
-git revert --no-edit "summet" # Não consegui aplicar
+git log                                                                       => mostrará os commits - verifica alteracoes realizadas
+git remote add origin https or ssh                                            => Sincronização de repositório remoto e local
+git push -u origin master                                                     => Primeiro push em um repositório remoto
+git push origin master                                                        => use para dar update nos seus arquivos remotos (Caso recebar erro: git push master --force ) 
+git clone https...                                                            => Faz o clone do repositorio remoto em sua maquina
+git commit -a -m ""                                                           => Envia as modificações para stage e faz o commit
+git log --oneline                                                             => Mostra um historico resumido de modificações 
+git log --stat                                                                => Mostra histórico mais completo para sair aperte q
+git diff                                                                      => Faz a verificação que foi modificado no codigo
+git diff --staged                                                             => Faz a verificação até dos arquivos na staged
+git rm index.html                                                             => Para descartar um arquivo após o comando ser dado o arquivo ira para área de stage aguardando ser commitado. Uma observação é que ele continuará no repositorio porém deletado.
+git vm origem.html destino.html                                               => Mover ou renomear um arquivo
+git checkout                                                                  => Desfaz mudanças que ainda não foram commitadas
+git reset                                                                     => Agora desfaz mudanças dos arquivos que já tiverem sido rastreados
+git reset --hard                                                              => Além de tirar o arquivo do stage também volta a seu estado original - Volta para o commit apontado sem constar no histórico.
+git revert --no-edit "summet"                                                 => Não consegui aplicar
 
-(Como mostrar branch no terminal)
+(Como mostrar branch no terminal linux)
 export PS1='\u@\h\[\033[01;34m\] \w\[\033[0;32m\]$(__git_ps1 " (%s)")\[\033[01;34m\]$\[\033[00m\] '   ** Insirir no final do arquivo .bashrc arquivo homme
 source ~/.bashrc                                                                                      ** Execute no terminal 
-    
+(Não esqueça de adicionar uma chave ssh no seu repositório remoto)
+
+ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_ed25519 -C "umemaildeRegistro@host.com"
+
+
 ---------------------------------- Git - Diogo  ----------------------------
 
 git checkout <branch_name>                             => Switch Branch
