@@ -79,10 +79,42 @@ git --no-pager show <branch>:path/to/file              => Print content o
 git config --global user.name "Full Name"              => Set name of user
 git config --global user.email "email@address.com"     => Set email of user 
 
--------------------- MySQL ----------------------
+
+--------------------------------- Javascrip --------------------------------------
+
+window.prompt                                         => retorna uma string
+window.alert                                          =>
+window.confirm                                        => 
+// /**/                                               => Comentário de uma linha e comentário para múltiplas linhas
+=                                                     => recebe ( atribuição )
+null                                                  => nulo
+var                                                   => identificador
+let                                                   => identificador 
+`String`  - "String" - 'String'                       => String, forma de escrever strings
+Infinity 
+NaN                                                  
+object                                      
+typeof <name>                                         => retorna o tipo
++                                                     => concatenação
+Number.parseInt(n)                                    => converter para inteiro
+Number.parseFloat(n)                                  => converter para float 
+Number(n)                                             => Uma forma nova ( 2019 ) o motor quem decide 
+`Placeholder ${ variável }.`                          => Desta forma podemos interpolar variáveis
+s.length                                              => Comprimento da string 
+<string>.toUpperCase()                                => Tornar para maiusculo
+<string>.toLowerCase()                                => Tornar para minusculo
+document.write()                                      => Output no Browser ( Imprimi uma string no browser ) 
+<variável>.toLocalString('<string>', {style: 'value', currenty: 'RS'} )                         => Nesse caso é um exemplo de fazer modificação monetária ( Real, Dolar, etc ...)
+var <nome> *=, %= , **=, /=, -=, +=                   => Essa sintaxe é válidada de atribuição
+<, >, >=, <=, ==, !=                                  => Relacionamentos com retorno booleano
+
+
+
+
+-------------------- MySQL - SQL----------------------
 
 sudo apt update                                  ** update system 
-sudo apt install mysql-server -y                ** instalação da última versão do mysql
+sudo apt install mysql-server -y                ** instalação da última versão do mysql ( sudo apt install mysql-server )
 sudo systemctl status mysql.service              ** vericação de "active server"
 sudo mysql_secure_installation_                  ** instalação de segurança
 yM&$z9^%KzXnL%t4BM1RJ*$Lnsw                      ** senha colocada 
@@ -110,6 +142,16 @@ sudo systemctl restart apache2                    ** reiniciar o servidor web
 
 use database_that_you_want                        ** use é o comando que carrega a database para ser consultada 
 
+--------------------------- Node.js --------------------------
+
+sudo apt intall node.js
+.exit                                             => Sair do terminal de comando node 
+console.log()                                     => Output ( printar um valor )
+typeof                                            => retorna o tipo  ( JS )
+<number>.tofixed(numero de casas )                => comando que muda o número de casas depois da virgula  
+<number>.tofixed().replace('.',',')               => o replace faz a conversão de uma string em outra              
+
+
 -------------------------- Python--------------------------- 
 
 Criar virtual venv 
@@ -119,8 +161,38 @@ Criar virtual venv
 Para desativar digite deactive.
 
 python3 -m http.server
+
+----------------------------------------- PostgreSQL ------------------------------------------------------------
+
+Para a instalação apenas veja o site oficial
+
+pg_ctlcluster 11 main start                           ** Para iniciar o server
+g_ctlcluster 12 main start
+
+sudo apt update
+
+sudo apt install postgresql postgresql-contrib
+
+sudo -i -u postgres                                  ** Entrar, logo depois digita-se psql ( user)
+sudo -u postgres psql
+
+\l                                                   ** lista databases.
+\du                                                  ** verifica a permissao de usuários
+\d                                                   ** Mostra todas as tabelas de um certo banco de dados
+
+----------------------------------------- PHP --------------------------------------------
+
+sudo apt install php7.2-cli                            **Baixando php7
+
+chmod 755 [o nome do executável]                       **Para a instalação do xampp ( dar permissão)
+ls -l [nome  do executável]                            **Verificar permissões.
+sudo apt install net-tools                             ** If occurred error.
+
+
+
+
  
--------------------------- Rails----------------------------- tro
+-------------------------- Rails----------------------------- 
 David Heinemeier Hansson - DHH
 * Iniciando novo_projeto
   
@@ -130,17 +202,23 @@ David Heinemeier Hansson - DHH
           ** Instalação do rvm   
           ** echo "source $HOME/.rvm/scripts/rvm" >> ~/.bash_profile
           ** source ~/.bashrc
-          ** rvm                                          ** Versionador ruby
-          ** rvm install 2.0.0 ou rvm install 2.3.3 ...   ** Assim vai um atalho para baixar várias versão de ruby;
-          ** rvm list                                     ** Lista todas as versões de ruby no rvm 
-          ** rvm use 2.0.0 ou rvm use 2.3.3 ...           ** Apontar qual versão você deseja usar.
-          ** gem install rails --no-ri --no-rdoc          ** Caso não tenha o rails esse é o momento de instalar 
-          ** gem list
-  
+          ** rvm                                          => Versionador ruby
+          ** rvm install 2.0.0 ou rvm install 2.3.3 ...   => Assim vai um atalho para baixar várias versão de ruby;
+          ** rvm list                                     => Lista todas as versões de ruby no rvm 
+          ** rvm use 2.0.0 ou rvm use 2.3.3 ...           => Apontar qual versão você deseja usar.
+          ** gem install rails --no-ri --no-rdoc          => Caso não tenha o rails esse é o momento de instalar 
+          ** gem list                                     => lista todas gems 
+          **sudo apt install ruby-railties                => intalação do rails 
+ 
+
   1) init bundle
           **Some of the frameworks have builtin support for Bundler, e.g. when you run rails new app it will automatically init Bundler.
           https://bundler.io/v2.0/guides/using_bundler_in_applications.html#getting-started---installing-bundler-and-bundle-init
           bundle install é empregado quando queremos atualizar as gems.
+          **sudo apt install ruby-bundler 
+  1.1) Caso haja problema na instalação do gem mysql2:
+          **sudo apt-get install libmysqlclient-dev
+          **bundle install
 
   2) Um problema muito ruim é quando a versão ruby do system é diferente do rvm, quando há uma troca rvm use ruby-2.6.3 não é modificado no system:
 
@@ -247,9 +325,7 @@ gem server                                             * Comando que inicia o se
 
 --------------------------- Ruby --------------------------------------------------------
 
-sudo apt  install ruby-railties                      ** instalation gem rails utilitaries
-
-ruby-lang.org                                             
+sudo apt  install ruby-railties                      ** instalation gem rails utilitaries                                       
 
 gem install bundler                                  ** controlodor de versoes de gems 
 irb                                                  ** interpretador ruby
@@ -268,7 +344,7 @@ Strings em Ruby são mutaveis
 O operador << faz a concatenacao de strings na mesma instancia. 
 Ja o operador + faz concatenacao gerando uma nova string.
 
-#{}                                                  ** Interpolacao
+#{}                                                  ** Interpolação
 
 Metodo Capitalize - e uma funcao pura que torna a primeira letra da
 palavra maiuscula. Nao ha modificacao direta da variavel.
@@ -327,8 +403,6 @@ Hash é uma estrutura indexada por qualquer tipo de objeto, confg = Hash.new    
 temos tambem uma sintaxe mais explicita {:nome = "jorge", :sobreNome ="Borges"} ou uma sintaxe mais antiga temos {:nome => "Jorge", :sobrenome => "Borges"}
 
 Mas assim como uso do parenteses e opcional no Syntax Sugar, podemos ter a exclusao das chaves na Hash :nome = "Jorge", :sobrenome = "Borges".
-
-Manipulando exceptions 
 
 
 ------------------------- Sublime_text dicas------------------------------
@@ -433,41 +507,6 @@ sleep 5                                                ** "Adormece" o sistema p
  
 
 ------------------------------------------Tmux - Vim -------------------------------------------------------------
-
-
-
-
-
-
------------------------------------------- PostgreSQL ------------------------------------------------------------
-
-Para a instalação apenas veja o site oficial
-
-pg_ctlcluster 11 main start                           ** Para iniciar o server
-g_ctlcluster 12 main start
-
-sudo apt update
-
-sudo apt install postgresql postgresql-contrib
-
-sudo -i -u postgres                                  ** Entrar, logo depois digita-se psql ( user)
-sudo -u postgres psql
-
-\l                                                   ** lista databases.
-\du                                                  ** verifica a permissao de usuários
-\d                                                   ** Mostra todas as tabelas de um certo banco de dados
-
------------------------------------------ PhP --------------------------------------------
-
-sudo apt install php7.2-cli                            **Baixando php7
-
-chmod 755 [o nome do executável]                       **Para a instalação do xampp ( dar permissão)
-ls -l [nome  do executável]                            **Verificar permissões.
-sudo apt install net-tools                             ** If occurred error.
-
-
-
-
 
 
 
