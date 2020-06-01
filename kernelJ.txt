@@ -1,7 +1,12 @@
 *https://guides.github.com/
 *https://www.atlassian.com/br/git/tutorials
+
 *http://guides.rubyonrails
 *http://ruby-toolbox.com/
+*https://github.com/avdi
+*https://www.programmer-books.com/wp-content/uploads/2018/07/Agile_Web_Development_with_Rails_5.pdf
+*https://www.caelum.com.br/download/caelum-ruby-on-rails-rr71.pdf
+
 
 ------------------------ Git --------------------------------------- 
 
@@ -82,9 +87,6 @@ git config --global user.email "email@address.com"     => Set email of user
 
 --------------------------------- Javascrip --------------------------------------
 
-window.prompt                                         => retorna uma string
-window.alert                                          =>
-window.confirm                                        => 
 // /**/                                               => Comentário de uma linha e comentário para múltiplas linhas
 =                                                     => recebe ( atribuição )
 null                                                  => nulo
@@ -107,6 +109,34 @@ document.write()                                      => Output no Browser ( Imp
 <variável>.toLocalString('<string>', {style: 'value', currenty: 'RS'} )                         => Nesse caso é um exemplo de fazer modificação monetária ( Real, Dolar, etc ...)
 var <nome> *=, %= , **=, /=, -=, +=                   => Essa sintaxe é válidada de atribuição
 <, >, >=, <=, ==, !=                                  => Relacionamentos com retorno booleano
+===                                                   => Operador de igualdade restrita ( avalia o tipo também )
+&&                                                    => Conjunção
+!                                                     => Negação
+||                                                    => Disjunção 
+
+DOM                                                   => Document Object Model 
+window -> location/document/history -> html -> head/body -> tags                 => árvore DOM
+getElementsByTagName('p')[0];                         => Selecionar o parágrafo da posição 0     var texto = window.document.getElementsByName('<tag>')[<posição>];
+document.write(p1.innerText);                         => podemos inserir o paragrafo capturado um uma nova frase com o innerText.
+innerHTML                                             => insere também as tags filhas além do texto
+getElementById[ ]                                     => Seleciona um seletor id 
+getElementsByName()                                   => 
+var nome = querySelector(#id)                         => seleciona um id ou class 
+querySelectorAll(.class)                              => 
+nome.style.background()                               => Podemos mudar o estilo diretamente
+window.prompt                                         => retorna uma string
+window.alert                                          =>
+window.confirm                                        => 
+<var>.addEventListener('evento', função)              => Carrega o evento internamente no js
+mouseenter                                            => inline é onmouseenter, onclixk  
+mouseover                                           
+mousemove                  
+mouseout           
+mousedown
+mouseup 
+
+
+
 
 
 
