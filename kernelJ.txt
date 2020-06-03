@@ -13,6 +13,7 @@
 sudo apt-get install git 
 git config --global user.name "myname "
 git config --global user.email "myemail"
+gti config --global --list                                                    => Listará todas as configurações git 
 git init
 git status
 git add arquivo                                                               => arquivo agora esta sendo rastreado Untracked file -> stage
@@ -23,6 +24,8 @@ git branch -D  <nome>                                                         =>
 git branch -m <nome>                                                          => renomear branch atual para nome 
 git branch -a                                                                 => Listar todas as branchs remotas
 git push origin --delete <nome>                                               => Excluir uma branch remota ( ou git push origin :<nome>)
+
+git rebase origin master                                                      => Pesquisar ( Resolução de !reject  master -> master)
 
 git log                                                                       => mostrará os commits - verifica alteracoes realizadas
 git remote add origin https or ssh                                            => Sincronização de repositório remoto e local
@@ -40,6 +43,8 @@ git checkout                                                                  =>
 git reset                                                                     => Agora desfaz mudanças dos arquivos que já tiverem sido rastreados
 git reset --hard                                                              => Além de tirar o arquivo do stage também volta a seu estado original - Volta para o commit apontado sem constar no histórico.
 git revert --no-edit "summet"                                                 => Não consegui aplicar
+git config --global alias.co checkout                                         => Renomeando comandos.
+git config --global credential.helper "cache --timeout=86400"                 => lembrando da senha.
 
 (Como mostrar branch no terminal linux)
 export PS1='\u@\h\[\033[01;34m\] \w\[\033[0;32m\]$(__git_ps1 " (%s)")\[\033[01;34m\]$\[\033[00m\] '   => Insirir no final do arquivo .bashrc arquivo homme
@@ -180,7 +185,7 @@ console.log()                                     => Output ( printar um valor )
 typeof                                            => retorna o tipo  ( JS )
 <number>.tofixed(numero de casas )                => comando que muda o número de casas depois da virgula  
 <number>.tofixed().replace('.',',')               => o replace faz a conversão de uma string em outra              
-
+sudo apt install npm
 
 -------------------------- Python--------------------------- 
 
@@ -224,9 +229,49 @@ sudo apt install net-tools                             ** If occurred error.
  
 -------------------------- Rails----------------------------- 
 David Heinemeier Hansson - DHH
+
+sudo apt-get install apache2 curl git libmysqlclient-dev mysql-server nodejs                                  => instalação 1
+curl -L https://get.rvm.io | bash -s stable                                                                   => key rvm
+rvm requirements --autolibs=enable                                                                            => instalando prérequisitos rvm
+rvm install 2.3.1                                                                                             => instalando uma versão ruby
+rvm use 2.3.1                                                                                                 => dentre tantas versões apontar uma para usar
+rvm list                                                                                                      => Lista todas as versões de ruby no rvm 
+gem install rails --version=5.0.0.1 --no-ri --no-rdoc                                                         => instalando o rails uma versão específica
+rvm --default 2.3.1                                                                                           => especificando uma versão ruby default
+rails -v                                                                                                      => verficando verção rails 
+gem list --local rails                                                                                        => Lista todas as versões rails presente
+rails s ( bin/rails server)                                                                                   => acionar o server
+
+rails new <project> -d mysql                                                                                  => Cria uma nova aplicação
+rails db:create                                                                                               => Criar a base de dados 
+rake db:rollback                                                                                              => Limpar a database criada pelo scaffold and return migragation (drop)
+rails detroy scaffold <nome>                                                                                  => excluir scaffold
+
+
+seed.rb > Product.delete_all                                                                                  => Com esta linha de código podemos deletar toda nossos dados para testa-los novamente. (Use o codigo a seguir para executar o comando)
+bin/rails db:seeds                                                                                            => To populate your products table with test data, run the following command 
+
+app/assets/stylesheets/scaffold.scss                                                                          => Podemos estar mudando o estilo de um view 
+
+
+bin/rails generate controller Say hello goodbye                                                               => é possivel gerar um controler criando ao mesmo tempos os métodos
+bin/rails generate scaffold <Nome> \
+       title:string description:text image_url:string price:decimal                                           => Cria a estrutura MVC de Product gerando um *migrate
+bin/rails db:migrate 
+bin/rails test                                                                                                => verifica erros na aplicação
+
+
+
+bin                                                                                                           => Pasta onde encontra-se os executáveis
+app                                                                                                           => Onde será escrita aplicação
+
+
+
+
 * Iniciando novo_projeto
+
   
-  0) Verifique a versão 
+ 
           ** sudo apt-get install curl
           ** https://get.rvm.io | bash -s stable --ruby
           ** Instalação do rvm   
@@ -234,7 +279,7 @@ David Heinemeier Hansson - DHH
           ** source ~/.bashrc
           ** rvm                                          => Versionador ruby
           ** rvm install 2.0.0 ou rvm install 2.3.3 ...   => Assim vai um atalho para baixar várias versão de ruby;
-          ** rvm list                                     => Lista todas as versões de ruby no rvm 
+         
           ** rvm use 2.0.0 ou rvm use 2.3.3 ...           => Apontar qual versão você deseja usar.
           ** gem install rails --no-ri --no-rdoc          => Caso não tenha o rails esse é o momento de instalar 
           ** gem list                                     => lista todas gems 
@@ -270,7 +315,6 @@ David Heinemeier Hansson - DHH
           **.ruby-gemset                                  ** Nome da aplicação que será criada para se trabalhar com a versão no ruby-version
           **.ruby-vesion                                  ** Escreva a versão do rails que irá trabalhar no arquivo
   3) Criando banco 
-          ** rake db:create
           ** rake dbconsole                               ** Fazer consulta
           ** rails s                                      ** Carregar o servidor o mesmo que rails server
           ** rails s -e production                        ** Levanta o banco de dados de produção 
@@ -355,7 +399,8 @@ gem server                                             * Comando que inicia o se
 
 --------------------------- Ruby --------------------------------------------------------
 
-sudo apt  install ruby-railties                      ** instalation gem rails utilitaries                                       
+sudo apt  install ruby-railties                      ** instalation gem rails utilitaries 
+aptitude purge ruby                                  ** desinstalar ruby
 
 gem install bundler                                  ** controlodor de versoes de gems 
 irb                                                  ** interpretador ruby
@@ -477,6 +522,7 @@ ctrl+alt+T                                             ** Atalho para o terminal
 $ echo ~                                               ** Shell - pasta home - comando em programação para exibir o conteúdo de uma variável.
 sudo touch "nomeDoArquivo"                             ** Criar arquivo 
 ls                                                     ** Faz a listagem das pastas e arquivos do diretório.
+ls -p                                                  ** Faz a listagem das pastas
 mv                                                     ** Mover ou renomear um arquivo. mv nomeOrigem nomeDestino
 man - é um comando de glossaryo irá postar os detalhes do commando que você
 deseja empregar.
@@ -504,6 +550,8 @@ ll                                                     ** Lista os arquivos com 
 oh my Zsh                                              ** Site para customizar a bash 
 
 /usr/bin                                               ** Encontra-se o binários dos comandos básicos do shell
+echo $PATH                                             ** Mostras os caminhos (Variáveis de ambiente)
+echo $GEM_PATH                                         ** Mostra o caminho das gems 
 
 find 
 
@@ -542,4 +590,3 @@ sleep 5                                                ** "Adormece" o sistema p
 
 
 
-  
