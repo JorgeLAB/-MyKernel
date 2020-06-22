@@ -1,16 +1,38 @@
+*https://guides.github.com/
+*https://www.atlassian.com/br/git/tutorials
+
 *http://guides.rubyonrails
 *http://ruby-toolbox.com/
+*https://github.com/avdi
+*https://www.programmer-books.com/wp-content/uploads/2018/07/Agile_Web_Development_with_Rails_5.pdf
+*https://www.caelum.com.br/download/caelum-ruby-on-rails-rr71.pdf
+
 
 ------------------------ Git --------------------------------------- 
 
 sudo apt-get install git 
 git config --global user.name "myname "
 git config --global user.email "myemail"
+gti config --global --list                                                    => Listará todas as configurações git 
 git init
 git status
 git add arquivo                                                               => arquivo agora esta sendo rastreado Untracked file -> stage
 git commit -m "Novo arquivo comitado"
+git mv                                                                        => "The command to rename a file using Git is git mv"
+
+git branch <nome>                                                             => Permite criar, listar, apagar e renomear ramificações
+git branch -D  <nome>                                                         => 
+git branch -m <nome>                                                          => renomear branch atual para nome 
+git branch -a                                                                 => Listar todas as branchs remotas
+git push origin --delete <nome>                                               => Excluir uma branch remota ( ou git push origin :<nome>)
+
+git rebase origin master                                                      => Pesquisar ( Resolução de !reject  master -> master)
+
+git push -f origin master                                                     => push forçado.
 git log                                                                       => mostrará os commits - verifica alteracoes realizadas
+git remote                                                                    => ver a situação
+git remote rm <name>                                                          => desfaz conexões
+git remote rename <antigo> <novo>
 git remote add origin https or ssh                                            => Sincronização de repositório remoto e local
 git push -u origin master                                                     => Primeiro push em um repositório remoto
 git push origin master                                                        => use para dar update nos seus arquivos remotos (Caso recebar erro: git push master --force ) 
@@ -26,11 +48,19 @@ git checkout                                                                  =>
 git reset                                                                     => Agora desfaz mudanças dos arquivos que já tiverem sido rastreados
 git reset --hard                                                              => Além de tirar o arquivo do stage também volta a seu estado original - Volta para o commit apontado sem constar no histórico.
 git revert --no-edit "summet"                                                 => Não consegui aplicar
+git config --global alias.co checkout                                         => Renomeando comandos.
+git config --global credential.helper "cache --timeout=86400"                 => lembrando da senha.
+
+git submodule add <url/do/repositório> <destino/do/submódulo>                 => Trabalho submodulos no git ( um repositorio dentro de outro )
+git checkout HEAD~1                                                           => Depois de commitado podemos retornar um commit 
+
 
 (Como mostrar branch no terminal linux)
-export PS1='\u@\h\[\033[01;34m\] \w\[\033[0;32m\]$(__git_ps1 " (%s)")\[\033[01;34m\]$\[\033[00m\] '   ** Insirir no final do arquivo .bashrc arquivo homme
-source ~/.bashrc                                                                                      ** Execute no terminal 
+export PS1='\u@\h\[\033[01;34m\] \w\[\033[0;32m\]$(__git_ps1 " (%s)")\[\033[01;34m\]$\[\033[00m\] '   => Insirir no final do arquivo .bashrc arquivo homme
+source ~/.bashrc                                                                                      => Execute no terminal o comando (salva o estado).
 (Não esqueça de adicionar uma chave ssh no seu repositório remoto)
+
+(Criando a chave pública e privada ssh)
 
 ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_ed25519 -C "umemaildeRegistro@host.com"
 
@@ -68,10 +98,67 @@ git --no-pager show <branch>:path/to/file              => Print content o
 git config --global user.name "Full Name"              => Set name of user
 git config --global user.email "email@address.com"     => Set email of user 
 
--------------------- MySQL ----------------------
+
+--------------------------------- Javascrip --------------------------------------
+
+// /**/                                               => Comentário de uma linha e comentário para múltiplas linhas
+=                                                     => recebe ( atribuição )
+null                                                  => nulo
+var                                                   => identificador
+let                                                   => identificador 
+`String`  - "String" - 'String'                       => String, forma de escrever strings
+Infinity 
+NaN                                                  
+object                                      
+typeof <name>                                         => retorna o tipo
++                                                     => concatenação
+Number.parseInt(n)                                    => converter para inteiro
+Number.parseFloat(n)                                  => converter para float 
+Number(n)                                             => Uma forma nova ( 2019 ) o motor quem decide 
+`Placeholder ${ variável }.`                          => Desta forma podemos interpolar variáveis
+s.length                                              => Comprimento da string 
+<string>.toUpperCase()                                => Tornar para maiusculo
+<string>.toLowerCase()                                => Tornar para minusculo
+document.write()                                      => Output no Browser ( Imprimi uma string no browser ) 
+<variável>.toLocalString('<string>', {style: 'value', currenty: 'RS'} )                         => Nesse caso é um exemplo de fazer modificação monetária ( Real, Dolar, etc ...)
+var <nome> *=, %= , **=, /=, -=, +=                   => Essa sintaxe é válidada de atribuição
+<, >, >=, <=, ==, !=                                  => Relacionamentos com retorno booleano
+===                                                   => Operador de igualdade restrita ( avalia o tipo também )
+&&                                                    => Conjunção
+!                                                     => Negação
+||                                                    => Disjunção 
+
+DOM                                                   => Document Object Model 
+window -> location/document/history -> html -> head/body -> tags                 => árvore DOM
+getElementsByTagName('p')[0];                         => Selecionar o parágrafo da posição 0     var texto = window.document.getElementsByName('<tag>')[<posição>];
+document.write(p1.innerText);                         => podemos inserir o paragrafo capturado um uma nova frase com o innerText.
+innerHTML                                             => insere também as tags filhas além do texto
+getElementById[ ]                                     => Seleciona um seletor id 
+getElementsByName()                                   => 
+var nome = querySelector(#id)                         => seleciona um id ou class 
+querySelectorAll(.class)                              => 
+nome.style.background()                               => Podemos mudar o estilo diretamente
+window.prompt                                         => retorna uma string
+window.alert                                          =>
+window.confirm                                        => 
+<var>.addEventListener('evento', função)              => Carrega o evento internamente no js
+mouseenter                                            => inline é onmouseenter, onclixk  
+mouseover                                           
+mousemove                  
+mouseout           
+mousedown
+mouseup 
+
+
+
+
+
+
+
+-------------------- MySQL - SQL----------------------
 
 sudo apt update                                  ** update system 
-sudo apt install mysql-server -y                ** instalação da última versão do mysql
+sudo apt install mysql-server -y                ** instalação da última versão do mysql ( sudo apt install mysql-server )
 sudo systemctl status mysql.service              ** vericação de "active server"
 sudo mysql_secure_installation_                  ** instalação de segurança
 yM&$z9^%KzXnL%t4BM1RJ*$Lnsw                      ** senha colocada 
@@ -90,6 +177,9 @@ sudo apt-get update                              ** dar um update
 sudo apt-get install apache2 php7.0-common php7.0-cli php7.0 libapache2-mod-php7.0                              ** Instalação do php7
 
 
+create table comclien_bkp as( select * from comclien where c_estaclien = 'SP');                                 ** Basicamente estou criando uma tabela com atributos de outra 
+
+
 ** Configuração do php para apontar para rota específica 
 sudo nano /etc/apache2/mods-enabled/dir.conf
 
@@ -98,6 +188,18 @@ Modifique para:  DirectoryIndex index.php index.html index.cgi index.pl index.xh
 sudo systemctl restart apache2                    ** reiniciar o servidor web 
 
 use database_that_you_want                        ** use é o comando que carrega a database para ser consultada 
+
+
+
+--------------------------- Node.js --------------------------
+
+sudo apt intall node.js
+.exit                                             => Sair do terminal de comando node 
+console.log()                                     => Output ( printar um valor )
+typeof                                            => retorna o tipo  ( JS )
+<number>.tofixed(numero de casas )                => comando que muda o número de casas depois da virgula  
+<number>.tofixed().replace('.',',')               => o replace faz a conversão de uma string em outra              
+sudo apt install npm
 
 -------------------------- Python--------------------------- 
 
@@ -108,28 +210,162 @@ Criar virtual venv
 Para desativar digite deactive.
 
 python3 -m http.server
+
+----------------------------------------- PostgreSQL ------------------------------------------------------------
+
+Para a instalação apenas veja o site oficial
+
+pg_ctlcluster 11 main start                           ** Para iniciar o server
+g_ctlcluster 12 main start
+
+sudo apt update
+
+sudo apt install postgresql postgresql-contrib
+
+sudo -i -u postgres                                  ** Entrar, logo depois digita-se psql ( user)
+sudo -u postgres psql
+
+\l                                                   ** lista databases.
+\du                                                  ** verifica a permissao de usuários
+\d                                                   ** Mostra todas as tabelas de um certo banco de dados
+
+----------------------------------------- PHP --------------------------------------------
+
+sudo apt install php7.2-cli                            **Baixando php7
+
+chmod 755 [o nome do executável]                       **Para a instalação do xampp ( dar permissão)
+ls -l [nome  do executável]                            **Verificar permissões.
+sudo apt install net-tools                             ** If occurred error.
+
+
+
+
  
--------------------------- Rails----------------------------- tro
+-------------------------- Rails----------------------------- 
 David Heinemeier Hansson - DHH
+
+sudo apt-get install apache2 curl git libmysqlclient-dev mysql-server nodejs                                  => instalação 1
+curl -L https://get.rvm.io | bash -s stable                                                                   => key rvm
+rvm requirements --autolibs=enable                                                                            => instalando prérequisitos rvm
+rvm install 2.3.1                                                                                             => instalando uma versão ruby
+rvm use 2.3.1                                                                                                 => dentre tantas versões apontar uma para usar
+rvm list                                                                                                      => Lista todas as versões de ruby no rvm 
+gem install rails --version=5.0.0.1 --no-ri --no-rdoc                                                         => instalando o rails uma versão específica
+rvm --default 2.3.1                                                                                           => especificando uma versão ruby default
+rails -v                                                                                                      => verficando verção rails 
+gem list --local rails                                                                                        => Lista todas as versões rails presente
+rails s ( bin/rails server)                                                                                   => acionar o server
+
+EDITOR=subl rails credentials:edit                                                                            => editando as credentials.yml.enc ( Assim você edita um arquivo que será criptografado para editar a master key) 
+
+rails new myproject --api --database=mysql -T
+rails new <project> -d mysql                                                                                  => Cria uma nova aplicação
+rake db:create                                                                                               => Criar a base de dados 
+rake db:rollback                                                                                              => Limpar a database criada pelo scaffold and return migragation (drop)
+rails detroy scaffold <nome>                                                                                  => excluir scaffold
+
+rails dev:cache                                                                                               => Note that this command will cause your server to automatically restart. "so  there’s  no  need  to  start from scratch on each request."
+
+@product.order(:title)                                                                                        =>   
+seed.rb > Product.delete_all                                                                                  => Com esta linha de código podemos deletar toda nossos dados para testa-los novamente. (Use o codigo a seguir para executar o comando)
+bin/rails db:seeds                                                                                            => To populate your products table with test data, run the following command 
+
+app/assets/stylesheets/scaffold.scss                                                                          => Podemos estar mudando o estilo de um view 
+
+rails generate migration add_novaColuna_tabela                                                                => gera uma nova coluna, depois disso temos de ir ao migration e adicionar 	add_column  :produto, :descricao, :text ( Veja na Documentação do ActiveRecord )
+
+
+bin/rails generate controller Say hello goodbye                                                               => é possivel gerar um controler criando ao mesmo tempos os métodos
+bin/rails generate scaffold <Nome> \
+       title:string description:text image_url:string price:decimal                                           => Cria a estrutura MVC de Product gerando um *migrate
+bin/rails generate scaffold LineItem product:references cart:belongs_to                                       =>
+belongs_to                                                                                                    => é um metodo foreign-key 
+references                                                                                                    => é um método foreign-key ( também )
+has_many :line_items, dependent: :destroy                                                                     => para certo model há "várias (0 ou n)" line_items qua dependem do model caso seja excluido todas os :line_items serão também na base de dados.
+bin/rails generate scaffold add_quantity_to_line_items quantity:integer                                       => Adiciona uma coluna na tabela line_items
+add_XXX_to_TABLE 
+remove_XXX_from_TABLE         
+
+Rake                                                                                                          => Server para fazer uma alteração na base de dados. Essa aula é muito boa #34
+rake dbconsole ( rails c)                                                                                     => 
+rake -T                                                                                                       => Lista de comandos 
+rake routes 
+rails g task apagar_dados <table>_produto1   <table>_produto2                                                 => Gera uma rake na lib > task para fazer uma execução no banco. Criando rakes  
+
+rails console                                                                                                 => Console do rails onde posso estar fazendo buscas 
+<%= rendet 'layout/menu' %>                                                                                   => Partials para a view desejada _menu.html.erb
+@variable                                                                                                     => Variavel de contexto que pode ser acessada na view
+<%= rendet 'layout/menu', projeto: 'Lana'  %>                                                                 => Passando uma parametro de uma view para a partial.
+
+
+
+
+bin/rails db:migrate:status                                                                                   =>
+
+before_destroy   :ensure_not_reference_by_any_line_item           (hook method)                               => É um validate como o metodo cascate no SQL, evita que uma produto seja deletado caso esteja presente em carts.
+before_action                                                                                                 => UMa metodos auxiliares que são passados antes de se executar aguma action
+
+index, show, create                                                                                           => São endpoints
+
+
+bin/rails db:migrate 
+bin/rails test                                                                                                => verifica erros na aplicação
+
+app/ models                                                                                                   => Nesta pasta serão tratada as validações
+validates :title, :description, :image_url, :price, presence: true                                            => Validando existência 
+validates :price, numericality: {greater_than_or_equal_to: 0.01}                                              => validação de valor numérico se for maior ou igual a 0.01
+validates :title, uniqueness: true                                                                            => validação de uniciadade, verificando se o título inserido é o único.
+validates :image_url, allow_blank: true, format {
+  with:   %r{\.(jpg|png|gif)\Z}i,
+  message:  'Inserir extensões JPG, GIF or PNG.' 
+} 
+bin/rails test test/controllers/line_items_controller_test.rb                                                 => test
+
+bin                                                                                                           => Pasta onde encontra-se os executáveis / Aquivos de configuração / 
+app                                                                                                           => Onde será escrita aplicação / Tudo que é dinâmico vai aqui
+assets                                                                                                        => Agrupas os arquivos css e js para melhorar a performance do sistema. / nã mantem no cache
+public                                                                                                        => Pasta estática que possui exemplo como Erros 500 e 404, com o apoio de cache do usuário, Status code
+test/fixtures                                                                                                 => Consigo setar objetos para teste 
+initializer                                                                                                   => A primeira pasta a ser executado quando chamo o servidor **
+helpers                                                                                                       => Vai ajudar na construção do layout erb, agrupando pedaços de código. juntando um code de front e back ( uma boa comparação é com partials só que os helpers são melhores por que os partials não tem de haver tanta interação de back)
+
+db                                                                                                            => Onde possue as configurações da base de dados
+seed.rb                                                                                                       => Onde posso testa direto na base de dados
+
+ApplicationHelpers                                                                                            => Serve para todos os contextos já que herda de ApplicationController
+
+RAILS_ENV=production bundle exec rake assets:precompile                                                       => Subindo a aplicação para ambiente de produção compilando os assets ( Faz o mesmo que o Gulp - mais leve e performatico )
+
+tails -f production.log                                                                                       => Acompanhando erros em produção
+
+
+
 * Iniciando novo_projeto
+
   
-  0) Verifique a versão 
+ 
           ** sudo apt-get install curl
           ** https://get.rvm.io | bash -s stable --ruby
           ** Instalação do rvm   
           ** echo "source $HOME/.rvm/scripts/rvm" >> ~/.bash_profile
           ** source ~/.bashrc
-          ** rvm                                          ** Versionador ruby
-          ** rvm install 2.0.0 ou rvm install 2.3.3 ...   ** Assim vai um atalho para baixar várias versão de ruby;
-          ** rvm list                                     ** Lista todas as versões de ruby no rvm 
-          ** rvm use 2.0.0 ou rvm use 2.3.3 ...           ** Apontar qual versão você deseja usar.
-          ** gem install rails --no-ri --no-rdoc          ** Caso não tenha o rails esse é o momento de instalar 
-          ** gem list
-  
+          ** rvm                                          => Versionador ruby
+          ** rvm install 2.0.0 ou rvm install 2.3.3 ...   => Assim vai um atalho para baixar várias versão de ruby;
+         
+          ** rvm use 2.0.0 ou rvm use 2.3.3 ...           => Apontar qual versão você deseja usar.
+          ** gem install rails --no-ri --no-rdoc          => Caso não tenha o rails esse é o momento de instalar 
+          ** gem list                                     => lista todas gems 
+          **sudo apt install ruby-railties                => intalação do rails 
+ 
+
   1) init bundle
           **Some of the frameworks have builtin support for Bundler, e.g. when you run rails new app it will automatically init Bundler.
           https://bundler.io/v2.0/guides/using_bundler_in_applications.html#getting-started---installing-bundler-and-bundle-init
           bundle install é empregado quando queremos atualizar as gems.
+          **sudo apt install ruby-bundler 
+  1.1) Caso haja problema na instalação do gem mysql2:
+          **sudo apt-get install libmysqlclient-dev
+          **bundle install
 
   2) Um problema muito ruim é quando a versão ruby do system é diferente do rvm, quando há uma troca rvm use ruby-2.6.3 não é modificado no system:
 
@@ -151,7 +387,6 @@ David Heinemeier Hansson - DHH
           **.ruby-gemset                                  ** Nome da aplicação que será criada para se trabalhar com a versão no ruby-version
           **.ruby-vesion                                  ** Escreva a versão do rails que irá trabalhar no arquivo
   3) Criando banco 
-          ** rake db:create
           ** rake dbconsole                               ** Fazer consulta
           ** rails s                                      ** Carregar o servidor o mesmo que rails server
           ** rails s -e production                        ** Levanta o banco de dados de produção 
@@ -183,6 +418,76 @@ David Heinemeier Hansson - DHH
           ** rails g scaffold Post titulo:string descricao:text
   9) Deleta o banco , cria um banco e faz a migração
      rake db:drop db:create db:migrate
+-------------------------------------------------
+
+Testes automatizados
+
+gem install rspect
+rspect --init                                                    ++ Inicializa o gem rspec sem o Gemfile
+
+gem 'rspec-rails'                                                ++ Em um projeto rails no Gemfile
+rails genarate rspec:install                                     ++ instalando o rspec depois do banco de dados
+rails genarate rspec:request User                                ++ Cria um teste request para o model user
+rails generate --help | grep rspec                               ++ Lista de generate do rails 
+
+
+describe                                                         ++ Definir Grupos de testes
+context                                                          ++ Agrupar testes associados, é subcateria para agrupar os testes parecidos
+it                                                               ++ Definit um exemplo ( teste )
+expect                                                           ++ Verifica condições
+
+match                                                            ++ verificar se uma condição está sendo atendida
+expect(actual).to eq(expected)
+expect(actual).to eql(y)
+expect(actual).to be(y)
+
+expect(atual).to be > x
+expect(atual).to be >= x
+expect(atual).to be <= x
+expect(atual).to be < x
+expect(atual).to match(/expression/)                             
+expect(actual).to be_an_instance_of(expected)
+expect(actual).to be_a(expected)
+expect(actual).to be_truthy
+expect(actual).to be true
+expect(atual).to be_falsy
+expect(atual).to be false
+expect(atual).to be_nil
+expect(atual).to_not be_nill
+
+expect {...}.to raise_error
+expect {...}.to raise-error(ErrorClass)
+expect {...}.to raise-error("message")
+expect {...}.to raise-error(ErrorClass, "message")
+
+gem FFAKER                                                      ++ Permite gerar valores aleatórios - Evita dados viciados 
+FFaker::Name.name                                               ++ Gera um nome 
+FFaker::Internet.email                                          ++ gera email fake
+FFaker::Andress.city                                            ++ cidade fake
+  	nickname = FFaker::Name.first_name
+  	kind = %i[knight wizard].sample
+  	level = FFaker::Random.rand(10..99)  
+
+gem factory bot                                                 ++ Parecido com o Fixtures do test Há um processo de criação de diretórios
+
+config.include FactoryBot::Syntax::Methods                      ++ incluir dentro da pasta rails helper
+
+testes de request                                               ++ integração de model, controller, server um teste mais global
+
+rails g controller users index create --no-helper --no-assets --no-controller-specs --no-view-specs --skip-routes
+rails g controller enemies update destroy --no-helper --no-assets --no-controller-specs --no-view-specs --skip-routes
+
+expect(response).to have_http_status(200)                       ++ 200 é um statu de sucesso
+
+get                                                             ++ Adquirir dados do banco
+pos                                                             ++ inserir dados
+
+
+
+	
+
+
+
 
 --------------------------------------------------
 
@@ -214,11 +519,16 @@ debugger rails
    - binding.pry # no haml
    binding.pry  # no ruby
 
+
+Combine 'pry' with 'byebug'. Adds 'step', 'next', 'finish', 'continue' and 'break' commands to control execution.
+
+
 ** Como usar o debug
    insira o codigo flag onde se deseja fazer a pausa, você conseguirar visualizar no inspetor do navegador. Conseguentimento no seu terminal aparecerá um console main pry >, para consulta 
 
   whereami # retornará sua posição.
   exit-program # saida bruta
+
 
 ________________________________________________________
 
@@ -236,28 +546,90 @@ gem server                                             * Comando que inicia o se
 
 --------------------------- Ruby --------------------------------------------------------
 
-sudo apt  install ruby-railties                      ** instalation gem rails utilitaries
-
-ruby-lang.org                                             
+sudo apt  install ruby-railties                      ** instalation gem rails utilitaries 
+aptitude purge ruby                                  ** desinstalar ruby
 
 gem install bundler                                  ** controlodor de versoes de gems 
 irb                                                  ** interpretador ruby
 pry                                                  ** É um interpretador irb bombado como é uma gem tem de ser instalado com syntaxe "raylight"
 
-puts, p e  print                                     ** Imprimindo algo em ruby  
+puts, p e  print                                     ** Imprimindo algo em ruby
 puts                                                 ** Imprimir no console e pula linha
 p                                                    ** Utilizado como metodo inspect
-print                                                ** imprime no console
+print                                                ** imprime no console mas vai imprimir um do lado do outro 
 
 # / =begin bloco =end                                ** Comentarios em ruby Pode haver comentarios de linha simples ou bloco (multiplas linhas)
 
 Metodo .class                                        ** Metodo para obter o tipo da variavel.
 
+classe, instancias , contrutores 
+
+meta_programer   attr_accessor, attr_writer, attr_reader                                               ** 
+
+require_relative                                     ** Acessando classes para meu codigo.rb 
+
+runtime - criar methodos durante execução            ** a.methods irá mostrar todos os metodos de uma determinada classe ( String, float, ou uma criada por você ...)
+
+a = objetos
+
+a = lambda do /p/                                    ** O lambda posso passar ou não um parâmetro para uma variável para excutar um bloco contudo apenas um parametro se for colocado /p1, p2, p3 /
+	puts p                                           ** Sou obrigado a char no call 3 argumentos. Só aceita os parâmetros definidos.
+end
+a.call ("Jorge")
+
+a = proc.new do /p,p1,p2/                            ** Com o proc você poderá fazer *args adicionar mais parametros na chamada podem ou não executar todos
+	puts p , p1
+
+end
+
+a.call( "jorge", "cozinha")
+
+
+def methodo ( &bloco)                                ** Permite que eu passe um blco em um méthodo, usando um PROC.new é como se fosse um callback do js 
+	bloco
+end.call    #nao entendi o call no final
+
+eval("puts '1,2,3'")                                 ** Executa veja nem usei o #{} no comando  
+
+jorge = Object.const_get(jorge)                      ** Criando uma classe dinamicamente retornando um objeto
+
+String.downcase                                      ** tudo fica minusculo
+String.upcase                                        ** tudo maiusculo
+
+Herança
+Polimorfismo
+super
+
+alias_method                                         ** Usar método renomeando o original - uma herança ~ Polimorfismo não perdendo o método original ( cria uma cópia )
+defane_method                                        ** 
+modele
+send                                                 ** o send( 'metodo' )  ele tenta achar algum método na instancia tonando dinamico dentro de outro método ; Uma observação o método tem de estar como string      
+
+hooks                                                **  Gancho 
+  included                                           ** Modulos aponta para a instancia ( Reação - Despara um hook)
+  extended                                           ** Modulo aponta para classe ( Reação - Despara um hook )
+  inherited                                          ** Classe ( Reação - despara um hook  )
+  callback
+  fallback 
+  gate de pagamento
+  tiggers                                              ** nos bancos de dados seriam atualizações, alterações, drops, .../ Meio que dispara um gatilho para alguma coisa
+  jobs                                                 ** executar uma ação em background ou runtime
+
+Module                                               ** Classe superior que pode ser overwrite para modificar hooks como os missing
+missing                                              ** Um elemento do ActivenRecord muito importante
+	const_missing	                                 ** Mostrar que alguma classe ou constante não existe 
+    method_missing                                   ** Vamos fazer um overwrite, indica que algum método ou atributo exista possivel para um metodo de instancia também Class1.new
+
+
+
+
+
+	
 Strings em Ruby são mutaveis
 O operador << faz a concatenacao de strings na mesma instancia. 
 Ja o operador + faz concatenacao gerando uma nova string.
 
-#{}                                                  ** Interpolacao
+#{}                                                  ** Interpolação
 
 Metodo Capitalize - e uma funcao pura que torna a primeira letra da
 palavra maiuscula. Nao ha modificacao direta da variavel.
@@ -317,8 +689,6 @@ temos tambem uma sintaxe mais explicita {:nome = "jorge", :sobreNome ="Borges"} 
 
 Mas assim como uso do parenteses e opcional no Syntax Sugar, podemos ter a exclusao das chaves na Hash :nome = "Jorge", :sobrenome = "Borges".
 
-Manipulando exceptions 
-
 
 ------------------------- Sublime_text dicas------------------------------
 Plugins
@@ -346,12 +716,14 @@ Bookmark - Control + F2 ( fazer a marcação)
 
 shift + alt + l                                                        ** Lorem Ipsum text
 
+control+shift + L => cursor para cima e para baixo                     ** seleciona todo o começo de linha bom para comentar rápido 
+
 Control + F9                                                           ** Ordem alfabetica um arquivo texto no sublime
 
 Sublime package control instalado 
 plugin   # BracketHighlighter
 plugin alignment #git Gutter
--
+
 ------------------------- Terminal - Linux  -------------------------------------
 
 >> https://canaltech.com.br/linux/entendendo-a-estrutura-de-diretorios-do-linux/
@@ -362,6 +734,7 @@ ctrl+alt+T                                             ** Atalho para o terminal
 $ echo ~                                               ** Shell - pasta home - comando em programação para exibir o conteúdo de uma variável.
 sudo touch "nomeDoArquivo"                             ** Criar arquivo 
 ls                                                     ** Faz a listagem das pastas e arquivos do diretório.
+ls -p                                                  ** Faz a listagem das pastas
 mv                                                     ** Mover ou renomear um arquivo. mv nomeOrigem nomeDestino
 man - é um comando de glossaryo irá postar os detalhes do commando que você
 deseja empregar.
@@ -389,6 +762,8 @@ ll                                                     ** Lista os arquivos com 
 oh my Zsh                                              ** Site para customizar a bash 
 
 /usr/bin                                               ** Encontra-se o binários dos comandos básicos do shell
+echo $PATH                                             ** Mostras os caminhos (Variáveis de ambiente)
+echo $GEM_PATH                                         ** Mostra o caminho das gems 
 
 find 
 
@@ -423,43 +798,3 @@ sleep 5                                                ** "Adormece" o sistema p
 
 ------------------------------------------Tmux - Vim -------------------------------------------------------------
 
-
-
-
-
-
------------------------------------------- PostgreSQL ------------------------------------------------------------
-
-Para a instalação apenas veja o site oficial
-
-pg_ctlcluster 11 main start                           ** Para iniciar o server
-g_ctlcluster 12 main start
-
-sudo apt update
-
-sudo apt install postgresql postgresql-contrib
-
-sudo -i -u postgres                                  ** Entrar, logo depois digita-se psql ( user)
-sudo -u postgres psql
-
-\l                                                   ** lista databases.
-\du                                                  ** verifica a permissao de usuários
-\d                                                   ** Mostra todas as tabelas de um certo banco de dados
-
------------------------------------------ PhP --------------------------------------------
-
-sudo apt install php7.2-cli                            **Baixando php7
-
-chmod 755 [o nome do executável]                       **Para a instalação do xampp ( dar permissão)
-ls -l [nome  do executável]                            **Verificar permissões.
-sudo apt install net-tools                             ** If occurred error.
-
-
-
-
-
-
-
-
-
-  
