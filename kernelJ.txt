@@ -7,8 +7,94 @@
 *https://www.programmer-books.com/wp-content/uploads/2018/07/Agile_Web_Development_with_Rails_5.pdf
 *https://www.caelum.com.br/download/caelum-ruby-on-rails-rr71.pdf
 
+*https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04-pt
+*https://docs.docker.com/engine/install/ubuntu/
+*https://docs.docker.com/get-started/
 
------------------------- Git --------------------------------------- 
+*https://angular.io/guide/setup-local
+
+*https://asdf-vm.com/#/core-manage-asdf-vm
+
+*https://docs.mongodb.com/manual/reference/operator/
+
+
+
+
+
+----------------------- >Angular ------------------------------------
+
+npm install -g @angular/cli                                                  => Install Angular CLI
+sudo npm install -g @angular/cli --allow-root
+ng new my-app                                                                => criando um app cli
+ng serve --open                                                              => Ligar o servidor
+https://localhost:4200/.	
+ng generate component <nome>                                                 => Gerando componente
+ng generate service <caminho>                                                => Necessário para conectar Angular com rails
+
+---------------------- >asdf ----------------------------------------
+
+Maneger version Framework
+
+asdf plugin add <name>                                                       => Adicionar plugin
+asdf plugin list                                                             => Mostrar lista de plugins 
+asdf plugin update --all                                                     => Atualizar todos os plugins
+asdf plugin remove <name>                                                    => Você pode remover plugins
+asdf install <name> <version>                                                => Instalar uma especifica versão da ferramenta instalada 
+asdf install <name> latest                                                   => Instalar a última versão estável
+asdf list <name>                                                             => Lista as versões instaladas
+asdf list all <name>                                                         => Listar todas as versões de uma ferramenta 
+asdf global <name> <version> [<version>...]                                  => Setar a versão no computador.
+asdf shell <name> <version> [<version>...]
+asdf local <name> <version> [<version>...] 
+asdf current <name>                                                          => Ver a versão corrente instalada de uma certa linguagem.	
+
+------------------------ >Docker ------------------------------------
+
+** Por default temos de usar sudo para rodar o docker 
+sudo apt-get remove docker docker-engine docker.io containerd runc 		          => Apagar versões antigas
+sudo systemctl status docker                                                 => Status docker 
+docker docker-subcommand --help                                              => Especifica um comando a ser usado e o descreve 
+docker images                                                                => para vizualizar as imagens do seu pc
+docker rmi ID_ou_nome_da_imagem                                              => Remover as imagens locais
+docker search <nome_da_imagem>                                               => Pesquisar uma imagem online
+docker ps -a                                                                 => Listar os containers em execução
+docker rm Id_ou_nome                                                         => Remove o container em execução
+Imagem                                                                       => -An image includes everything needed to run an application - the code or binary, runtimes, dependencies, and any other filesystem objects required.
+docker pull ubuntu                                                           => Puxa a imagem oficial ubuntu
+docker start 1c08a7a0d0e4<id_nome>                                           => Para iniciar um containeer parado
+docker exec -it <id_nome> bash                                               => Retomar o container que foi inicializado 
+docker stop quizzical_mcnulty<id_nome>                                       => Parando o docker em execução
+docker run -i t ubuntu <id_nome>                                             => usar um tipo de container
+
+docker build -t my_awesome_app .                                             => Ele executa o Dockerfile, gerando a imagem através do Dockerfile
+ls
+
+
+
+
+
+** Fato interessante nosso containers podem se transformar em imagens que podemos usar para gerar outros containers
+docker commit -m "What you did to the image" -a "Author Name" container_id repository/new_image_name             => Criar uma imagem de um container    
+docker commit -m "added Node.js" -a "sammy" d9b100f2f636 sammy/ubuntu-nodejs                                     => Um exemplo
+exit                                                                         => sair do container 
+docker ps -l                                                                 => mostra o último container criado
+docker ps                                                                    => mostrar os container em execução
+Control+P+Q                                                                  => Sai do terminal container que estava usando mas ainda o deixa executando 
+docker attach <id_do_container>                                              => Como voltar a execução do conteiner
+Control+V                                                                    => Saio do container e o mato (não funcionou comigo)
+docker create <imagem>                                                       => Crio o container mais não o executo
+docker pause <container_id>                                                  => Consigo pausar o container
+docker unpouse <container_id>                                                => despausando o container
+docker stats <container_id>                                                  => Mostra o quanto o container consome isso se ele estiver em execução
+docker logs <commainer_id>                                                   => Motra logs ( comandos usados )
+docker top <container_id>                                                    => Mostras mais dados do container
+
+
+docker run -it --rm --user "$(id -u):(id -g)" -v "$PWD":/usr/src/app -w /usr/src/app rails rails --skip-bundle new my_new_app
+
+
+
+------------------------ >Git --------------------------------------- 
 
 sudo apt-get install git 
 git config --global user.name "myname "
@@ -33,18 +119,22 @@ git log                                                                       =>
 git remote                                                                    => ver a situação
 git remote rm <name>                                                          => desfaz conexões
 git remote rename <antigo> <novo>
-git remote add origin https or ssh                                            => Sincronização de repositório remoto e local
+git remote add upstream https or ssh 	                                        => Sincronização de repositório remoto e local
 git push -u origin master                                                     => Primeiro push em um repositório remoto
 git push origin master                                                        => use para dar update nos seus arquivos remotos (Caso recebar erro: git push master --force ) 
 git clone https...                                                            => Faz o clone do repositorio remoto em sua maquina
 git commit -a -m ""                                                           => Envia as modificações para stage e faz o commit
 git log --oneline                                                             => Mostra um historico resumido de modificações 
+git log --pretty=oneline                                                      => Mostra histórico em uma linha.
 git log --stat                                                                => Mostra histórico mais completo para sair aperte q
 git diff                                                                      => Faz a verificação que foi modificado no codigo
+git diff <nome_do_arquivo>                                                    => Aponta para um arquivo especifico
+gir diff --name-only                                                          => Mostra o nome dos arquivos que foram modificados.
 git diff --staged                                                             => Faz a verificação até dos arquivos na staged
 git rm index.html                                                             => Para descartar um arquivo após o comando ser dado o arquivo ira para área de stage aguardando ser commitado. Uma observação é que ele continuará no repositorio porém deletado.
 git vm origem.html destino.html                                               => Mover ou renomear um arquivo
 git checkout                                                                  => Desfaz mudanças que ainda não foram commitadas
+git checkout -- <nome_do_arquivo>                                             => Retorna um arquivo para o estado do commit anterior. 
 git reset                                                                     => Agora desfaz mudanças dos arquivos que já tiverem sido rastreados
 git reset --hard                                                              => Além de tirar o arquivo do stage também volta a seu estado original - Volta para o commit apontado sem constar no histórico.
 git revert --no-edit "summet"                                                 => Não consegui aplicar
@@ -54,6 +144,7 @@ git config --global credential.helper "cache --timeout=86400"                 =>
 git submodule add <url/do/repositório> <destino/do/submódulo>                 => Trabalho submodulos no git ( um repositorio dentro de outro )
 git checkout HEAD~1                                                           => Depois de commitado podemos retornar um commit 
 
+git reset < hash log > --hard                                                 => reseta a branch até a escolhida
 
 (Como mostrar branch no terminal linux)
 export PS1='\u@\h\[\033[01;34m\] \w\[\033[0;32m\]$(__git_ps1 " (%s)")\[\033[01;34m\]$\[\033[00m\] '   => Insirir no final do arquivo .bashrc arquivo homme
@@ -63,6 +154,24 @@ source ~/.bashrc                                                                
 (Criando a chave pública e privada ssh)
 
 ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_ed25519 -C "umemaildeRegistro@host.com"
+
+ls -al ~/.ssh                                                                 => Veja se você já possui uma chave ssh
+
+git commit --amend -m "Uma nova mensagem"                                     => reescrever o último commit, tem de haver cautela e nessa situação sem nenhum arquivo stage
+** Ante adicione os outros arquivos que vc deseja commitar no stage 
+
+git reset --soft HEAD~2                                                       => Eu reseto os comites que fiz até no meu penúltimo, porém não reseto os arquivos que fiz ou modifiquei.
+
+git reset HEAD <nome_do_arquivo>                                              => remove um arquivo do stage também.
+git reset HEAD *                                                              => Removendo todos os arquivos do stage.
+git reset -- <nome_do_arquivo>                                                => remover um arquivo do stage, lembrar que há um espaço entre -- e o nome
+git add -i                                                                    => com está opção vc pode fazer multiplaz inserções no stage sem usar git add . modo interativo
+git add -p                                                                    => Em um mesmo arquivo com várias modificações posso distinguir os commits.
+
+git rm -f --cached [<nome_arquivo]>                                           => Caso você venha a instalar um repositorio dentro de outro, sem querer, apagar o arquivo.git não é a única solução para que o arquivo deixe de ser um submodule você tem de limpar o cache.
+
+git log --pretty=format:"%h - %an, %ar : %s"                                  => Conferir o log, mais bem detalhado
+git log --pretty=format:"%h %s" --graph                                       => ver com uma estrutura de branchs
 
 
 ---------------------------------- Git - Diogo  ----------------------------
@@ -83,7 +192,7 @@ git reset --merge ORIG_HEAD                            => Undo mer
 git reset --hard HEAD~1                                => Back one commit
 git reset --hard origin/<branch>                       => Reset local branch to remote branch
 git checkout origin/master Gemfile.lock                => Reset specific file from master
-git commit --amend -m "edit msg"                       => Edit last commit (if already pushed use -f)
+git commit --amend -m "edit msg"                       => Edit last commit (if already pushed use -f) - mas antes podemos adicionar novos arquivos com add ai daremos o amend
 git tag 1.55.1                                         => Create tag locally
 git tag --delete 1.55.1                                => Delete tag locally
 git push origin :1.55.1                                => Delete tag remotely
@@ -99,7 +208,7 @@ git config --global user.name "Full Name"              => Set name of use
 git config --global user.email "email@address.com"     => Set email of user 
 
 
---------------------------------- Javascrip --------------------------------------
+--------------------------------- >Javascrip --------------------------------------
 
 // /**/                                               => Comentário de uma linha e comentário para múltiplas linhas
 =                                                     => recebe ( atribuição )
@@ -114,7 +223,8 @@ typeof <name>                                         => retorna o tipo
 +                                                     => concatenação
 Number.parseInt(n)                                    => converter para inteiro
 Number.parseFloat(n)                                  => converter para float 
-Number(n)                                             => Uma forma nova ( 2019 ) o motor quem decide 
+Number(n)                                             => Uma forma nova ( 2019 ) o motor quem decide
+JSON.parse()                                          => Converter um JSON em objeto. 
 `Placeholder ${ variável }.`                          => Desta forma podemos interpolar variáveis
 s.length                                              => Comprimento da string 
 <string>.toUpperCase()                                => Tornar para maiusculo
@@ -127,6 +237,11 @@ var <nome> *=, %= , **=, /=, -=, +=                   => Essa sintaxe é válida
 &&                                                    => Conjunção
 !                                                     => Negação
 ||                                                    => Disjunção 
+
+
+let variavel = () => expressão;                       => Uma arrow function nada mais é que uma função anônma simplificada. Curioso é que podemos omitir os parenteses caso tenha apenas uma variável a usarmos.
+
+
 
 DOM                                                   => Document Object Model 
 window -> location/document/history -> html -> head/body -> tags                 => árvore DOM
@@ -149,13 +264,77 @@ mouseout
 mousedown
 mouseup 
 
+(?=[A-Z])                                             => Regex
+ 
+-------------------- >Heroku -------------------------
+
+sudo snap install heroku --classic
+heroku login
+heroku create
+git push heroku master                                => Fazendo deploy de projeto
+heroku open                                           => Irá abrir sua URL
+heroku log --tail                                     => Acessando log
+heroku ps                                             => verifica os dyno de sua aplicação free
+heroku local web                                      => estou rodando o server pelo heroku e a sua porta é a 5000 ( localhost:5000)
+heroku local                                          =>
+heroku addons:open <name_app_base_addon>              => dados de seu plano para a aplicacao
+heroku run rails console                              => carrega um console rails heroku ( um console remoto )
+heroku run bash                                       => bash do servidor
+heroku config:set <exemplo - TIMES=10>                => Setar algo na env, você utilizará essas configurações na produção
+heroku config                                         => ver as configurações 
+
+heroku pg:psql                                        => heroku dbconsole
+heroku run rake db:migrate                            => faz a migração para o banco de dados heroku
+
+echo $DATABASE_URL                                    => Irá motrar o caminho do banco definido pelo usuário ( remoto server)
+
+
+-------------------- >MongoDB -------------------------
+
+https://docs.mongodb.com/manual/tutorial/install-mongodb-enterprise-on-ubuntu/                   => Instalação
+
+SQL                              Mongo
+
+database                         database
+table                            collection
+row                              document ou BSON document
+column                           field
+index                            index
+table join                       References ou embedded documents
+
+
+Mongo terminal 
+sudo mongod --dbpath /data/db                         => Rodo o Mongo
+sudo mongo                                            => Abro o shell mongo
+show dbs                                              => Irá mostrar os bancos de dados criados
+use <nome_banco_de_dados>                             => Apontar para um banco de dados
+db.createCollection('nome_da_collection')             => Criar um collection ( é como se fosse criar uma tabela)
+show collections                                      => mostrar as collections em uso.
+db.<nome_do_collection>.find()                        => Fazer uma busca de dados e todos o documentos da collection 
+db.<nome_do_collectio>.insert({})                     => inserir uma linha
+db.<nome_do_collection>.save()                        => tem a mesma funcionalidade do insert
+db.<nome_do_collection>.update()                      => Faz atualização de uma linha.  e.g = db.checklist.update({name: "Original"},{name: "Atualizado"})
+db.<nome_do_collection>.delete()                      => Apaga uma linha especificada.
+db.<nome_do_collection>.insertMany([{},{}])           => Podemos criar múltiplas linhas dentro de um collection de uma vez só;
+db.task.insertMany([{"name": "Preparar o café", "done": true, checklist: ObjectId("5f6a6a09be8e95201b4fb45a")},{"name": "Ligar a TV", done: true, checklist: ObjectId("5f6a6a09be8e95201b4fb45a")}])
+
+db.<nome_do_collection>.find().pretty()               => Torna o retorno da query mais legível.
+db.<nome_do_collection>.aggregate({$lookup: {from: "<nome_do_collection_referenciado>", localField:"_id", foreignField:"<nome_do_collection>", 
+
+MongoDB Enterprise > db.checklist.aggregate({$lookup: {from: "task", localField: "id", foreignField: "checklist", as: "task"}}).pretty()
+
+
+as:<nome_do_collection_referenciado>}}).pretty()      => o aggregate e $lookup realizam buscas mais complexas 
+db.<nome_do_collection>.drop()                         => função de deletar;
+db.checklist.deleteOne({ name: "Minha checklist" })    => deleta um documento
 
 
 
 
 
 
--------------------- MySQL - SQL----------------------
+
+-------------------- >MySQL - SQL----------------------
 
 sudo apt update                                  ** update system 
 sudo apt install mysql-server -y                ** instalação da última versão do mysql ( sudo apt install mysql-server )
@@ -164,6 +343,7 @@ sudo mysql_secure_installation_                  ** instalação de segurança
 yM&$z9^%KzXnL%t4BM1RJ*$Lnsw                      ** senha colocada 
 
 sudo systemctl start mysql.service               ** inicializando o servidor
+ mysqladmin -u root -p shutdown                  ** parar conexão.
 ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'                   ** Encontrar o endereço de ip público do seu servidor
 
 mysql -u root -p nome_da_database                ** Acessa o banco
@@ -186,12 +366,15 @@ sudo nano /etc/apache2/mods-enabled/dir.conf
 Modifique para:  DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
 
 sudo systemctl restart apache2                    ** reiniciar o servidor web 
+service mysql status
+sudo service mysql stop
+
 
 use database_that_you_want                        ** use é o comando que carrega a database para ser consultada 
 
 
 
---------------------------- Node.js --------------------------
+--------------------------- >Node.js --------------------------
 
 sudo apt intall node.js
 .exit                                             => Sair do terminal de comando node 
@@ -200,6 +383,98 @@ typeof                                            => retorna o tipo  ( JS )
 <number>.tofixed(numero de casas )                => comando que muda o número de casas depois da virgula  
 <number>.tofixed().replace('.',',')               => o replace faz a conversão de uma string em outra              
 sudo apt install npm
+
+Rails - Crie um arquivo especificando a nvm apontando o node que está sendo utilizado
+touch .nvmrc 
+
+process                                           => É uma biblioteca interna do node que podemos usar para acessar dados enviados do usuário require('process')
+
+process.stdout.write()                            => Escrever algo no terminal
+process.stdin.o('data', entrada => { })           => Pdemos capturar os caracteres digitado pelo usuário
+process.exit()                                    => Método que força a saida do dado
+fs                                                => Com esta biblioteca podemos criar, excluir, renomear e atualizar arquivos
+fs.writeFile(<name_arquivo>,<dados_internos>, err => { console.log(err)})    => Como gerar um arquivo
+fs.rename(<name_antigo>,<name_novo>)                                         => Renomear um arquivo
+fs.appendFile(<name_arquivo>,<novos_dados>, err => { console.log(err)})      => Acrescentando dados à um arquivo antigo
+__dirname                                                                    => Variável de ambiente que aponta o caminho do diretório
+fs.unLink(<name_arquivo>, err => { console.log(err)})                        => Deleta um arquivo
+
+http                                                                         => Biblioteca que possibilita a criação de um server
+const server = creatServer((req,res) => {})                                  => req é a requisição e res é a resposta
+req.method                                                                   => Informará qual verbo está sendo empregado
+req.url                                                                      => Retornará a url passada
+res.statusCode=200                                                           => Qual o status da paǵina, sendo 200 está tudo certo
+server.listen(3000, () =>{})                                                 => Qual porta podemos estar acessando nosso server;
+
+npm install express --save                                                   => Framework express
+npm install nodemon --save-dev                                               => Pacote que salva as modificações sem necessitar restartar o server
+
+snap install postman                                                         =>
+
+chain of Resposibility Express                                               =>
+
+Middlewares                                                                  =>
+
+npm install mongoose --save                                                  => Intermediário MongoDB e Express(Aplicação)
+
+
+------------------------- >NPM ------------------------------
+
+~/.npm/                                            => Caminho onde encontramos o packages 
+
+https://github.com/nvm-sh/nvm                      => Instalação nvm.
+nvm install node 
+nvm ls-remote                                      => listarar todas as versões node
+nvm use node                                       => Mostrar a versão em uso do node
+nvm run node --version                             => Auto explicativo
+nvm exec 4.2 node --version                        => Usar uma versão especifica do node
+nvm which v14.5.0                                  => Descobrir o caminho da versão node especificada
+nvm use system                                     =>
+nvm ls                                             => Lista as versões
+nvm run system --version                           => 
+nvm alias default 0.11.13                          => Tornando uma versão node default
+nvm use default                                    => apontando
+
+npm root                                           => caminho npm
+npm help update 
+npm help config                                    => Ver documentação
+npm init                                           => iniciar um projeto
+npm init --yes                                     => cria um package sem as perguntas (pula as perguntas) ou apenas -y
+npm config set init-author-name "<seu_nome>"       => Configurando nome default depois do npm init.
+npm set init-license "MIT"                         => Configurando licensa default.
+npm get init-license                               => Retorna "MIT"
+npm delete init-license                            => Reseta as confirações init
+npm install <nome_package>                         => Como baixamos packages
+npm install <nome_package> --save                  => Acho que não há distinção com o de cima. ( Em tutoriais a distinção é "escrita automática no package.json")
+npm install <nome_package> --save-dev              => Para ambiente de Desenvolvimento
+npm uninstall <nome_package>                       => Desinstala a dependencia antes instalada
+npm install <nome_package> -g                      => Instalando um package globally. (sudo)
+npm list --global                                  => Listas os packages globais.
+npm uninstall <nome_package> -g                    => Desinstalação da lista de package global (sudo)
+npm install loadash@3.3.0 --save                   => Salvamos uma npm específica
+npm update --dev --save-dev                        => Fazemos update de --dev --save-dev
+npm install npm@latest -g    
+npm install -g npm@latest -g                       => Update npm use sudo
+ 
+transpilação com Babel - transpilar uma versão do ECMA em outra. Uma ferramenta que possibilita a compatibilidade de navegadores que não suportam determinada versão.
+
+npm install @babel/core @babel/cli @babel/preset-env --save-dev  // um pacote que usamos apenas em desenvolvimento não em produção.( --save-dev)
+npx babel <nome_arquivo_a_transpilar>                                                           => Gera um print do arquivo transpilado.
+npx babel <nome_arquivo_a_transpisrclar> -o <nome_do_arquivo_de_saida>                             => Gera um novo arquivo com os dados do arquivo antigo transpilado
+npx babel <nome_arquivo_a_transpilar> -o <nome_do_arquivo_de_saida> --presets=@babel/preset-env => a biblioteca que instalamos nos possibilita especificar a vesão de transpilação
+babel.config.js                                                                                 => Para não precisar ficar execuntando --presets=@babel/preset-env crie o arquivo babel.config.js 
+
+npx babel <nome_diretorio_a_ser_transpilado> --out-dir <nome_do_diretorio_de_saida>             => Além de Arquivos podemos transpilar diretórios inteiros. Podemo usar o --presets=@babel/preset-env
+
+npx                                                                                             => npx pode ser configurado, pois é apenas uma atalho para
+
+
+sudo npm install http-server --global                                                           => Pacote de mini servidor local
+
+npm install --save-dev webpack webpack-cli														=> Instalação do webpack criando o arquivo src, O webpack é estático não se comporta como um server de inicio.
+
+npx webpack --mode development                                                                  => Ambiente webpack de desenvolvimento para o webpack
+npm install webpack-dev-server --save-dev                                                       => Mine servidor webpack para rodar a app.
 
 -------------------------- Python--------------------------- 
 
@@ -211,12 +486,19 @@ Para desativar digite deactive.
 
 python3 -m http.server
 
------------------------------------------ PostgreSQL ------------------------------------------------------------
+----------------------------------------- >PostgreSQL ------------------------------------------------------------
 
-Para a instalação apenas veja o site oficial
+Para a Instalaçãoão apenas veja o site oficial
 
 pg_ctlcluster 11 main start                           ** Para iniciar o server
 g_ctlcluster 12 main start
+
+psql --version                                        ** O psql é o programa de gerenciamento e uso do PostgreSQL pelo usuário local. 
+
+createdb <noma_banco> -U postgres                     ** criar um banco
+psql -l -U postgres                                   ** vizualizar o banco criado
+dropdb <nome_banco> -U postgres                       ** Excluir o banco de dados indicado
+
 
 sudo apt update
 
@@ -228,6 +510,20 @@ sudo -u postgres psql
 \l                                                   ** lista databases.
 \du                                                  ** verifica a permissao de usuários
 \d                                                   ** Mostra todas as tabelas de um certo banco de dados
+\g                                                   ** fazer consulta
+\?                                                   ** Ajuda comandos
+\h <Nome_do_comando>                                 ** Ajuda comando
+
+\c dbname username                                   ** Você acessar qualquer banco de dados passando o nome dele seu usuário
+\dt                                                  ** Você conseguirar visualizar todas as tabelas desse banco
+\d <nome_da_tabela>                                  ** Dessa forma você conseguirá acessar os atributos da tabela passada
+
+\g                                                   ** SELECT version(); ( Mostrar a versão do postgres e dados do sistema)
+\s                                                   ** Histório de comandos usados
+
+
+DROP DATABASE <nome_do_banco_de_dados_a_ser_excluido> ** Excluir banco de dados
+
 
 ----------------------------------------- PHP --------------------------------------------
 
@@ -237,11 +533,17 @@ chmod 755 [o nome do executável]                       **Para a instalação do
 ls -l [nome  do executável]                            **Verificar permissões.
 sudo apt install net-tools                             ** If occurred error.
 
+sudo service apache2 status
+sudo service apache2 stop
+----------------------------------------- >VS Code --------------------------------------
+
+Control + shift + P Output
 
 
 
  
--------------------------- Rails----------------------------- 
+-------------------------- >Rails----------------------------- 
+
 David Heinemeier Hansson - DHH
 
 sudo apt-get install apache2 curl git libmysqlclient-dev mysql-server nodejs                                  => instalação 1
@@ -255,13 +557,34 @@ rvm --default 2.3.1                                                             
 rails -v                                                                                                      => verficando verção rails 
 gem list --local rails                                                                                        => Lista todas as versões rails presente
 rails s ( bin/rails server)                                                                                   => acionar o server
+rails s [server] [opições]                                                                                    => localhost//3000
+rails s webrick
+rails s -p 4000                                                                                               => Acessando porta 4000
+rails s -e production                                                                                         => Definindo ambiente
+rails s -d                                                                                                    => Servido de aceeso Daemon
+rails s -b 127.0.0.5                                                                                          => Sobe o servidor de densenvolvimento no ip 127.0.0.5
+time rails runner ''                                                                                          => testar velocidade de carregamento rails
+
+
+rails c                                                                                                       => Roda o console
+rails c [ambiente] [opições]                                                                                  => Ambiente = pode se production, development, ...
+rails c --sandbox                                                                                             => Roda o console mais não altera o banco o final
+rails db                                                                                                      => Acessa o console do banco de dados
+
+rails about                                                                                                   => Mostra informações quantitativas da aplicação
+rails stats                                                                                                   => Mostra mais informações quantitativas da app ( quantidade de models, controllers, etc...)
+rails
+RAILS_ENV=production rails production                                                                         => Pegando informações da app em produção
+
+
 
 EDITOR=subl rails credentials:edit                                                                            => editando as credentials.yml.enc ( Assim você edita um arquivo que será criptografado para editar a master key) 
 
 rails new myproject --api --database=mysql -T
-rails new <project> -d mysql                                                                                  => Cria uma nova aplicação
+rails new <project> -d mysql                                                                                 => Cria uma nova aplicação e o -T representa sem a pasta Test
+rake db:drop                                                                                                 => Deleta a sua base de dados inteira
 rake db:create                                                                                               => Criar a base de dados 
-rake db:rollback                                                                                              => Limpar a database criada pelo scaffold and return migragation (drop)
+rake db:rollback                                                                                             => Limpar a database criada pelo scaffold and return migration (drop)
 rails detroy scaffold <nome>                                                                                  => excluir scaffold
 
 rails dev:cache                                                                                               => Note that this command will cause your server to automatically restart. "so  there’s  no  need  to  start from scratch on each request."
@@ -273,6 +596,7 @@ bin/rails db:seeds                                                              
 app/assets/stylesheets/scaffold.scss                                                                          => Podemos estar mudando o estilo de um view 
 
 rails generate migration add_novaColuna_tabela                                                                => gera uma nova coluna, depois disso temos de ir ao migration e adicionar 	add_column  :produto, :descricao, :text ( Veja na Documentação do ActiveRecord )
+rails g migration AddColumnsToUser col1:integer col2:integer .. etc.                                          => gerar mais de uma coluna
 
 
 bin/rails generate controller Say hello goodbye                                                               => é possivel gerar um controler criando ao mesmo tempos os métodos
@@ -293,14 +617,17 @@ rake routes
 rails g task apagar_dados <table>_produto1   <table>_produto2                                                 => Gera uma rake na lib > task para fazer uma execução no banco. Criando rakes  
 
 rails console                                                                                                 => Console do rails onde posso estar fazendo buscas 
-<%= rendet 'layout/menu' %>                                                                                   => Partials para a view desejada _menu.html.erb
+<%= render 'layout/menu' %>                                                                                   => Partials para a view desejada _menu.html.erb
 @variable                                                                                                     => Variavel de contexto que pode ser acessada na view
-<%= rendet 'layout/menu', projeto: 'Lana'  %>                                                                 => Passando uma parametro de uma view para a partial.
+<%= render 'layout/menu', projeto: 'Lana'  %>                                                                 => Passando uma parametro de uma view para a partial.
+
+sudo lsof -wni tcp:3000                                                                                       => Verificar servidores ativos
+sudo kill <PID>                                                                                               => Derrubar o servidor com o PID passado.
+	kill -9 $(lsof -i tcp:3000 -t)                                                                                => Derrubar server
+rake assets:clean && rake assets:precompile                                                                   => limpando cache
 
 
-
-
-bin/rails db:migrate:status                                                                                   =>
+bin/rails db:migrate:status      	                                                                             =>
 
 before_destroy   :ensure_not_reference_by_any_line_item           (hook method)                               => É um validate como o metodo cascate no SQL, evita que uma produto seja deletado caso esteja presente em carts.
 before_action                                                                                                 => UMa metodos auxiliares que são passados antes de se executar aguma action
@@ -309,7 +636,12 @@ index, show, create                                                             
 
 
 bin/rails db:migrate 
+rails db:migrate:redo STEP=3                                                                                  => Consegue desfazer os três últimos roolback
+rails db:rollback                                                                                             => Desfaz o último migrate
+rails db:rollback STEP=3                                                                                      => Desfaz os 3 últimos migrate 
 bin/rails test                                                                                                => verifica erros na aplicação
+
+<%= image_tag @usuario.avatar.thumb.url if @usuario.avatar? %>                                                => Implementação de imagem na view usando carrierwave
 
 app/ models                                                                                                   => Nesta pasta serão tratada as validações
 validates :title, :description, :image_url, :price, presence: true                                            => Validando existência 
@@ -338,12 +670,36 @@ RAILS_ENV=production bundle exec rake assets:precompile                         
 
 tails -f production.log                                                                                       => Acompanhando erros em produção
 
+>GEMs
+
+gem install backup -v5.0.0.beta.1                                                                             => Tivo problema para instalar essa gem, depende da versão ruby
+gem devise                                                                                                    => Autenticação
+gem 'devise_token_auth'                                                                                       => 'you want authentication, you need tokens, not cookies refreshes the tokens on each request, and expires them in a short time, so the app is secure'
+	
+gem 'omniAuth'																																																=> Um gem de autenticação via Facebook, google ... pode ser combinado com devise
+
+gem 'cancancan'                                                                                               => Autorização 
+gem 'pundit'                                                                                                  => mesma funcionalidade do cancancan contudo está sendo mais usada(2020)
+
+gem 'carriewave'                                                                                              => upload de arquivos
+gem 'paperclip'                                                                                               => upload de arquivos possui funcionalidade parecidas do Carriewave
+gem 'shrine'                                                                                                  => upload de arquivos desenhada para ser assincrona
+gem install mailcatcher                                                                                       => Envio de email pelo ambiente development. ( demora um pouco a instalação no sistema )
+gem "bootstrap"                                                                                               => Configurações na pasta asset e javascrip > packs > application
+
+
+
+
+
+
+
+Action Cable                                                                                                  =>  The client of a WebSocket connection is called the consumer.
+
 
 
 * Iniciando novo_projeto
 
   
- 
           ** sudo apt-get install curl
           ** https://get.rvm.io | bash -s stable --ruby
           ** Instalação do rvm   
@@ -413,7 +769,7 @@ tails -f production.log                                                         
   6) Caso necessite desfazer do modelo 
           ** rails d model user
   7) Fiz uma migração errada 
-          ** rails db:rollbach           
+          ** rails db:rollback           
 !>8) Criando um cadastro de post
           ** rails g scaffold Post titulo:string descricao:text
   9) Deleta o banco , cria um banco e faz a migração
@@ -482,13 +838,6 @@ expect(response).to have_http_status(200)                       ++ 200 é um sta
 get                                                             ++ Adquirir dados do banco
 pos                                                             ++ inserir dados
 
-
-
-	
-
-
-
-
 --------------------------------------------------
 
 Scaffold 
@@ -543,8 +892,72 @@ Docs
 
 gem server                                             * Comando que inicia o servidor WebRick na porta 8808
 
+________________________________________________________
 
---------------------------- Ruby --------------------------------------------------------
+Action Jobs
+
+*https://onebitcode.com/dominando-o-uso-de-jobs-no-rails/
+
+--------------------------- >React -------------------------------------------------------
+
+npx create-react-app                                 ** Criar uma estrutura react SPA. Tendo um server hot reload
+
+class <name> extend React.Components{                ** Component de classes - States ( Uma forma mais antiga)
+		constructor(props){  
+			super(props);
+			this.states = {
+				name: "dados"
+			}
+		}
+
+		render(){
+		
+		}
+}     
+
+this.setState()                                     ** Forma de setar um estado
+
+npm i react-router-dom   --save                     ** Criação de rotas.
+npm i axios --save                                  ** Igual ao fetch
+npm i node-sass --save                              ** sass
+npm i bulma --save
+npm i rbx --save                                    ** um lib bulma
+npm i moment --save-dev
+
+npm i @fortawesome/fontawesome-svg-core --save
+npm i @fortawesome/free-solid-svg-icons --save
+npm i @fortawesome/react-fontawesome --save
+
+mkdir src/assets
+mkdir src/assets/images
+mkdir src/components
+mkdir src/screens
+mkdir src/styles
+
+mv src/App.css src/App.scss
+
+$custom-purple: #694ED8 !default;
+$custom-purple-darker: #6600CC !default;
+
+--- API -----------------------------------------	
+
+npm i express-generator
+express --view=no-view <nome-do-projeto-api> 
+npm install 
+npm install express-generator -g
+npm install nodemon --save
+npm install mongoose --save
+
+npm install bcrypt --save
+npm install jsonwebtoken --save
+npm install dotenv --save
+npm install cors --save                    (Permitindo que possamos chamar recursos de outros sites)
+npm install react-burger-menu --save
+npm install react-quill --save              Editor de textos
+
+
+
+--------------------------- >Ruby --------------------------------------------------------
 
 sudo apt  install ruby-railties                      ** instalation gem rails utilitaries 
 aptitude purge ruby                                  ** desinstalar ruby
@@ -690,7 +1103,7 @@ temos tambem uma sintaxe mais explicita {:nome = "jorge", :sobreNome ="Borges"} 
 Mas assim como uso do parenteses e opcional no Syntax Sugar, podemos ter a exclusao das chaves na Hash :nome = "Jorge", :sobrenome = "Borges".
 
 
-------------------------- Sublime_text dicas------------------------------
+------------------------- >Sublime_text dicas------------------------------
 Plugins
  - Emmet
  - Alignment
@@ -698,6 +1111,7 @@ Plugins
  - PlainTask
  - AdvancedNewFile 
  - LoremIpsum
+ - A file icon 
 
 Goto anything - Control + p                                            ** ( Faz uma busca de arquivos)
 Command Palette - Control + shift + p                                  ** ( Faz uma busca por atalho )
@@ -724,11 +1138,18 @@ Sublime package control instalado
 plugin   # BracketHighlighter
 plugin alignment #git Gutter
 
-------------------------- Terminal - Linux  -------------------------------------
+alt+shift > alt+F                                                  ** Consigo navegar pelo menu bar 
+Control+shift+P > menu > view:Toggle Menu                              ** Posso esconder o menu
+
+control+H                                                          ** Faz replace
+
+
+------------------------- >Terminal - Linux  -------------------------------------
 
 >> https://canaltech.com.br/linux/entendendo-a-estrutura-de-diretorios-do-linux/
 >> https://pt.wikibooks.org/wiki/Guia_do_Linux/Iniciante%2BIntermedi%C3%A1rio/Execu%C3%A7%C3%A3o_de_programas/path
 
+Versões LTS - Long Term Suport                         ** Versões mas estáveis que não possuem atualizações de versão apenas algumas correções
 
 ctrl+alt+T                                             ** Atalho para o terminal
 $ echo ~                                               ** Shell - pasta home - comando em programação para exibir o conteúdo de uma variável.
@@ -795,6 +1216,272 @@ uniq -u                                                ** Faz uma busca de palav
 
 sleep 5                                                ** "Adormece" o sistema por 5 segundos
  
+uname -r                                               ** ver a versão kernel linux
+ 	
+ps -ef                                                 ** Pesquisar.
 
-------------------------------------------Tmux - Vim -------------------------------------------------------------
+sudo dpkg -i arquivo.deb                               ** Instalando um package no linux
+sudo gdebi skype.deb                                   ** Instalando uma packge na Distro Ubuntu
+sudo tar -vzxf <arquivo.tar.gz)                        ** descompactar arquivo tar.gz
 
+
+lsb_release  -a                                        ** Versão da distro linux
+ls -h                                                  ** ls human podemos visualizar o size em MB
+
+
+du -sh /var/cache/apt/archives                         ** Verificar tamanho de dados temporaŕios no sistema
+du -hs                                                 ** sumariza o total de tamanho da pasta inteira 
+sudo apt install bleachbit                             ** pacote de limpeza
+
+id                                                     ** mostra o usuário corrente
+
+sudo snap install heroku --class                       ** Instalando CLI heroku
+
+sudo apt-add-repository --remove https://download.sublimetext.com apt/     ** Caso necessite eliminar um ppa de atualizar no apt update
+
+ip addr
+
+sudo snap remove postman
+sudo snap install postman
+
+cat /etc/passwd                                        ** Dados do usuário
+hitory -E | less                                       ** fazer a exibição de histórico humanizado no zsh com less
+rm -rf /                                               ** É UMA BOMBA PARA SEU PC elimina tudo no diretório raiz 
+
+export TMOUT=10                                        ** Desloga durante um tempo                                   
+set | less                                             ** você conseguirá ver as variáveis de ambiente
+
+echo $UID                                              ** Id do usuário no sistema
+
+grep jorgeborges /etc/passwd                           ** O grep captura uma linha localizada por uma busca em arquivo
+
+ls -ln                                                 ** Faz uma listagem por número de id de usuários
+0                                                      ** Sempre é o id do root
+
+echo $PS1                                              ** customiza o shell
+$PS2                                                   ** \ pula linha 
+$PS3
+$PS4 
+
+
+alias ls="ls -l"                                       ** Simplificação renomeando
+
+.bashrc                                                ** É um arquivo de sessão para shell não login, quando não precisa de login
+.profile                                               ** É executado para shell que precisa de login
+
+which cp 
+/usr/bin/cp 
+less /usr/bin/cp                                       ** Além de um caminho
+
+vim sshd_config                                        ** Configuração de segurança do ssh
+
+/usr/local/sbin                                        ** Onde ficam os bin de super usuário
+
+tar                                                    ** É um arquivador
+
+echo $?                                                ** verifica se os programas executaram 0 é sucesso e 1 é falha
+
+echo -e "Bom dia\nfulano"                              ** quebra de linha dentro do echo
+
+echo -e $'$custom-purple: #694ED8 \n$cutom-purple-dark: #6600CC !default;' >> src/styles/_custom_color.scss  ** caso texto haja caracteres especiais como dolar
+
+sudo apt-get install xclip                             ** Fazer buffer de seleção 
+
+pwd | xclip -sel clip                                  ** Agora você pode copiar a saida de um comando e logo depois colar normalmente em outro local.
+
+
+head -n 1 /etc/passwd                                  => Comando que pega as 10 primeiras linhas de um arquivo
+root:x:0:0:root:/root:/usr/bin/zsh                     => Essa seria a saida onde x significa que a senha está criptografado e em outro local /etc/shadowuse
+/etc/shadow                                            => Onde encotram-se as senhas
+/etc/gshadow
+/etc/group
+$ pwunconv
+$ pwconv                                           
+useradd -u <pode_ser_espedificado_o_id_usuario> -g <pode_ser_especificado_o_group> -c <adicionar_comentário> <nome>             => Adicionar um usuário
+
+passwd                                                 => Modifica a senha do usuário corrente
+passwd  -e                                             => Expire, expirar senha
+passwd -de                                             => Deletando e expirando a senha
+passwd -l                                              => Lock a conta, o user, bloqueia
+passwd -u                                              => Faz o unlock para desbloquear o user 
+chage -l <nome_do_usuário>                             => Mostra várias informações do user $ chage -l jorgeborges
+adduser                                                => diferente do useradd, é mais automático
+userdel   -r <podemos_remover_os_diretorios_do_user>   => remove o usuário
+usermod                                                => Modificar dados de um usuário
+groupadd  <nome_do_grupo>
+groupdel  <nome_do_grupo>
+gpasswd -a <nome_do_usuário_que_deseja_adicionar> <nome_do_grupo>
+gpasswd -d <nome_do_usuário_que_deseja_adicionar> <nome_do_grupo_que_deseja_remover_este_usuário>
+
+*Permissões
+
+r => 4
+w => 2
+x => 1
+
+r => read
+w => write
+x => execution
+
+a => todos
+u => usuário dono
+g => grupo
+o => outros
+
+chmod => modifica as permissões dos arquivos e diretórios
+chown => modifica a permissão dono ou/o grupo do arquivo/diretorio.
+
+-rwxrwxrwx => permissão 777  / um aarquivo texto
+lrwxwrwxrwx => um arquivo de link simbolico
+drwxwrwxrwx => um diretorio
+crwxwrwxrwx => arquivo de character
+brwxwrwxrwx => disp Bloco do hd;
+
+ 
+-rw-r--r-- => 644         / contado a permissão r => 4 , w => 2 e x => 1
+
+chmod o-x                 / remover permissão de outros
+chmod g+x                 / adicionando permissão de execução para os grupos
+chmod a=rw                / todos com permissão rw
+chmod -R 777              / mudando a permissão de todos as subpastas de um diretório; R é de recursivo  
+
+chown <nome_user> <arquivo>              / ch=change - own = dono;  mudar o dono do arquivo
+chown :<nome_grupo> <arquivo>            / mudar o dono grupo do arquivo
+chown root:root <arquivo>                / mudar o user dono e o dono do grupo de uma vez.
+
+getfacl    => informações                           
+setfacl    => posso modificar arquivos de forma que usuário de grupos diferentes possam ter permisão de modificar o arquivo
+
+top                                                     => Mostra dados da máquina
+       
+
+
+
+------------------------------------------Tilix - Terminal Emulator   -------------------------------------------------------------
+
+control + shift + A                                    => Mostrar o painel de atalho ( Criado pelo usuário )
+
+
+
+
+------------------------------------------Tmux - >Vim -------------------------------------------------------------
+
+                        VIM 
+                                                                         k
+      Move around:  Use the cursor keys, or "h" to go left,            h   l
+                    "j" to go down, "k" to go up, "l" to go right.       j
+Close this window:  Use ":q<Enter>".
+   Get out of Vim:  Use ":qa!<Enter>" (careful, all changes are lost!).
+
+Jump to a subject:  Position the cursor on a tag (e.g. bars) and hit CTRL-].
+   With the mouse:  ":set mouse=a" to enable the mouse (in xterm or GUI).
+                    Double-click the left mouse button on a tag, e.g. bars.
+        Jump back:  Type CTRL-O.  Repeat to go further back.
+
+Get specific help:  It is possible to go directly to whatever you want help
+                    on, by giving an argument to the :help command.
+                    Prepend something to specify the context:  help-context
+
+
+
+
+                      Normal mode command                  :help x
+                      Visual mode command         v_       :help v_u
+                      Insert mode command         i_       :help i_<Esc>
+                      Command-line command        :        :help :quit
+                      Command-line editing        c_       :help c_<Del>
+                      Vim command argument        -        :help -r
+                      Option                      '        :help 'textwidth'
+                      Regular expression          /        :help /[
+
+i                    => Começar a inserir 
+I                    => Ele começa a inserir no inicio da linha
+a                    => Começa a inserior o caracter seguinte
+A                    => Começa no final da linha.
+S                    => Apaga linha inteira e começa uma inserção
+:w                   => Salva o arquivo
+:wq                  => Salva e sair
+:q!                  => Sair sem salva
+:x                   => Salvar e sair 
+shift + ZZ           => Salvar e sair (comando mais rápido) 
+yy                   => Copiar uma linha (2 yy) ou (3 yy) multiplas linhas
+p                    => Colar
+dd                   => recortar linha e para colar é o p.
+
+d                    => deleta.
+v                    => modo visual ( Agora você conseguirá selecionar trechos de código com as *setas - não o mouse)
+y                    => No modo visual copia
+p                    => Cola no modo visual
+control+v            => Modo visual vertical
+
+yw                   => copia uma palavra, só lembrar que o cursor ficará na frente da palavra. ( 3yw, 4yw - copia 3 e 4 palavras)
+x                    => você conseguirá fazer um backspace ou deletar.
+:w <nome>            => É como um salvar como, fique atento vc irá criar um novo arquivo.
+:split <arquivo>     => Consigo fazer a divisão do vim com para dois arquivos
+control + ww         => pula de uma tab para outra.
+:r /etc/hosts        => basicamente ele faz a leitura de um arquivo e joga no seu arquivo.
+/<uma palavra> + enter     => Essa é a busca no vim
+?<palavra>           => Irá fazer uma busca de baixo para cima.
+n                    => Irá pular os valores das buscas. 
+
+
+:1,10s /<palavra antiga>/<palavra nova>   => Basicamente faz um replace seu arquivo, em um limite de linha, mas para só um elemento
+:1,10s /<palavra antiga>/<palavra nova>/g   => Basicamente faz um replace em todo o seu arquivo, em um limite de linha, de todos os elementos.
+
+:%s /<palavra antiga>/<palavra nova>     => Basicamente faz um replace em todo o seu arquivo
+:%s/<palavra antiga>/<palavra nova>/g    => com o g no final substituira toda as palavras mesmo com as repetições em uma linha
+
+
+:e <novo_arquivo_que_vc_quer_abrir>      => Abrindo um novo arquivo
+
+:syntax on           => Liga o reconhecimento de sysntax on 
+:syntax o            => Desliga
+
+:set number          => Adiciona a numeração das linhas uma referência
+:set nonu            => desabilitar a numeração 
+
+:ab <novoatalho> <umaPalavra_que_voce_deseja_substituir>               => Criando atalho
+
+:set ai              => Auto identação.
+:set noai            => Desativando a auto-identação.
+:set visualbell      => Não irá mais fazer barulho de alerta. 
+:set ic              => torna a busca sem ser case sesnitive 
+:set tabstop=2       => Definir tamanho do tab
+:set showmatch       => Ele irá destacar as chaves quando abre e fecha
+
+:.,$!sort            => colocar em ordem alfabetica
+u                    => desfaz
+control+r            => refaz 
+
+:.,$!sort | pr -2t   => ordena e divide em duas colunas ( t é para não trazer o título )
+
+control + s          => Modo superUser para sair digite control+q
+
+Configurando o vim:
+
+homw/.vimrc
+
+colorscheme blue
+set tabstop=2
+set number
+set cursorline
+set showcmd
+set hlsearch
+set autoindent
+syntax on
+set visaulbell
+set showmatch
+
+
+
+
+
+
+
+
+
+
+
+============================
+leviatnan1 - ~/.backup$ grep leviathan bookmarks.html 
+leviathan2 - ougahZi8Ta (ltrace) -
