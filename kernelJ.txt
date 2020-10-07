@@ -48,6 +48,32 @@ asdf shell <name> <version> [<version>...]
 asdf local <name> <version> [<version>...] 
 asdf current <name>                                                          => Ver a versão corrente instalada de uma certa linguagem.	
 
+-------------------- >Bootstrap -------------------------------------
+
+<div class="container-fluid"></div>                                          =>
+<img class="img-responsive" />
+<h2 class="text-center" />
+<button class="btn btn-default"></button>
+<button class="btn btn-default btn-block"></button>
+<button class="btn btn-primary btn-block"></button>
+"btn-danger"
+"btn-info"
+<div class="row"></div>
+<div class="col-xs-4"></div>
+<span class="danger"></span>
+<span class="fas fa-thumbs-up"></span>
+<i class="fas fa-info-circle"></i>
+<input type="text" class="form-control" placeholder="...<div>" required><div>
+<div class="well"></div>
+
+
+sass --watch node_modules/bootstrap/scss:node_modules/bootstrap/compiler     => ao empregar o bootstrap pelo node temos de compilar o código scss
+
+
+
+
+
+
 ------------------------ >Docker ------------------------------------
 
 ** Por default temos de usar sudo para rodar o docker 
@@ -265,6 +291,71 @@ mousedown
 mouseup 
 
 (?=[A-Z])                                             => Regex
+
+ randomIndex: Math.floor(Math.random() * 20)          => Random method
+
+
+--------------------------                            => Usando addEventListener com React
+
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: ''
+    };
+    this.handleEnter = this.handleEnter.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+  // change code below this line
+  componentDidMount() {
+      document.addEventListener('keydown', this.handleKeyPress)
+  }
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeyPress) 
+  }
+  // change code above this line
+  handleEnter() {
+    this.setState((state) => ({
+      message: state.message + 'You pressed the enter key! '
+    }));
+  }
+  handleKeyPress(event) {
+    if (event.keyCode === 13) {
+      this.handleEnter();
+    }
+  }
+  render() {
+    return (
+      <div>
+        <h1>{this.state.message}</h1>
+      </div>
+    );
+  }
+};
+-------------------------
+	
+D3
+
+d3 
+select()
+append() 
+text() 
+selectAll()
+attr()
+style()
+enter()
+append('svg')
+append('react')
+
+-----------------------------
+
+ document.addEventListener('DOMContentLoaded', function(){})                        ** Destas forma estamos inspecionando nosso interface para que qualquer evento ocorrido seja tratado pelo DOMContentLoaded; JSON API and AJAX
+
+
+
+
+
+
  
 -------------------- >Heroku -------------------------
 
@@ -902,7 +993,7 @@ Action Jobs
 
 npx create-react-app                                 ** Criar uma estrutura react SPA. Tendo um server hot reload
 
-class <name> extend React.Components{                ** Component de classes - States ( Uma forma mais antiga)
+class <name> extends React.Components{                ** Component de classes - States ( Uma forma mais antiga)
 		constructor(props){  
 			super(props);
 			this.states = {
@@ -914,6 +1005,91 @@ class <name> extend React.Components{                ** Component de classes - S
 		
 		}
 }     
+
+{/*     */}                                         ** Adicinar comentários no React.
+ReactDOM.render(componentToRender, targetNode)      ** Renderizar react no html.
+ReactDOM.render(<TypesOfFood />, document.getElementById('challenge-node'));
+
+{props.tasks.join(', ')}
+<List tasks={["react","bootstap","sass"]} />
+
+MyComponent.defaultProps = { location: 'San Francisco' }
+
+MyComponent.propTypes = { handleClick: PropTypes.func.isRequired }                   ** Definindo o tipo da propriedade passada
+
+this.props.name                                                                      ** this é empregado em passagem de propriedades em classes
+
+ this.handleClick = this.handleClick.bind(this);                                     ** uma função empregada em class components tem de ser atribuito ao bind para serem empregadas
+
+--------------------------------------------------------
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: "Hello"
+    };
+    // change code below this line
+    this.handleClick = this.handleClick.bind(this);
+    // change code above this line
+  }
+  handleClick() {
+    this.setState({
+      text: "You clicked!"
+    });
+  }
+  render() {
+    return (
+      <div>
+        { /* change code below this line */ }
+        <button onClick={this.handleClick}>Click Me</button>
+        { /* change code above this line */ }
+        <h1>{this.state.text}</h1>
+      </div>
+    );
+  }
+};
+----------------------------------------------------------
+                                                                                      ** Como trabalhar update de atributos assincronos.
+this.setState((state, props) => ({
+  counter: state.counter + props.increment
+}));
+																																											** Lifecycle react
+componentWillMount() 
+componentDidMount() 
+shouldComponentUpdate() 
+componentDidUpdate() 
+componentWillUnmount()
+
+<div style={{color: "red", fontSize:"72px"}}>Big Red</div>                            ** Inserindo estilo inline
+
+----------------------------------------------------------
+																																											** Podemos criar uma condição inline no render 
+  render() {
+    // change code below this line
+    
+    return (
+       <div>
+         <button onClick={this.toggleDisplay}>Toggle Display</button>
+         {this.state.display && <h1>Displayed</h1>}
+       </div>
+    );
+
+------------------------------------------------------------
+
+class App extends React.Component {                                                   ** Podemos executar um server no react 
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <div/>
+  }
+};
+
+// change code below this line
+
+ReactDOMServer.renderToString(<App />);
+
+-------------------------------------------------------------
 
 this.setState()                                     ** Forma de setar um estado
 
@@ -954,6 +1130,16 @@ npm install dotenv --save
 npm install cors --save                    (Permitindo que possamos chamar recursos de outros sites)
 npm install react-burger-menu --save
 npm install react-quill --save              Editor de textos
+
+--------------------------- > Redux ------------------------------------------------------
+
+let store = Redux.createStore(reducer);              ** Define um store 
+
+let currentState = store.getState();                 ** Podemos recuperar o valor usando o get
+
+store.dispatch(actionCreator());                     ** criamos ações e states, mas para guarda-los precisamos dar um dispatch.
+store.dispatch({ type: 'LOGIN' });
+
 
 
 
@@ -1102,6 +1288,154 @@ temos tambem uma sintaxe mais explicita {:nome = "jorge", :sobreNome ="Borges"} 
 
 Mas assim como uso do parenteses e opcional no Syntax Sugar, podemos ter a exclusao das chaves na Hash :nome = "Jorge", :sobrenome = "Borges".
 
+------------------------- >Sass ------------------------------------------
+
+$main-fonts: Arial, sans-serif;                           => Variáveis
+
+                                                          => Aninhando   
+nav {
+  background-color: red;
+
+  ul {
+    list-style: none;
+
+    li {
+      display: inline-block;
+    }
+  }
+}
+																													=> Usando o mixin para comprimir estilos em um único seletor;
+<style type='text/scss'>
+  @mixin border-radius($radius){
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius; 
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+  }
+
+  #awesome {
+    width: 150px;
+    height: 150px;
+    background-color: green;
+    @include border-radius(15px);
+
+  }
+</style>
+
+<div id="awesome"></div>
+
+
+
+																												  => Condições em SASS 
+<style type='text/scss'>
+ 
+  @mixin border-stroke($val){
+    @if $val == light {
+      border: 1px solid black;
+    }
+    @else if $val == medium {
+      border: 3px solid black;
+    }
+    @else if $val == heavy {
+      border: 6px solid black;
+    }
+    @else{
+      border: none;
+    }
+  }
+
+
+  #box {
+    width: 150px;
+    height: 150px;
+    background-color: red;
+    @include border-stroke(medium);
+  }
+</style>
+
+<div id="box"></div>
+
+
+																													=> loop usando o to que "excludes the end number as part of the count";
+
+<style type='text/scss'>																	=> Também temos o through que "includes the end number as part of the count";
+	
+@for $j from 1 to 6 {
+    .text-#{$j}{
+      font-size:15px*$j;
+    }
+}
+
+</style>
+
+<p class="text-1">Hello</p>
+<p class="text-2">Hello</p>
+<p class="text-3">Hello</p>
+<p class="text-4">Hello</p>
+<p class="text-5">Hello</p>
+
+
+																													=> Usando map para iterar dados.
+
+<style type='text/scss'>
+  $colors: (blue, black, red);
+
+  @each $color in $colors{
+    .#{$color}-bg{
+      background-color: $color;
+    }
+  }
+
+
+  div {
+    height: 200px;
+    width: 200px;
+  }
+</style>
+
+<div class="blue-bg"></div>
+<div class="black-bg"></div>
+<div class="red-bg"></div>
+
+
+$colors: (color1: blue, color2: red, color3: green);       => Outra possibilidade usando chave e valor.
+
+@each $key, $color in $colors {
+  .#{$color}-text {color: $color;}
+}
+
+
+
+$x: 1;                                                     => Usando o while no sass
+@while $x < 13 {
+  .col-#{$x} { width: 100%/12 * $x;}
+  $x: $x + 1;
+}
+
+                                                          => Podemos extender e importar código
+<style type='text/scss'>
+  h3{
+    text-align: center;
+  }
+  .info{
+    width: 200px;
+    border: 1px solid black;
+    margin: 0 auto;
+  }
+  
+  .info-important{
+    @extend .info;
+    background-color: magenta;
+  }
+
+
+
+</style>
+
+
+
+
+
 
 ------------------------- >Sublime_text dicas------------------------------
 Plugins
@@ -1112,6 +1446,8 @@ Plugins
  - AdvancedNewFile 
  - LoremIpsum
  - A file icon 
+ - View in Browser
+
 
 Goto anything - Control + p                                            ** ( Faz uma busca de arquivos)
 Command Palette - Control + shift + p                                  ** ( Faz uma busca por atalho )
@@ -1333,7 +1669,7 @@ chown => modifica a permissão dono ou/o grupo do arquivo/diretorio.
 
 -rwxrwxrwx => permissão 777  / um aarquivo texto
 lrwxwrwxrwx => um arquivo de link simbolico
-drwxwrwxrwx => um diretorio
+drwxwrwxrwx => um diretorFio
 crwxwrwxrwx => arquivo de character
 brwxwrwxrwx => disp Bloco do hd;
 
@@ -1354,6 +1690,7 @@ setfacl    => posso modificar arquivos de forma que usuário de grupos diferente
 
 top                                                     => Mostra dados da máquina
        
+sudo ufw app list                                       => O comando ufw é de acesso e configuração do firewall tem ser habilitado
 
 
 
