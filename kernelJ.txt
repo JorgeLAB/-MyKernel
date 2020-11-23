@@ -17,7 +17,7 @@
 
 *https://docs.mongodb.com/manual/reference/operator/
 
-
+*https://github.com/thoughtbot/shoulda-matchers
 
 
 
@@ -48,6 +48,8 @@ asdf shell <name> <version> [<version>...]
 asdf local <name> <version> [<version>...] 
 asdf current <name>                                                          => Ver a versão corrente instalada de uma certa linguagem.	
 
+sudo apt-get install libmysqlclient-dev                                      => Ao realizar o bundle install mysql2 do rails pode dar erro sendo assim faça o seguinte instale esta lib
+
 -------------------- >Bootstrap -------------------------------------
 
 <div class="container-fluid"></div>                                          =>
@@ -61,7 +63,7 @@ asdf current <name>                                                          => 
 <div class="row"></div>
 <div class="col-xs-4"></div>
 <span class="danger"></span>
-<span class="fas fa-thumbs-up"></span>
+<span class="fas fa-thumbs-up"></span>	
 <i class="fas fa-info-circle"></i>
 <input type="text" class="form-control" placeholder="...<div>" required><div>
 <div class="well"></div>
@@ -121,7 +123,7 @@ docker run -it --rm --user "$(id -u):(id -g)" -v "$PWD":/usr/src/app -w /usr/src
 
 
 ------------------------ >Git --------------------------------------- 
-
+	
 sudo apt-get install git 
 git config --global user.name "myname "
 git config --global user.email "myemail"
@@ -130,9 +132,11 @@ git init
 git status
 git add arquivo                                                               => arquivo agora esta sendo rastreado Untracked file -> stage
 git commit -m "Novo arquivo comitado"
+git commit --message ""
 git mv                                                                        => "The command to rename a file using Git is git mv"
 
 git branch <nome>                                                             => Permite criar, listar, apagar e renomear ramificações
+git branch -b  <nome> 
 git branch -D  <nome>                                                         => 
 git branch -m <nome>                                                          => renomear branch atual para nome 
 git branch -a                                                                 => Listar todas as branchs remotas
@@ -153,16 +157,21 @@ git commit -a -m ""                                                           =>
 git log --oneline                                                             => Mostra um historico resumido de modificações 
 git log --pretty=oneline                                                      => Mostra histórico em uma linha.
 git log --stat                                                                => Mostra histórico mais completo para sair aperte q
+get log --oneline -S <Algo que se queira buscar>                              => Podemos fazer um search pelo log
+git show <identifier>                                                        	=> Podemos selecionar um commit especófico pelo seu identificador
+git show e420911~1                                                            => Está sintaxe com que podemos utilizar um identificador para acessar seu parent ( use ~1 ou ~2)
+git show :/Second                                                             => Podemos acessar um commit pode por meio do conteúdo de sua mensagem
 git diff                                                                      => Faz a verificação que foi modificado no codigo
 git diff <nome_do_arquivo>                                                    => Aponta para um arquivo especifico
 gir diff --name-only                                                          => Mostra o nome dos arquivos que foram modificados.
-git diff --staged                                                             => Faz a verificação até dos arquivos na staged
+git diff --staged                                                             => Faz a verificação até dos arquivos que estão staged, prestes a ser commitados
+git blame                                                                     => Podemos por meio dele identificar quais usuários commitaram o que.
 git rm index.html                                                             => Para descartar um arquivo após o comando ser dado o arquivo ira para área de stage aguardando ser commitado. Uma observação é que ele continuará no repositorio porém deletado.
 git vm origem.html destino.html                                               => Mover ou renomear um arquivo
 git checkout                                                                  => Desfaz mudanças que ainda não foram commitadas
 git checkout -- <nome_do_arquivo>                                             => Retorna um arquivo para o estado do commit anterior. 
 git reset                                                                     => Agora desfaz mudanças dos arquivos que já tiverem sido rastreados
-git reset --hard                                                              => Além de tirar o arquivo do stage também volta a seu estado original - Volta para o commit apontado sem constar no histórico.
+git reset --hard  <identificador>                                             => Além de tirar o arquivo do stage também volta a seu estado original - Volta para o commit apontado sem constar no histórico.
 git revert --no-edit "summet"                                                 => Não consegui aplicar
 git config --global alias.co checkout                                         => Renomeando comandos.
 git config --global credential.helper "cache --timeout=86400"                 => lembrando da senha.
@@ -170,7 +179,14 @@ git config --global credential.helper "cache --timeout=86400"                 =>
 git submodule add <url/do/repositório> <destino/do/submódulo>                 => Trabalho submodulos no git ( um repositorio dentro de outro )
 git checkout HEAD~1                                                           => Depois de commitado podemos retornar um commit 
 
+
+git reflog                                                                    => Com este comando vc poderá recuperar identificadores antes de um merge ou rebase. Com isso podemos usar um reset --hard para voltar ao estado deste commit apontado.
 git reset < hash log > --hard                                                 => reseta a branch até a escolhida
+
+git tag <nome_tag_para_commit>                                                => Podemos modificar o identificador de um commit por uma tag mais fácil de lido.( HEAD)
+git tag <nome_tag_para_commit> <identificador>                                => Podemos também criar tags para commits antigos.
+git tag -d                                                                    => Apagar tag
+git tag -l                                                                    => Lista tags
 
 (Como mostrar branch no terminal linux)
 export PS1='\u@\h\[\033[01;34m\] \w\[\033[0;32m\]$(__git_ps1 " (%s)")\[\033[01;34m\]$\[\033[00m\] '   => Insirir no final do arquivo .bashrc arquivo homme
@@ -184,6 +200,7 @@ ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_ed25519 -C "umemaildeRegistro@host.
 ls -al ~/.ssh                                                                 => Veja se você já possui uma chave ssh
 
 git commit --amend -m "Uma nova mensagem"                                     => reescrever o último commit, tem de haver cautela e nessa situação sem nenhum arquivo stage
+git commit --amend --no-edit                                                  => O sinalizador --no-edit permite fazer a modificação no commit sem editar sua mensagem; 
 ** Ante adicione os outros arquivos que vc deseja commitar no stage 
 
 git reset --soft HEAD~2                                                       => Eu reseto os comites que fiz até no meu penúltimo, porém não reseto os arquivos que fiz ou modifiquei.
@@ -234,7 +251,7 @@ git config --global user.name "Full Name"              => Set name of use
 git config --global user.email "email@address.com"     => Set email of user 
 
 
---------------------------------- >Javascrip --------------------------------------
+--------------------------------- >Javascript --------------------------------------
 
 // /**/                                               => Comentário de uma linha e comentário para múltiplas linhas
 =                                                     => recebe ( atribuição )
@@ -264,6 +281,8 @@ var <nome> *=, %= , **=, /=, -=, +=                   => Essa sintaxe é válida
 !                                                     => Negação
 ||                                                    => Disjunção 
 
+<string>.trim()                                       => Exclui os espaços vazios de inicio e final;
+
 
 let variavel = () => expressão;                       => Uma arrow function nada mais é que uma função anônma simplificada. Curioso é que podemos omitir os parenteses caso tenha apenas uma variável a usarmos.
 
@@ -292,7 +311,7 @@ mouseup
 
 (?=[A-Z])                                             => Regex
 
- randomIndex: Math.floor(Math.random() * 20)          => Random method
+randomIndex: Math.floor(Math.random() * 20)          => Random method
 
 
 --------------------------                            => Usando addEventListener com React
@@ -349,11 +368,15 @@ append('react')
 
 -----------------------------
 
- document.addEventListener('DOMContentLoaded', function(){})                        ** Destas forma estamos inspecionando nosso interface para que qualquer evento ocorrido seja tratado pelo DOMContentLoaded; JSON API and AJAX
+ document.addEventListener('DOMContentLoaded', function(){})                        ** Destas forma estamos inspecionando nosso interface para que qualquer evento ocorrido seja tratado pelo DOMContentLoaded; JSON API and 	AJAX
 
+-----------------------------
 
+debugger                                                                            ** Escreva debugger em seu código que você poderá depurar no console do navegador.  
 
+new RegExp(req.query.nome , "i" );                                                  ** Transformando uma string em regex;
 
+window.location.href = "/<rota>"                                                    ** Assim você poderá mudar de página usando JS;
 
 
  
@@ -415,21 +438,39 @@ db.<nome_do_collection>.aggregate({$lookup: {from: "<nome_do_collection_referenc
 MongoDB Enterprise > db.checklist.aggregate({$lookup: {from: "task", localField: "id", foreignField: "checklist", as: "task"}}).pretty()
 
 
-as:<nome_do_collection_referenciado>}}).pretty()      => o aggregate e $lookup realizam buscas mais complexas 
+as:<nome_do_collection_referenciado>}}).pretty()       => o aggregate e $lookup realizam buscas mais complexas 
 db.<nome_do_collection>.drop()                         => função de deletar;
 db.checklist.deleteOne({ name: "Minha checklist" })    => deleta um documento
 
+**Solução de error no MongoDB**                        => Caso o banco tenha sido derrubado 
 
 
+~$ sudo service mongodb stop
 
+~$ sudo rm /var/lib/mongodb/mongod.lock
 
+~$ sudo mongod --repair --dbpath /var/lib/mongodb
 
+~$ sudo mongod --fork --logpath /var/lib/mongodb/mongodb.log --dbpath /var/lib/mongodb
+
+~$ sudo service mongodb start
+
+** Para ter certeza de qual plataforma de sistema você usa se é systemd (which uses the systemctl)
+
+ps --no-headers -o comm 1                              => no meu caso é systemd
+
+** Problema: Se você não conseguir dar start no seu banco de dados mongo. Active: false
+
+Geralmente é um erro de permissão para uso da porta adequada ( TODO: Pesquisar mais a respeito ) = https://askubuntu.com/questions/884541/cant-start-mongodb-service 
+
+sudo chown -R mongodb:mongodb /var/lib/mongodb 
+sudo chown mongodb:mongodb /tmp/mongodb-27017.sock
 
 -------------------- >MySQL - SQL----------------------
 
 sudo apt update                                  ** update system 
 sudo apt install mysql-server -y                ** instalação da última versão do mysql ( sudo apt install mysql-server )
-sudo systemctl status mysql.service              ** vericação de "active server"
+	sudo systemctl status mysql.service              ** vericação de "active server"
 sudo mysql_secure_installation_                  ** instalação de segurança
 yM&$z9^%KzXnL%t4BM1RJ*$Lnsw                      ** senha colocada 
 
@@ -508,6 +549,9 @@ Middlewares                                                                  =>
 
 npm install mongoose --save                                                  => Intermediário MongoDB e Express(Aplicação)
 
+** Não misture dado de controle com rotas.                                   
+
+RESTFULL                                                                     => Um site que é API e site ao mesmo tempo.	
 
 ------------------------- >NPM ------------------------------
 
@@ -562,10 +606,15 @@ npx                                                                             
 
 sudo npm install http-server --global                                                           => Pacote de mini servidor local
 
-npm install --save-dev webpack webpack-cli														=> Instalação do webpack criando o arquivo src, O webpack é estático não se comporta como um server de inicio.
+npm install --save-dev webpack webpack-cli																											=> Instalação do webpack criando o arquivo src, O webpack é estático não se comporta como um server de inicio.
 
 npx webpack --mode development                                                                  => Ambiente webpack de desenvolvimento para o webpack
 npm install webpack-dev-server --save-dev                                                       => Mine servidor webpack para rodar a app.
+
+npm install --save styled-components                                                            =>  
+npm install react-star-rating-component --save                                                  => É um pacote que cria escala de avalição ( estrelas ).
+
+
 
 -------------------------- Python--------------------------- 
 
@@ -577,12 +626,24 @@ Para desativar digite deactive.
 
 python3 -m http.server
 
+
+Pip
+
+pip list
+python -m pip install --upgrade pip                                                             => Algumas vezes um pacote pode não carregar por conta do pip estar desatualizado
+
+
 ----------------------------------------- >PostgreSQL ------------------------------------------------------------
 
 Para a Instalaçãoão apenas veja o site oficial
 
 pg_ctlcluster 11 main start                           ** Para iniciar o server
-g_ctlcluster 12 main start
+pg_ctlcluster 12 main start
+
+pg_ctlcluster 12 main status                          ** Verifica se está rodando
+sudo systemctl stop postgresql@12-main                ** Parar o banco
+sudo systemctl start postgresql@12-main               ** Iniciar sever
+
 
 psql --version                                        ** O psql é o programa de gerenciamento e uso do PostgreSQL pelo usuário local. 
 
@@ -594,6 +655,8 @@ dropdb <nome_banco> -U postgres                       ** Excluir o banco de dado
 sudo apt update
 
 sudo apt install postgresql postgresql-contrib
+
+rails new appname -d postgresql                      ** Iniciar um projeto rails com postgres
 
 sudo -i -u postgres                                  ** Entrar, logo depois digita-se psql ( user)
 sudo -u postgres psql
@@ -616,6 +679,8 @@ sudo -u postgres psql
 DROP DATABASE <nome_do_banco_de_dados_a_ser_excluido> ** Excluir banco de dados
 
 
+sudo -u postgres createuser -s pguser                ** Criar e setar um superuser
+
 ----------------------------------------- PHP --------------------------------------------
 
 sudo apt install php7.2-cli                            **Baixando php7
@@ -630,12 +695,67 @@ sudo service apache2 stop
 
 Control + shift + P Output
 
+control+space                                     	 ** Auto complete
+html>body>div                                        ** Emmet sintaxe
+control+shift+M                                      ** Abre um terminal
+f5                                                   ** Debbuger
+f12                                                  ** Vai para definição da sintaxe ( Parece um control + D)
+control + click outro arquivo                        ** 
+control + k + z                                      ** Modo sem distrações para sair aperte esc + esc 
+
+Extensões - https://youtu.be/PsvtPr6cZtA
+
+Materialize
+Bookmarks                                            ** Marcação para se localizar no projeto
+indent-rainbow                                       ** Extensão de visualização
+pomodoro-timer
+bracket-pair-color
+git-lens
+vscode-faker
+TODO-parser
+minify 
+change-case
+wakatime                                             ** Muito bacana
+ruby on rails 
+ruby-Rubocop
+	gem install rubocop
+	
+Debuger
+
+gem install ruby-debug-ide
+gem install debase
+
+
+
+
 
 
  
 -------------------------- >Rails----------------------------- 
 
 David Heinemeier Hansson - DHH
+
+API
+
+gem "rack-cors"                              ** permite que outros sites nos chame 
+
+Com configuração:
+    config.middleware.insert_before 0, Rack::Cors do
+        allow do
+            origin: '*'
+            resource: '*',
+            headers: :any,
+            methods: %i(get post patch delete options head)
+        end
+    end
+
+gem 'rack-attack'
+gem 'devise'
+gem 'simple_token_authentication'
+
+gem install mailtcatcher                                                                                      => gem para console, envio de emails
+
+
 
 sudo apt-get install apache2 curl git libmysqlclient-dev mysql-server nodejs                                  => instalação 1
 curl -L https://get.rvm.io | bash -s stable                                                                   => key rvm
@@ -652,12 +772,13 @@ rails s [server] [opições]                                                    
 rails s webrick
 rails s -p 4000                                                                                               => Acessando porta 4000
 rails s -e production                                                                                         => Definindo ambiente
-rails s -d                                                                                                    => Servido de aceeso Daemon
+rails s -d                                                                                                    => Servido de acesso Daemon
 rails s -b 127.0.0.5                                                                                          => Sobe o servidor de densenvolvimento no ip 127.0.0.5
 time rails runner ''                                                                                          => testar velocidade de carregamento rails
 
 
 rails c                                                                                                       => Roda o console
+Rails.application.credentials.google_secret_key                                                               => Conseguimos ter acesso a keys pelo nosso console rails.
 rails c [ambiente] [opições]                                                                                  => Ambiente = pode se production, development, ...
 rails c --sandbox                                                                                             => Roda o console mais não altera o banco o final
 rails db                                                                                                      => Acessa o console do banco de dados
@@ -666,6 +787,9 @@ rails about                                                                     
 rails stats                                                                                                   => Mostra mais informações quantitativas da app ( quantidade de models, controllers, etc...)
 rails
 RAILS_ENV=production rails production                                                                         => Pegando informações da app em produção
+
+layout "Nome_do_template"  	                                                                                  => view/layouts podemos criar mais de um layout assim para referencia-lo, diferenciando do layout principal podemos escrever layout "nome_layout" no controller referente. 
+
 
 
 
@@ -689,7 +813,7 @@ app/assets/stylesheets/scaffold.scss                                            
 rails generate migration add_novaColuna_tabela                                                                => gera uma nova coluna, depois disso temos de ir ao migration e adicionar 	add_column  :produto, :descricao, :text ( Veja na Documentação do ActiveRecord )
 rails g migration AddColumnsToUser col1:integer col2:integer .. etc.                                          => gerar mais de uma coluna
 
-
+bin/rails about                                                                                               => info app
 bin/rails generate controller Say hello goodbye                                                               => é possivel gerar um controler criando ao mesmo tempos os métodos
 bin/rails generate scaffold <Nome> \
        title:string description:text image_url:string price:decimal                                           => Cria a estrutura MVC de Product gerando um *migrate
@@ -759,7 +883,9 @@ ApplicationHelpers                                                              
 
 RAILS_ENV=production bundle exec rake assets:precompile                                                       => Subindo a aplicação para ambiente de produção compilando os assets ( Faz o mesmo que o Gulp - mais leve e performatico )
 
-tails -f production.log                                                                                       => Acompanhando erros em produção
+RAILS_ENV=production rails s                                                                                  => Executar em ambiente de produção
+
+tails -f production.log                                                                                       => Acompanhando erros em produção, já que, não aparecerá no console automáticamente 	
 
 >GEMs
 
@@ -778,13 +904,23 @@ gem 'shrine'                                                                    
 gem install mailcatcher                                                                                       => Envio de email pelo ambiente development. ( demora um pouco a instalação no sistema )
 gem "bootstrap"                                                                                               => Configurações na pasta asset e javascrip > packs > application
 
+bundle gem <nome da gem>                                                                                      => Criando uma gem
+gem build <nome da gem>                                                                                       => Compilando a gem para ser executada
 
+vendor/<nome_da_gem>                                                                                          => Podemos usar diretamento no projeto colocando a gem na pasta vendor (o rails irá compilar toda vez que subir o server);
 
+Active Record 
 
+<objeto>.all
+<objeto>.save
+<objeto>.find(id)
+<objeto>.delete
 
 
 
 Action Cable                                                                                                  =>  The client of a WebSocket connection is called the consumer.
+
+
 
 
 
@@ -867,20 +1003,20 @@ Action Cable                                                                    
      rake db:drop db:create db:migrate
 -------------------------------------------------
 
-Testes automatizados
+Testes automatizados - Rspec
 
 gem install rspect
 rspect --init                                                    ++ Inicializa o gem rspec sem o Gemfile
 
 gem 'rspec-rails'                                                ++ Em um projeto rails no Gemfile
-rails genarate rspec:install                                     ++ instalando o rspec depois do banco de dados
+rails genarate rspec:install                                     ++ Gera as pastas necessárias e helper do rspec
 rails genarate rspec:request User                                ++ Cria um teste request para o model user
 rails generate --help | grep rspec                               ++ Lista de generate do rails 
+rails generate rspec:model <nome>                                ++ gera a estrutura spec para model <nome>
 
-
-describe                                                         ++ Definir Grupos de testes
-context                                                          ++ Agrupar testes associados, é subcateria para agrupar os testes parecidos
-it                                                               ++ Definit um exemplo ( teste )
+describe                                                         ++ Definir Grupos de testes pode receber uma classe ou string '#index'
+context                                                          ++ Agrupar testes associados, é subcategoria para agrupar os testes parecidos
+it                                                               ++ Defini um exemplo ( teste )
 expect                                                           ++ Verifica condições
 
 match                                                            ++ verificar se uma condição está sendo atendida
@@ -888,13 +1024,20 @@ expect(actual).to eq(expected)
 expect(actual).to eql(y)
 expect(actual).to be(y)
 
-expect(atual).to be > x
+# Match de comparação 
+
+expect(atual).to be > x           
 expect(atual).to be >= x
 expect(atual).to be <= x
 expect(atual).to be < x
+
 expect(atual).to match(/expression/)                             
+
+# Match de tipos, verificar tipo
+
 expect(actual).to be_an_instance_of(expected)
 expect(actual).to be_a(expected)
+
 expect(actual).to be_truthy
 expect(actual).to be true
 expect(atual).to be_falsy
@@ -915,16 +1058,36 @@ FFaker::Andress.city                                            ++ cidade fake
   	kind = %i[knight wizard].sample
   	level = FFaker::Random.rand(10..99)  
 
-gem factory bot                                                 ++ Parecido com o Fixtures do test Há um processo de criação de diretórios
+gem factory_bot_rails                                           ++ Parecido com o Fixtures do test Há um processo de criação de diretórios
 
-config.include FactoryBot::Syntax::Methods                      ++ incluir dentro da pasta rails helper
+config.include FactoryBot::Syntax::Methods                      ++ incluir dentro do arquivo rails_helper
 
 testes de request                                               ++ integração de model, controller, server um teste mais global
 
 rails g controller users index create --no-helper --no-assets --no-controller-specs --no-view-specs --skip-routes
 rails g controller enemies update destroy --no-helper --no-assets --no-controller-specs --no-view-specs --skip-routes
 
+rails destroy controller users                                  ++ Desfaz todo generate realizado de user.	
+
+rails g --help                                                  ++ mostrará uma lista com todos os generates
+
 expect(response).to have_http_status(200)                       ++ 200 é um statu de sucesso
+
+bundle exec rspec spec/validators/future_date_validator_spec.rb:13  ++ Podemos rodar o teste de um validator específico desta forma apontando a exata linha.
+
+Shoulda-matchers
+
+it{ is_expected.to validate_presence_of(:<nome_atributo>) }
+it{ is_expected.to validate_uniqueness_of(:name).ignoring_case_sensitivity }
+it{ is_expected.to define_enum_for(:mode).with_values({pvp: 1, pve: 2, both: 3}) }
+it{ is_expected.to define_enum_for(:status).with_values( {active: 1, inactive: 2})}
+it{ is_expected.to validates_numericality_of(:discount_value).is_greater_than(0) }
+it{ is_expected.to validates_numericality_of(:discount_value).is_greater_than_or_equal_to(0) }
+it{ expect( subject).to validate_presence_of( :<nome_atributo> ) }
+it{ is_expected.to belong_to <model>}
+it{ is_expected.to have_many(:games).dependent(:restrict_with_error) }
+it { is_expected.to have_one <model> }
+
 
 get                                                             ++ Adquirir dados do banco
 pos                                                             ++ inserir dados
@@ -1094,7 +1257,7 @@ ReactDOMServer.renderToString(<App />);
 this.setState()                                     ** Forma de setar um estado
 
 npm i react-router-dom   --save                     ** Criação de rotas.
-npm i axios --save                                  ** Igual ao fetch
+npm i axios --save                                  ** Igual ao fetch, serve para chamar end-points externos.  
 npm i node-sass --save                              ** sass
 npm i bulma --save
 npm i rbx --save                                    ** um lib bulma
@@ -1130,6 +1293,33 @@ npm install dotenv --save
 npm install cors --save                    (Permitindo que possamos chamar recursos de outros sites)
 npm install react-burger-menu --save
 npm install react-quill --save              Editor de textos
+
+npm i -S @react-google-maps/api
+
+
+---------------------------> React Native ------------------------------------------------
+
+Criando um app com a ferramenta expo
+
+npm install --global expo-cli                        ** Instalação de dependencias
+
+npx create-react-native-app <nome_do_projetO>
+expo start --turnnel
+
+
+sudo ufw status verbose                              ** Verificar endereços permitidos tcp
+sudo ufw allow 19000/tcp                             ** Essas duas portas tem de ser habilitadas 
+sudo ufw allow 19001/tcp
+
+expo install react-native-maps                       ** instalando pacote de mapas
+
+ngrok                                                ** ngrok é uma aplicação que nos possibilita tornar nossa api disponível ao app por meio de um endpoint
+ngrok http 3001
+
+Rails.application.configure do                       ** temos de acrescentar este trecho para habilitar o acesso de outros hosts a essa porta.
+  config.hosts.clear
+end
+
 
 --------------------------- > Redux ------------------------------------------------------
 
@@ -1215,10 +1405,10 @@ hooks                                                **  Gancho
   jobs                                                 ** executar uma ação em background ou runtime
 
 Module                                               ** Classe superior que pode ser overwrite para modificar hooks como os missing
-missing                                              ** Um elemento do ActivenRecord muito importante
-	const_missing	                                 ** Mostrar que alguma classe ou constante não existe 
-    method_missing                                   ** Vamos fazer um overwrite, indica que algum método ou atributo exista possivel para um metodo de instancia também Class1.new
+missing                                              ** Um elemento do ActivenRecord muito importante const_missing	                                                     ** Mostrar que alguma classe ou constante não existe 
+method_missing                                       ** Vamos fazer um overwrite, indica que algum método ou atributo exista possivel para um metodo de instancia também Class1.new
 
+<string>.casecmp? <segunda string>                   ** Podemos comparar uma palavra com outra sem case sensitive;
 
 
 
@@ -1287,6 +1477,8 @@ Hash é uma estrutura indexada por qualquer tipo de objeto, confg = Hash.new    
 temos tambem uma sintaxe mais explicita {:nome = "jorge", :sobreNome ="Borges"} ou uma sintaxe mais antiga temos {:nome => "Jorge", :sobrenome => "Borges"}
 
 Mas assim como uso do parenteses e opcional no Syntax Sugar, podemos ter a exclusao das chaves na Hash :nome = "Jorge", :sobrenome = "Borges".
+
+
 
 ------------------------- >Sass ------------------------------------------
 
@@ -1447,6 +1639,7 @@ Plugins
  - LoremIpsum
  - A file icon 
  - View in Browser
+ - ColorHighlight
 
 
 Goto anything - Control + p                                            ** ( Faz uma busca de arquivos)
@@ -1508,7 +1701,7 @@ sudo apt-get upgrade                                   ** Fazer atualização de
 set | less                                             ** Todos os comando bash e.g $USER
 
 subl                                                   ** Chamar o sublime
-*pwd                                                   ** Imprimir na tela seu caminho atual.
+pwd                                                    ** Imprimir na tela seu caminho atual.
 lsb_release -a  | grep Release                         ** Conferir a versao linux - Ubuntu 19.10
 ruby -v                                                ** ruby 2.5.5p157
 gem -v                                                 ** 3.1.2
@@ -1553,6 +1746,7 @@ uniq -u                                                ** Faz uma busca de palav
 sleep 5                                                ** "Adormece" o sistema por 5 segundos
  
 uname -r                                               ** ver a versão kernel linux
+uname -m
  	
 ps -ef                                                 ** Pesquisar.
 
@@ -1822,3 +2016,10 @@ set showmatch
 ============================
 leviatnan1 - ~/.backup$ grep leviathan bookmarks.html 
 leviathan2 - ougahZi8Ta (ltrace) -
+
+
+
+
+
+
+Acho que o erro de alguns de não aparecer a latitude correta em algumas vezes é de rede. Eu tentei algumas coisas *apagar histórico*, os *cookies*, fazer *logout da minha conta google*, usar no *modo "anônimo"*, colocar uma conta que *não esteja sincronizada com meus celulares* ( e dois pai nosso rs) ... E voltava as latitude e longitude incorretas depois de um tempo. Eu pensei que fosse culpa do navegador ( Referência: https://support.google.com/websearch/answer/179386 ). Mas tenho duas possibilidades de conexão para rotear 2G e suposto 5G, 
