@@ -78,6 +78,8 @@ sass --watch node_modules/bootstrap/scss:node_modules/bootstrap/compiler     => 
 
 ------------------------ >Docker ------------------------------------
 
+** https://docs.docker.com/compose/rails/                                   => Esse tutorial é fundamental para criação de uma imagem ruby
+
 ** Por default temos de usar sudo para rodar o docker 
 sudo apt-get remove docker docker-engine docker.io containerd runc 		          => Apagar versões antigas
 sudo systemctl status docker                                                 => Status docker 
@@ -120,9 +122,25 @@ docker top <container_id>                                                    => 
 
 docker run -it --rm --user "$(id -u):(id -g)" -v "$PWD":/usr/src/app -w /usr/src/app rails rails --skip-bundle new my_new_app
 
+Docker-compose
 
+** Para abrir o terminar interatirativo no docker-compose
+
+docker-compose exec web sh 
+
+** Você poderá rodar um container 
+
+docker-compose run web bash
 
 ------------------------ >Git --------------------------------------- 
+
+
+git stash                                                                    	=> Irá salvar em cache as alterações não comitadas possibilitando a restauração depois
+git stash pop                                                                 => restaura o cache com os arquivos modificados da branch 
+git fetch --all;git pull                                                      => Uma forma linear de dar fetch e pull
+
+gitiginore -types                                                             => lista de todos os tipo Ruby rails node ....
+gitignore rails                                                               => cria um gitignore para o projeto rails 
 	
 sudo apt-get install git 
 git config --global user.name "myname "
@@ -149,7 +167,7 @@ git log                                                                       =>
 git remote                                                                    => ver a situação
 git remote rm <name>                                                          => desfaz conexões
 git remote rename <antigo> <novo>
-git remote add upstream https or ssh 	                                        => Sincronização de repositório remoto e local
+git remote add upstream https or ssh 	                                        => setando o repositório remoto
 git push -u origin master                                                     => Primeiro push em um repositório remoto
 git push origin master                                                        => use para dar update nos seus arquivos remotos (Caso recebar erro: git push master --force ) 
 git clone https...                                                            => Faz o clone do repositorio remoto em sua maquina
@@ -158,7 +176,7 @@ git log --oneline                                                             =>
 git log --pretty=oneline                                                      => Mostra histórico em uma linha.
 git log --stat                                                                => Mostra histórico mais completo para sair aperte q
 get log --oneline -S <Algo que se queira buscar>                              => Podemos fazer um search pelo log
-git show <identifier>                                                        	=> Podemos selecionar um commit especófico pelo seu identificador
+git show <identifier>                                                        	=> Podemos selecionar um commit específicando seu identificador
 git show e420911~1                                                            => Está sintaxe com que podemos utilizar um identificador para acessar seu parent ( use ~1 ou ~2)
 git show :/Second                                                             => Podemos acessar um commit pode por meio do conteúdo de sua mensagem
 git diff                                                                      => Faz a verificação que foi modificado no codigo
@@ -216,6 +234,7 @@ git rm -f --cached [<nome_arquivo]>                                           =>
 git log --pretty=format:"%h - %an, %ar : %s"                                  => Conferir o log, mais bem detalhado
 git log --pretty=format:"%h %s" --graph                                       => ver com uma estrutura de branchs
 
+git push --set-upstream origin nova-branch                                    => fazem push direto no repositório de origem
 
 ---------------------------------- Git - Diogo  ----------------------------
 
@@ -252,6 +271,48 @@ git config --global user.email "email@address.com"     => Set email of user
 
 
 --------------------------------- >Javascript --------------------------------------
+
+Tag template                                          => Permite que você faça modificações em uma interpolação ( Template literal :) )  com uma função. e.g: acao`${variavel1} ${variavel2} e ${variavel3}`                     
+
+Shorthand property                                    => Encurtar uma propriedade;
+
+text.startSwicth("string")
+text.endStwicth("string")
+text.repeat(10)                                       => Repete o text 10 vezes.
+text.includes("string")                               => verifica se um dada string está incluida no text.
+
+Array.from("Jorge")                                   => ["J", "o", "r", "g", "e"]
+Array.of(1, "jorge", {"idade": 23})                   => Juntar vários tipos e transformar em um array;
+
+[1,2,3,4,5,5].find( x => x > 3)                       => 
+[1,2,3,4,5,6].findIndex( x => x < 5)                  => Pergará o primeiro index de correspondencia;
+
+(new Array(70)).fill(<um_valor>)                      => pesquisar é interessante, pode ser passado o intervalo Array.fill('string', 2, 57)
+
+Destructuring in Arrays                                 
+
+const arr = ['Jorge', '24', 'estudante', 'autonomo'];
+
+const [name, idade, situacao , profissao] = arr       => Assim podemos fazer o destructing no arr onde name === "Jorge" sem precisar chamar pelo index arr[0]
+
+[a,b] = [b,a]                                         => #Swap destructuring é interessante podemos fazer trocar sem precisar usar uma variável auxiliar;
+
+console.log([..."jorge"])                             => Podemos é mapear um tipo iterável com spread e desmembra-lo com o spread operator. ficario ['j','o','r','g','e']
+
+REST params é diferente de spread                     => fixa isso.
+
+for ... of                                            => Esse loop é como se fosse o in do python com loops que pode ser dado braek para finalizar a iteração;
+
+new Proxy()                                           => Mudar o coportamento de um objeto, ficar ali no meio meio modificando lembra o interceptor do axios;
+
+new Set()                                             => trata de valores únicos
+
+new WeakSet()                                         => Ao contrário do Set o WeakSet não aceita tipos primitivo apenas podemos passa objetos; Não é iterável :( mas para o caso de guardar objetos únicos
+
+
+new Map()																							=> Parece com hash do ruby com métodos próprios {'kes' => value}
+
+new WeakMap()                                         => Só aceita objetos;
 
 // /**/                                               => Comentário de uma linha e comentário para múltiplas linhas
 =                                                     => recebe ( atribuição )
@@ -312,6 +373,12 @@ mouseup
 (?=[A-Z])                                             => Regex
 
 randomIndex: Math.floor(Math.random() * 20)          => Random method
+
+
+ECMA 
+
+Object.freeze(<name_variable>)                        => Torna uma variável imutável, ou seja, não se poderá edita-la ( const <nome_da_variável> não à torna imutável)
+
 
 
 --------------------------                            => Usando addEventListener com React
@@ -590,6 +657,10 @@ npm install loadash@3.3.0 --save                   => Salvamos uma npm específi
 npm update --dev --save-dev                        => Fazemos update de --dev --save-dev
 npm install npm@latest -g    
 npm install -g npm@latest -g                       => Update npm use sudo
+
+npm addUser                                        => loggar o usuário da conta do npm no terminal com email e senha
+
+
  
 transpilação com Babel - transpilar uma versão do ECMA em outra. Uma ferramenta que possibilita a compatibilidade de navegadores que não suportam determinada versão.
 
@@ -613,6 +684,9 @@ npm install webpack-dev-server --save-dev                                       
 
 npm install --save styled-components                                                            =>  
 npm install react-star-rating-component --save                                                  => É um pacote que cria escala de avalição ( estrelas ).
+
+npm install eslint --save-dev                                                                   => instalação de verificador de código
+./node_modules/.bin/eslint --init                                                               => Iniciar o eslint em um projeto local ( Lembrar de não usa-lo globalmente)
 
 
 
@@ -727,13 +801,166 @@ gem install debase
 
 
 
-
-
-
  
 -------------------------- >Rails----------------------------- 
 
 David Heinemeier Hansson - DHH
+
+Docker compose e Rails 
+
+logger.info("logger created".red)                                     ** Com a gem 'colorize' podemos fazer um debbug
+
+gem 'better_errors' 																									** Se estiver usando a o rails RESTFULL
+
+> Crie um arquivo Dockerfile e insira:
+
+	FROM ruby:2.5
+	RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+	WORKDIR /myapp
+	COPY Gemfile /myapp/Gemfile
+	COPY Gemfile.lock /myapp/Gemfile.lock
+	RUN bundle install
+	COPY . /myapp
+	
+	# Add a script to be executed every time the container starts.
+	COPY entrypoint.sh /usr/bin/
+	RUN chmod +x /usr/bin/entrypoint.sh
+	ENTRYPOINT ["entrypoint.sh"]
+	EXPOSE 3000
+	
+	# Start the main process.
+	CMD ["rails", "server", "-b", "0.0.0.0"]
+
+> Crie um arquivo Gemfile mas ele será sobrescrito quando o bundle for inicializado.
+
+	source 'https://rubygems.org'
+	git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+	
+	gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
+
+
+> Crie um arquivo Gemfile.lock
+
+> Crie um arquivo chamado entrypoint.sh e insira: Next, provide an entrypoint script to fix a Rails-specific issue that prevents the server from restarting when a certain server.pid file pre-exists. This script will be executed every time the container gets started. entrypoint.sh consists of:
+
+	#!/bin/bash
+	set -e
+	
+	# Remove a potentially pre-existing server.pid for Rails.
+	rm -f /myapp/tmp/pids/server.pid
+	
+	# Then exec the container's main process (what's set as CMD in the Dockerfile).
+	exec "$@"
+
+> Crie o arquivo docker-compose.yml (https://docs.docker.com/compose/compose-file/): 
+
+	version: "3.8"
+	services:
+	  db:
+	    image: postgres
+	    volumes:
+	      - ./tmp/db:/var/lib/postgresql/data
+	    environment:
+	      POSTGRES_PASSWORD: password
+	  web:
+	    build: .
+	    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+	    volumes:
+	      - .:/myapp
+	    ports:
+	      - "3000:3000"
+	    depends_on:
+	      - db
+
+> Criando o projeto - First, Compose builds the image for the web service using the Dockerfile. The --no-deps tells Compose not to start linked services. Then it runs rails new inside a new container, using that image. Once it’s done, you should have generated a fresh app:
+
+	docker-compose run --no-deps web rails new . --force --database=postgresql
+
+> No caso de estamos em uma distruição linux devemos configurar as permições deste projeto, já que sua criação foi realizada pelo user root:
+
+	sudo chown -R $USER:$USER .
+
+> Por fim devemos construir a imagem novamente sempre que hover modificação no Gemfile. Now that you’ve got a new Gemfile, you need to build the image again. (This, and changes to the Gemfile or the Dockerfile, should be the only times you’ll need to rebuild.)
+
+	docker-compose build 
+
+> Nesse momento com o projeto já criado vamos configurar o banco de dados:
+
+	default: &default
+	  adapter: postgresql
+	  encoding: unicode
+	  host: db
+	  username: postgres
+	  password: password
+	  pool: 5
+	
+	development:
+	  <<: *default
+	  database: myapp_development
+	
+	
+	test:
+	  <<: *default
+	  database: myapp_test
+
+> Vamos subir a aplicação agora, assim vc não precisará instalar tudo novamente:
+	
+	docker-compose up
+
+> Vamos criar o bando de dados:
+	
+	docker-compose run web rake db:create
+
+> If you make changes to the Gemfile or the Compose file to try out some different configurations, you need to rebuild. Some changes require only docker-compose up --build, but a full rebuild requires a re-run of docker-compose run web bundle install to sync changes in the Gemfile.lock to the host, followed by docker-compose up --build.
+
+Here is an example of the first case, where a full rebuild is not necessary. Suppose you simply want to change the exposed port on the local host from 3000 in our first example to 3001. Make the change to the Compose file to expose port 3000 on the container through a new port, 3001, on the host, and save the changes:
+
+	ports: - "3001:3000"
+
+> Vamos fazer a atualização de nosso imagem sem Rodeio:
+	
+	docker-compose up --build
+
+> Run rails console
+
+docker-compose exec web rails console
+
+> Instalando Docker-compose + rails 6 + mailcatcher + ruby 2.7.1
+
+Errno::EADDRNOTAVAIL (Cannot assign requested address - connect(2) for "localhost" port 1025)
+
+Um provável problema que você possa cair é este se não configurar corretamente seu docker-compose.yml e seu arquivo development 
+
+  config.action_mailer.raise_delivery_errors = false
+  
+  config.action_mailer.default_url_options = { host: "http://localhost:3000" }
+  
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: "mailcatcher", port: 1025 }
+
+Solução simples faça isso o que você está dizendo é gostaria de redirecionar requisição ao container "mailcatcher".
+
+> Erro de alteração de chave master
+
+/usr/local/bundle/gems/activesupport-6.0.3.4/lib/active_support/message_encryptor.rb:206:in `rescue in _decrypt': ActiveSupport::MessageEncryptor::InvalidMessage (ActiveSupport::MessageEncryptor::InvalidMessage)
+
+Solução deletar o file master e seu config/
+
+> Rodar o console rails 
+
+docker-compose run web bundle exec rails c
+
+
+ 
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
 
 API
 
@@ -815,7 +1042,7 @@ rails g migration AddColumnsToUser col1:integer col2:integer .. etc.            
 
 bin/rails about                                                                                               => info app
 bin/rails generate controller Say hello goodbye                                                               => é possivel gerar um controler criando ao mesmo tempos os métodos
-bin/rails generate scaffold <Nome> \
+bin/rails generate scaffold <Nome> 
        title:string description:text image_url:string price:decimal                                           => Cria a estrutura MVC de Product gerando um *migrate
 bin/rails generate scaffold LineItem product:references cart:belongs_to                                       =>
 belongs_to                                                                                                    => é um metodo foreign-key 
@@ -1672,6 +1899,7 @@ Control+shift+P > menu > view:Toggle Menu                              ** Posso 
 
 control+H                                                          ** Faz replace
 
+control+G                                                          ** Nós vamos para a linha definida
 
 ------------------------- >Terminal - Linux  -------------------------------------
 
@@ -1769,7 +1997,7 @@ sudo snap install heroku --class                       ** Instalando CLI heroku
 
 sudo apt-add-repository --remove https://download.sublimetext.com apt/     ** Caso necessite eliminar um ppa de atualizar no apt update
 
-ip addr
+ip addr                                                ** Possibilita a visualzação de detalhes de dispositivo em rede. 
 
 sudo snap remove postman
 sudo snap install postman
@@ -2003,6 +2231,78 @@ syntax on
 set visaulbell
 set showmatch
 
+set nocompatible
+
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+
+"----- VIM appearence -----
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" ----- Vim as a programmer's text editor -----------------------------
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+
+"----- Working with Git ----------------------------------------------
+Plugin 'tpope/vim-fugitive'
+
+" ----- Other text editing features -----------------------------------
+Plugin 'Raimondi/delimitMate'
+
+Plugin 'christoomey/vim-tmux-navigator' " --- TMUX
+Plugin 'tpope/vim-rails' " --- Rails
+Plugin 'tpope/vim-dispatch'
+
+
+call vundle#end()
+
+filetype plugin indent on
+
+" --- General Settings ---
+set backspace=indent,eol,start
+set ruler
+set number
+set showcmd
+set incsearch
+set hlsearch
+set tabstop=2
+
+syntax on
+syntax enable
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
+set laststatus=2
+let g:airline_detect_paste=1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='solarized'
+
+" ----- jistr/vim-nerdtree-tabs -----
+" Open/close NERDTree Tabs with \t
+nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
+" To have NERDTree always open on startup
+let g:nerdtree_tabs_open_on_console_startup = 1
+" ----- Raimondi/delimitMate settings -----
+
+let delimitMate_expand_cr = 1
+augroup mydelimitMate
+  au!
+  au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
+  au FileType tex let b:delimitMate_quotes = ""
+  au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
+  au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
+augroup END
+
+set mouse=a
+
 
 
 
@@ -2017,9 +2317,3 @@ set showmatch
 leviatnan1 - ~/.backup$ grep leviathan bookmarks.html 
 leviathan2 - ougahZi8Ta (ltrace) -
 
-
-
-
-
-
-Acho que o erro de alguns de não aparecer a latitude correta em algumas vezes é de rede. Eu tentei algumas coisas *apagar histórico*, os *cookies*, fazer *logout da minha conta google*, usar no *modo "anônimo"*, colocar uma conta que *não esteja sincronizada com meus celulares* ( e dois pai nosso rs) ... E voltava as latitude e longitude incorretas depois de um tempo. Eu pensei que fosse culpa do navegador ( Referência: https://support.google.com/websearch/answer/179386 ). Mas tenho duas possibilidades de conexão para rotear 2G e suposto 5G, 
