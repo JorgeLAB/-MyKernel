@@ -140,6 +140,9 @@ git stash pop                                                                 =>
 git fetch --all;git pull                                                      => Uma forma linear de dar fetch e pull
 
 gitiginore -types                                                             => lista de todos os tipo Ruby rails node ....
+
+npm i -g add-gitignore                                                        
+
 gitignore rails                                                               => cria um gitignore para o projeto rails 
 	
 sudo apt-get install git 
@@ -314,6 +317,28 @@ new Map()																							=> Parece com hash do ruby com métodos próprio
 
 new WeakMap()                                         => Só aceita objetos;
 
+padStart                                              =>
+padEnd                                                => padEnd(<numero de caracteres>, <caracteres para completar>)
+
+Object.entries                                        => Podermo pegar atributos e valor de um objeto e transformar um array > Object.entries(obj)
+
+Object.values                                         => Retorna os valores do objeto.
+
+Trailling Comman                                      => Vírgula no final de parametros de funções function test( a, b, ){}   para não quebrar o programa é algo opcional.
+
+Anonymous closure                                     => Modos de criar um módulo
+
+(function (){
+	
+})();
+
+const myModule = (function () {})();                  => Outra forma de criar modularidade;
+
+Comminjs                                              => module.export = <modulo>      e    no destino require(<modulo>)
+
+
+
+
 // /**/                                               => Comentário de uma linha e comentário para múltiplas linhas
 =                                                     => recebe ( atribuição )
 null                                                  => nulo
@@ -445,8 +470,61 @@ new RegExp(req.query.nome , "i" );                                              
 
 window.location.href = "/<rota>"                                                    ** Assim você poderá mudar de página usando JS;
 
+------------- Husky - editorconfig - Mocha - Chai - eslint - Coverage ( nyc um superset do Istambul.js ) ---------------------------
 
- 
+Common.js                      																** uma observação é o uso de importação nas versões antigas do ECMA não possuem esse recurso o que no obriga a utilizar a lib common.js ( require e module.exports ) mas nas versões na versão mais nova temos o import no js. Instalamos o Babel para fazer a transpilação desse código o que no possibilita empregar em desenvolvimento com browser que usam verões antiga.        
+
+describe('<Nome da Classe>', function(){})                    ** descreve os testes de certo arquivo
+
+context('Caso 1', function(){})                               ** separar caso de teste
+
+it('should happen bloco', function(){})                       ** teste atômico
+
+"test": "./node_modules/mocha/bin/mocha ./tests/**/*.spec.js" ** Executado npm test 
+
+npm test -- --reporters                                       ** dará erro rsrs está desatualizado não há mais esse comando 
+
+./node_modules/mocha/bin/mocha -R nyan ./tests                ** Mas com essa flag funciona com um gatinho.
+
+npm test -- --bail                                            ** flag que executa os testes até o primeiro erro acontencer
+
+context.only("", function(){})                                ** rodar apenas um bloco
+
+context.skip("", function(){})                                ** pular um teste torna-lo pendenting
+
+before(function(){})                                          ** Hook antes
+after(function(){})                                           ** Hook depois
+beforeEach(function(){})                                      ** Hook antes de cada
+afterEach(function(){})                                       ** Hook depois de cada
+
+var expect = require('chai').expect                           ** Importar o chai para o projeto para adição dos asserts
+
+"test:tdd": "./node_modules/mocha/bin/mocha ./tests/**/*.spec.js --watch" ** Modificação de package.json para utiliza o hot reload
+
+Smoke test   => expect('test').to.be.a('array')               ** testes de tipo
+
+./node_modules/.bin/eslint src/*.js                           ** rodando o eslint
+
+"test:coverage": "nyc npm test"                               ** usando o coverage
+
+npm run test:coverage                                       ** executará o covarage 
+
+** vamos fazer com que o código não possa ser subido para o github caso seu coverage seja menor que uma dada porcentagem:
+
+'nyc': {
+	"lines": 80,
+	"functions": 80,
+	"check-coverage": true	
+}
+
+ "husky": {
+   "hooks": {
+     "pre-push": "npm run lint && nyc npm test"
+   }
+ }
+
+ npm install --save-dev @babel/core @babel/node               ** Lembra do babel-node você pode transpilar um código e o emprega-lo;
+
 -------------------- >Heroku -------------------------
 
 sudo snap install heroku --classic
@@ -454,10 +532,10 @@ heroku login
 heroku create
 git push heroku master                                => Fazendo deploy de projeto
 heroku open                                           => Irá abrir sua URL
-heroku log --tail                                     => Acessando log
+heroku logs --tail                                     => Acessando log
 heroku ps                                             => verifica os dyno de sua aplicação free
 heroku local web                                      => estou rodando o server pelo heroku e a sua porta é a 5000 ( localhost:5000)
-heroku local                                          =>
+heroku local                                           =>
 heroku addons:open <name_app_base_addon>              => dados de seu plano para a aplicacao
 heroku run rails console                              => carrega um console rails heroku ( um console remoto )
 heroku run bash                                       => bash do servidor
@@ -660,8 +738,9 @@ npm install -g npm@latest -g                       => Update npm use sudo
 
 npm addUser                                        => loggar o usuário da conta do npm no terminal com email e senha
 
+npm install uglifyjs-webpack-plugin --save-dev     => webpack usa para definir apenas pacote em uso de modulo importado
 
- 
+
 transpilação com Babel - transpilar uma versão do ECMA em outra. Uma ferramenta que possibilita a compatibilidade de navegadores que não suportam determinada versão.
 
 npm install @babel/core @babel/cli @babel/preset-env --save-dev  // um pacote que usamos apenas em desenvolvimento não em produção.( --save-dev)
@@ -688,7 +767,13 @@ npm install react-star-rating-component --save                                  
 npm install eslint --save-dev                                                                   => instalação de verificador de código
 ./node_modules/.bin/eslint --init                                                               => Iniciar o eslint em um projeto local ( Lembrar de não usa-lo globalmente)
 
+testes Com Mocha e Chai
 
+npm test                                                                                        => test setado no package.json
+npm test -- --reporters                                                                         => tipos de visualiazações.
+
+npm i gitignore -g                         																											=> Adicionando o gitignore a um projeto
+gitignore --types 																																							
 
 -------------------------- Python--------------------------- 
 
@@ -808,9 +893,9 @@ David Heinemeier Hansson - DHH
 
 Docker compose e Rails 
 
-logger.info("logger created".red)                                     ** Com a gem 'colorize' podemos fazer um debbug
+document.addEventListener( 'turbolinks:load', function() {            ** Começo importante caso tenha de usar js em seu código 
 
-gem 'better_errors' 																									** Se estiver usando a o rails RESTFULL
+logger.info("logger created".red)                                     ** Com a gem 'colorize' podemos fazer um debbug
 
 > Crie um arquivo Dockerfile e insira:
 
@@ -976,11 +1061,28 @@ Com configuração:
         end
     end
 
-gem 'rack-attack'
-gem 'devise'
-gem 'simple_token_authentication'
+gem 'rack-attack'                                                     => Protect your Rails and Rack apps from bad clients.
+gem 'devise'                                                          => Criará 
+gem 'simple_token_authentication'                                                          
 
-gem install mailtcatcher                                                                                      => gem para console, envio de emails
+gem install mailtcatcher                                              => gem para console, envio de emails
+
+gem 'better_errors'                                                   => Se estiver usando a o rails RESTFULL cria uma tela amigável de error
+
+gem 'figaro'                                                          => Gerencia as variáveis de ambiente
+gem 'will-pagination'                                                 => 
+
+gem 'simple_form'
+gem 'haml'
+gem 'kaminari'
+gem 'kaminari-rails'                                                  => Solução para organizar e gerar paginação
+gem 'ransack'                                                         => Trata de pesquisas/buscas
+gem 'select2-rails'                                                   => Selects melhorados
+
+gem 'pry'
+gem 'pry-rails'
+gem ''
+
 
 
 
@@ -1556,6 +1658,17 @@ let currentState = store.getState();                 ** Podemos recuperar o valo
 
 store.dispatch(actionCreator());                     ** criamos ações e states, mas para guarda-los precisamos dar um dispatch.
 store.dispatch({ type: 'LOGIN' });
+
+
+
+------------------------- > Rubocop ------------------------------------------------------
+
+
+gem 'rubocop', require: false                        ** instalar o rubocop no projeto
+
+rubocop                                              ** Fazer analise de todo o projeto 
+
+
 
 
 
