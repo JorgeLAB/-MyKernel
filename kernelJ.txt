@@ -1081,7 +1081,8 @@ gem 'select2-rails'                                                   => Selects
 
 gem 'pry'
 gem 'pry-rails'
-gem ''
+gem 'awesome_print'                                                   => console do rails c mais amigável
+gem 'rspec-rails  '
 
 
 
@@ -2013,6 +2014,10 @@ Control+shift+P > menu > view:Toggle Menu                              ** Posso 
 control+H                                                          ** Faz replace
 
 control+G                                                          ** Nós vamos para a linha definida
+
+control + [                                                        ** Avançar linha
+control + ]                                                        ** recuar linha 
+
 
 ------------------------- >Terminal - Linux  -------------------------------------
 

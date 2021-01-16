@@ -4,6 +4,8 @@
 
 ## O que é o container?
 
+------------------------------------------------------
+
 O container é um binário que tem tudo que sua aplicação necessita, o container não possui kernel. O kernel da máquina local que é compartilhado por esses containers. O container é a emulação de sua aplicação e não da máquina como um todo.
 
 Em uma máquina física temos uma estrutura de poucas camada kernel -> SO -> Aplicação. Máquina Virtual : Server -> SO -> Máquina virtual -> Todo uma estrutura nova de sistema Operacional. Container: temos o servidor -> SO -> Engine  do Docker -> por fim a aplicação.
@@ -17,7 +19,17 @@ ch-root: foi o primeiro emulador de aplicação.
 
 ## O que é o Docker?
 
+-----------------------------------------------------
+
 2008: Houve o começo da empresa.
+
+Principais nomes:
+
+**Docker-engine** :  É um client-server que é aplicado a maioria dos components 
+
+* A server which is a type of long-running program called a daemon process (the `dockerd` command).
+* A command line interface (CLI) client (the `docker` command).
+* 
 
 ## Camadas e o Copy-on-Write
 
@@ -48,7 +60,7 @@ Componentes do kernel linux que o docker faz uso:
 
 [ScreenCast OneBitCode](https://onebitcode.com/dominando-o-docker/)
 
-- Docker só roda em processador 64
+- Docker só rodará em processador 64
 
 - Devemos ter um kernel mínimo de versão 3.8.   
 
