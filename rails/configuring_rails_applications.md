@@ -4,7 +4,7 @@
 
 [Rails DOC][configuring_rails_application_doc]
 
-> Anotações das configurações e recursos de inicialização do rails.
+> ​	Anotações das configurações e recursos de inicialização do rails.
 
 ## Localização
 
@@ -79,7 +79,13 @@ Esses métodos de configuração serão chamado no objeto <u>Rails::Railtie</u> 
     # since you don't have to restart the web server when you make code changes
   ```
 
-  Setting cache_classes to false will have big impact on your app performance.
+  > Setting cache_classes to false will have big impact on your app performance. cache_classes is setting that tells web server if it should reload whole app for each request. More precisely: "Whether or not classes should be cached (set to false if you want application classes to be reloaded on each request)"
+
+  Um exemplo simples set em ambiente de desenvolvimento **config.cache_classes=true** e suba seu server, crie um scaffold produto e o migre, o que acontece é que as alterações em model ou classes não será refletido para minha aplicação, ou seja, o server não estará dando reload. ( o que não é interessante para o ambiente de desenvolvemento ). Mas se colocarmos false qualquer criação de entidade exemplo no controller, terá seu request refletido para uso do server.   
+
+* **eagle_load** : Quando true ele carregas as classes antes de sua chamada ( call ) ser realizada. Em desenvolvimento não é interessante deixa-lo ligado mas em production agiliza as requisições de usuários.
+
+  [blog_de_referencia](https://blog.arkency.com/2014/11/dont-forget-about-eager-load-when-extending-autoload/)
 
 * 
 

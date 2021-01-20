@@ -1679,6 +1679,120 @@ rubocop                                              ** Fazer analise de todo o 
 sudo apt  install ruby-railties                      ** instalation gem rails utilitaries 
 aptitude purge ruby                                  ** desinstalar ruby
 
+
+p teste_e_design.eql? web_design_responsivo # => true ** Usando o eql?
+
+
+numero_sem_repeticao = Set.new [1, 2, 2, 3, 2, 1]    ** Não usando números repetidos para acessa-lo devemos usar estruturas de controler
+
+Thread Safe.                                         ** Quandio temos código sendo executado paralelamente
+
+Parte de Paradigma funcional / funções puras  	----------------------------------------
+
+nome = "Lucas"
+puts nome.upcase # => LUCAS
+puts nome # => Lucas
+
+puts nome.updase! # => Nesse caso haverá mudança definitiva para LUCAS usando o bang não sendo um método funcional
+
+
+valor = nil
+numero = "dois"
+if numero == "um" then valor = 1
+elsif numero == "dois" then valor = 2
+else valor = 3
+end
+p valor # => 2
+
+ou 
+
+numero = "dois"
+valor = if numero == "um" then 1
+					elsif numero == "dois" then 2
+					else 3
+				end
+p valor # => 2
+
+a = b = c = 0
+p a, b, c # => 0 0 0
+
+numeros = [1, 2, 3, 4]
+novos_numeros = for n in numeros
+n * 2
+end
+p novos_numeros # => [1, 2, 3, 4]
+
+
+---------------------------------------------------------------------
+
+Funções de high-order ----------------------------------------------
+
+Basicamente são funções capazes de receber outras funções é o caso de
+lambdas, procs e bloco
+
+Blocos
+
+each
+
+numeros = [1, 2, 3, 4]
+numeros.each { |numero| p numero }
+
+collect
+
+numeros = [1, 2, 3, 4]
+numeros_ao_quadrado = numeros.collect { |numero| numero ** 2 }
+p numeros_ao_quadrado # => [1, 4, 9, 16]
+
+
+Usando o método block_given? caso nenhuma bloco seja passa como parâmetro evitando lançamento 
+de erro.
+
+def livros_por_categoria(categoria)
+	@livros[categoria].each do |livro|
+		yield livro if block_given?
+	end
+end
+
+------------------------------- Explorando API Ruby Enumerable ---------------------------
+
+Enumerable são esses métodos que permitem iteração de coleções
+
+Inject é bem parecido com o reduce do JS 
+
+def soma_total
+	@produtos.inject(0) { |total, produto| total += produto.value }
+end
+
+Em poucas linhas estamos fazendo uma soma.
+
+
+-------------------------------- Usando o Map ----------------------------------------------
+
+def titulos
+	@biblioteca.livros.map { |livro| livro.titulo }
+end
+
+podemos melhorar o map dessa forma
+
+def titulos 
+	@biblioteca.livros.map &:titulo 
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 gem install bundler                                  ** controlodor de versoes de gems 
 irb                                                  ** interpretador ruby
 pry                                                  ** É um interpretador irb bombado como é uma gem tem de ser instalado com syntaxe "raylight"
@@ -1695,6 +1809,13 @@ Metodo .class                                        ** Metodo para obter o tipo
 classe, instancias , contrutores 
 
 meta_programer   attr_accessor, attr_writer, attr_reader                                               ** 
+
+7_000_000_                                           ** Podemos separar numeros grandes com underscore	
+
+{:key => "value", :key => "value"}.values            ** Retorna todos os values
+
+{:key => "value", :key => [ [ "values" ] ]}.values.flatten              ** O método flatten é recurciso mesmo tendo array dentro de array o retorno será um único array contendo os valores da hash.
+
 
 require_relative                                     ** Acessando classes para meu codigo.rb 
 
@@ -2017,7 +2138,7 @@ control+G                                                          ** Nós vamos
 
 control + [                                                        ** Avançar linha
 control + ]                                                        ** recuar linha 
-
+  
 
 ------------------------- >Terminal - Linux  -------------------------------------
 
