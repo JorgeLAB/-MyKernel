@@ -149,6 +149,7 @@ sudo apt-get install git
 git config --global user.name "myname "
 git config --global user.email "myemail"
 gti config --global --list                                                    => Listará todas as configurações git 
+git config core.editor "nome vim ou nano ..."
 git init
 git status
 git add arquivo                                                               => arquivo agora esta sendo rastreado Untracked file -> stage
@@ -896,6 +897,9 @@ Docker compose e Rails
 document.addEventListener( 'turbolinks:load', function() {            ** Começo importante caso tenha de usar js em seu código 
 
 logger.info("logger created".red)                                     ** Com a gem 'colorize' podemos fazer um debbug
+
+./bin/webpack-dev-server                                              ** Rode o webpack ao mesmo tempo que sua aplicação 
+
 
 > Crie um arquivo Dockerfile e insira:
 
@@ -1679,11 +1683,41 @@ rubocop                                              ** Fazer analise de todo o 
 sudo apt  install ruby-railties                      ** instalation gem rails utilitaries 
 aptitude purge ruby                                  ** desinstalar ruby
 
+1.upto(7) do |numero|                                ** Esse método realiza uma iteração continua de 1 até 7 parece um range 
+	puts numero
+end
+
+
+[1,2,3,4,5].inject(:+)                               ** Forma de soma reduzida do inject 
+[1,2,3,4,5].inject(:*)															 ** Forma de multiplicação reduzida do inject
+[1,2,3,4,5].inject(:-)                               ** Forma de subtração reduzida do inject 
+
+[1,2,3,4,5,6,7];select { |valor| valor % 2 == 0 }    ** O select realiza uma filtragem em nosso array.
+
+p Livro.superclass.methods # => [..., :inspect, ...] ** Podemos também listar os métodos da superclass
 
 p teste_e_design.eql? web_design_responsivo # => true ** Usando o eql?
 
+%Q{ Titulo: #{ @titulo } }                           ** Assim consigo fazer a criação de uma string com interpolação 
 
 numero_sem_repeticao = Set.new [1, 2, 2, 3, 2, 1]    ** Não usando números repetidos para acessa-lo devemos usar estruturas de controler
+
+-------------------------------------------------------------------------------------------
+
+Quando invocamos o initialize da superclasse apenas com super sem os
+parenteses, o interpretador Ruby tentará invocá-lo passando os mesmos parâmetros
+recebidos pelo método initialize da subclasse.
+
+--------------------------------------------------------------------------------------------
+"Algumas classes ancestrais ou superclasses fornecem métodos que são projeta-
+dos para serem substituídos pelas classes descendentes ou subclasses. Este compor-
+tamento quando bem definido e explicado pode ser muito útil, já que na superclasse
+podemos definir a maior parte dos comportamentos deixando apenas alguma parte
+do comportamento para ser customizado pelas subclasses. Este tipo de comporta-
+mento é tão comum que virou um Design Pattern chamado Template Method." Livro Caelum ( Ruby )
+
+--------------------------------------------------------------------------------------------
+
 
 Thread Safe.                                         ** Quandio temos código sendo executado paralelamente
 
@@ -1724,6 +1758,40 @@ p novos_numeros # => [1, 2, 3, 4]
 
 
 ---------------------------------------------------------------------
+
+Módulos 
+
+	Módulos não podem ser instanciados a suas únicas funções são de servir
+de namespace e podermos compartilhar código.
+
+"O que fazemos é um include do módulo criado em uma ou várias classes, e assim as 
+classes que incluíram aquele módulo passam a ter em sua interface todos os métodos 
+de instância definidos no módulo incluído. Nós misturamos os métodos na classe que 
+incluiu o módulo, daí vem o nome mixings."
+
+"Se você precisa incluir comportamentos existentes em um módulo apenas em
+alguns objetos, pode fazer isso utilizando a palavra chave extend ao invés de
+include ."
+
+---------------------------------------------------------------------
+
+Duck Typing: o polimorfismo aplicado no Ruby
+
+Duck Typing considera o que um objeto pode fazer e não de qual tipo ele é, que-
+brando a ligação com a classe do objeto criado.
+
+if midia.kind_of? Midia
+
+O método kind_of? verifica se dado objeto é de um tipo
+
+
+Outro método seria o respond_to? que faz a verificação por método
+
+def midias_por_categoria(categoria)
+	midias.select do |midia|
+		midia.categoria == categoria if midia.respond_to? :categoria
+	end
+end 
 
 Funções de high-order ----------------------------------------------
 
@@ -2147,6 +2215,8 @@ control + ]                                                        ** recuar lin
 
 Versões LTS - Long Term Suport                         ** Versões mas estáveis que não possuem atualizações de versão apenas algumas correções
 
+zsh_reload                                             ** Plugin zshell para reload de página ( só rodar o comando src )
+
 ctrl+alt+T                                             ** Atalho para o terminal
 $ echo ~                                               ** Shell - pasta home - comando em programação para exibir o conteúdo de uma variável.
 sudo touch "nomeDoArquivo"                             ** Criar arquivo 
@@ -2353,7 +2423,8 @@ top                                                     => Mostra dados da máqu
        
 sudo ufw app list                                       => O comando ufw é de acesso e configuração do firewall tem ser habilitado
 
-
+alias custom_bash="subl ~/.zshrc"                       => alias para customizar o zshell
+alias go_to_main="cd ~/Documents"
 
 ------------------------------------------Tilix - Terminal Emulator   -------------------------------------------------------------
 
