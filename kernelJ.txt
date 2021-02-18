@@ -890,6 +890,13 @@ gem install debase
  
 -------------------------- >Rails----------------------------- 
 
+deploy 
+
+https://m.do.co/c/4ede815c4ced
+
+
+
+
 David Heinemeier Hansson - DHH
 
 Docker compose e Rails 
@@ -1029,6 +1036,11 @@ Um provável problema que você possa cair é este se não configurar corretamen
 
 Solução simples faça isso o que você está dizendo é gostaria de redirecionar requisição ao container "mailcatcher".
 
+ActionMailer::Base.mail(to: 'jorge@gmail.com', from: "teste@test.com", subject: "Test sending", body: 
+"Foiiiiiii").deliver_now!                                                                                => Como enviar o email
+
+rails g mailer UserMails welcome                                                                         => Gerando uma estrutura de email.
+
 > Erro de alteração de chave master
 
 /usr/local/bundle/gems/activesupport-6.0.3.4/lib/active_support/message_encryptor.rb:206:in `rescue in _decrypt': ActiveSupport::MessageEncryptor::InvalidMessage (ActiveSupport::MessageEncryptor::InvalidMessage)
@@ -1038,6 +1050,21 @@ Solução deletar o file master e seu config/
 > Rodar o console rails 
 
 docker-compose run web bundle exec rails c
+
+
+Job
+
+Não passe o objeto direto para o job passe o seu id para ser chamado ok, seria dados desnecessários no redis.
+Nunca faça várias ações em um background.
+
+ExampleJob.perform_later
+UserMailer.welcome_user(User.first.id).deliver_later(wait: 10.minutes)
+UserMailer.welcome_user(User.first.id).deliver_later(wait_until: 5.days.from_now)
+
+Sidekiq.redis { |conn| conn.flushdb}                                                          ** Com este comando você conseguirá apagar dados estatisticos do sidekiq.
+ 
+
+
 
 
  
@@ -1112,6 +1139,7 @@ time rails runner ''                                                            
 
 
 rails c                                                                                                       => Roda o console
+reload!                                                                                                       => Você pode estar fazendo reload do seu console o/
 Rails.application.credentials.google_secret_key                                                               => Conseguimos ter acesso a keys pelo nosso console rails.
 rails c [ambiente] [opições]                                                                                  => Ambiente = pode se production, development, ...
 rails c --sandbox                                                                                             => Roda o console mais não altera o banco o final
@@ -1129,11 +1157,14 @@ layout "Nome_do_template"  	                                                    
 
 EDITOR=subl rails credentials:edit                                                                            => editando as credentials.yml.enc ( Assim você edita um arquivo que será criptografado para editar a master key) 
 
+rails credentials:show                                                                                        => Mostra o que há em credentials
 rails new myproject --api --database=mysql -T
 rails new <project> -d mysql                                                                                 => Cria uma nova aplicação e o -T representa sem a pasta Test
 rake db:drop                                                                                                 => Deleta a sua base de dados inteira
 rake db:create                                                                                               => Criar a base de dados 
 rake db:rollback                                                                                             => Limpar a database criada pelo scaffold and return migration (drop)
+rake db:migrate:reset                                                                                        => Irá fazer um drop, create e migrate
+ 
 rails detroy scaffold <nome>                                                                                  => excluir scaffold
 
 rails dev:cache                                                                                               => Note that this command will cause your server to automatically restart. "so  there’s  no  need  to  start from scratch on each request."
@@ -1177,6 +1208,8 @@ rake assets:clean && rake assets:precompile                                     
 
 
 bin/rails db:migrate:status      	                                                                             =>
+
+bin/spring  stop        																		                                                   => Para a execução do spring
 
 before_destroy   :ensure_not_reference_by_any_line_item           (hook method)                               => É um validate como o metodo cascate no SQL, evita que uma produto seja deletado caso esteja presente em carts.
 before_action                                                                                                 => UMa metodos auxiliares que são passados antes de se executar aguma action
@@ -1426,6 +1459,21 @@ it { is_expected.to have_one <model> }
 get                                                             ++ Adquirir dados do banco
 pos                                                             ++ inserir dados
 
+Testes de View - end-to-end - teste de aceitação ou integração 
+
+Capybara 
+Selenium é um webdriver é como se fosse um navegador web.
+Por default o rails usa o Raketest    
+
+Editar o rails_helper:
+
+:selenium_chrome é diferente do chrome que nós usamos como navegador de sistema
+
+
+
+
+
+
 --------------------------------------------------
 
 Scaffold 
@@ -1654,7 +1702,43 @@ Rails.application.configure do                       ** temos de acrescentar est
   config.hosts.clear
 end
 
+--------------------------- > Redis ------------------------------------------------------
 
+redis-server                                         ** Subir o servidor
+redis-cli                                            ** Abrir o console do redis
+redis-server --daemonize yes                         ** Rodar o redis background
+
+ps aux | grep redis-server                           ** Verificar se redis está sendo executado
+
+alias redis-server='redis-server --daemonize yes' to your ~/.bash_profile t                    ** Podemos fazer um alias também 
+
+crie um arquivo chamado config/redis.yml
+
+```
+	default: &default
+	  host: 127.0.0.1
+	  port: 6379
+
+	development:
+	  <<: *default
+
+	test:
+	  <<: *default
+	  db: 1 
+``` 
+
+crie um arquivo chamado config/initializers/redis.rb
+
+```
+	if Rails.env.production?
+		$redis = Redis.new(url: ENV['REDIS_URL']) 
+	else
+		redis_config = YAML.load(File.open(Rails.root.join('config/redis.yml'))).symbolize_keys[Rails.env.to_sym]
+		$redis = Redis.new(redis_config)
+	end
+```
+
+background jobs
 --------------------------- > Redux ------------------------------------------------------
 
 let store = Redux.createStore(reducer);              ** Define um store 
@@ -1672,11 +1756,6 @@ store.dispatch({ type: 'LOGIN' });
 gem 'rubocop', require: false                        ** instalar o rubocop no projeto
 
 rubocop                                              ** Fazer analise de todo o projeto 
-
-
-
-
-
 
 --------------------------- >Ruby --------------------------------------------------------
 
@@ -2154,8 +2233,29 @@ $x: 1;                                                     => Usando o while no 
 
 </style>
 
+-------------------------- >Sidekiq ---------------------------------------
 
+Configurar o sidekiq
 
+https://github.com/mperham/sidekiq/wiki/Advanced-Options
+
+sidekiq -C config/sidekiq.yml 
+
+Crie um arquivo chamado config/sidekiq.yml
+
+```
+---
+	:concurrency: 5
+	staging:
+	  :concurrency: 10
+	production:
+	  :concurrency: 20
+	:queues:
+	  - critical
+	  - default
+	  - low
+	  - mailers
+ ```
 
 
 
