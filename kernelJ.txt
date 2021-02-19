@@ -1062,9 +1062,28 @@ UserMailer.welcome_user(User.first.id).deliver_later(wait: 10.minutes)
 UserMailer.welcome_user(User.first.id).deliver_later(wait_until: 5.days.from_now)
 
 Sidekiq.redis { |conn| conn.flushdb}                                                          ** Com este comando você conseguirá apagar dados estatisticos do sidekiq.
- 
 
 
+Configurando idioma i18n
+
+> Adicionando em config/application.rb
+
+# I18n
+config.i18n.load_path += Dir[Rails.root.join('config/locales/**/*.{rb,yml}')]
+config.i18n.default_locale = :'pt-BR' 
+
+> criar um diretório 
+
+mkdir config/locales/pt-BR
+
+> criar dois arquivo yml para configurar o activeRecord e o Devise
+
+mkdir config/locales/pt-BR/{devise,active_record}.yml
+
+links de onde obter os padrões em português:
+
+	https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/pt-BR.yml
+	https://gist.github.com/mateusg/924555
 
 
  
@@ -1159,6 +1178,7 @@ EDITOR=subl rails credentials:edit                                              
 
 rails credentials:show                                                                                        => Mostra o que há em credentials
 rails new myproject --api --database=mysql -T
+rails _6.0.3.3_ new myproject --api -d postgresql -T                                                         => Podemos estar passando uma versão rails específica
 rails new <project> -d mysql                                                                                 => Cria uma nova aplicação e o -T representa sem a pasta Test
 rake db:drop                                                                                                 => Deleta a sua base de dados inteira
 rake db:create                                                                                               => Criar a base de dados 
@@ -1417,6 +1437,15 @@ expect {...}.to raise-error(ErrorClass)
 expect {...}.to raise-error("message")
 expect {...}.to raise-error(ErrorClass, "message")
 
+Em um projeto Rails tanto para ser usado a gem faker quanto o shoulda-matchers devemos
+criar a pasta support
+
+> touch spec/support/{factory,shoulda_matchers}.rb 
+
+	RSpec.configure do |config|
+	  config.include FactoryBot::Syntax::Methods
+	end
+
 gem FFAKER                                                      ++ Permite gerar valores aleatórios - Evita dados viciados 
 FFaker::Name.name                                               ++ Gera um nome 
 FFaker::Internet.email                                          ++ gera email fake
@@ -1467,7 +1496,18 @@ Por default o rails usa o Raketest
 
 Editar o rails_helper:
 
+require 'capybara/rspec'
+
+Capybara.register_driver :selenium_chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
 :selenium_chrome é diferente do chrome que nós usamos como navegador de sistema
+
+https://makandracards.com/makandra/29465-install-chromedriver-on-linux        ++ Devemos instalar um navegar especial por meio desse link
+
+gem 'launchy'                                                                 ++ usando-se save_and_open_page podemos abrir uma janela de navegador e testar no cenário
+
 
 
 
@@ -1852,6 +1892,156 @@ incluiu o módulo, daí vem o nome mixings."
 alguns objetos, pode fazer isso utilizando a palavra chave extend ao invés de
 include ."
 
+
+Metodo clone - Herança por compartamento
+
+clone faz herança do estado atual a uma variável
+
+a = "Um String qualquer" # temos uma instância de uma String
+
+def a.testando 
+	puts "Estamos adicionando um comportamento a a"
+end
+
+b = a.clone       # estamos clonando os comportamentos e estado de dada instância "a" à instância "b".
+
+class << a - Podemos estar passando múltiplos métodos à uma instância 
+
+class << a
+
+	def primeiro_comportamento
+		puts "primeiro comportamento"
+	end
+
+	def segundo_comportamento
+		puts "segundo comportamento"
+	end
+end
+
+dup - Podemos também copiar apenas o estado
+
+c = a.dup
+
+c # será igual a "Um String qualquer" e não terá os comportamentos de a
+
+Include e Extend
+
+Include é usado para estender instâncias
+
+Modulo Teste 
+	def teste 
+		puts "Metodo de instância."
+	end
+end
+
+a = "Uma String" # a é uma instância de String
+
+a.include Teste
+
+a.teste      # podemos usar o método teste como o Namespace
+
+Extend já é usado para estender classes 
+
+String.extend Teste   # Estamos estendendo o modulo Teste na class String, agora teste é um método de instância
+
+Exemplo com os dois modos - Herança por comportamento
+
+module InstanciaEClasse
+	def instancia
+		"metodo de instancia"
+	end
+
+	module Classe
+		def de_classe
+			"metodo de classe"
+		end
+	end
+end
+
+class Teste
+	include InstanciaEClasse
+	extend InstanciaEClass::Class
+end
+
+Teste.new.instancia
+Teste.de_classe
+
+Podemos estar fazendo com um comando só
+
+module InstanciaEClasse
+	def instancia
+		"metodo de instancia"
+	end
+
+	def instancia
+		"metodo de instancia"
+	end
+
+	def self.included(cls)    # usando o included estendendo os métodos de class cls é class atual é errado usar o self herança por comportamento
+		cls.extend Class
+	end
+
+	module Classe
+		def de_classe
+			"metodo de classe"
+		end
+	end
+end
+
+class Teste
+	include InstanciaEClasse
+end
+
+Teste.new.instancia
+Teste.de_classe
+
+defined_method                # Criando métodos dinâmicos ao invés de se usar o eval, criando em runtime
+
+class Teste
+	def self.definir(valor)
+		define_method(valor) do |param1, param2|
+			puts "#{param1} - #{param2}"
+		end
+	end
+end 
+
+Teste.definir("novo_metodo")
+
+attr_accessor                 # Como é por dentro 
+
+module AtributosDinamicos
+	def atributos(*args)
+		atrs.each do |atr|
+			
+			define_method("#{atr}=") do |value|
+				instance_variable_set "@#{atr}", value
+			end
+
+			define_method("#{atr}") do |value|
+				instance_variable_get "@#{atr}"
+			end
+
+		end
+	end
+
+	def atributos_somente_leitura(*args)
+		atrs.each do |atr|
+			define_method("#{atr}") do |value|
+				instance_variable_get "@#{atr}"
+			end
+		end
+	end
+end	
+
+class Teste
+	extend AtributosDinamicos
+	atributos :nome, :telefone
+	# attr_accessor :nome, :telefone ( possui a mesma função )
+end
+
+
+instance_eval e class_eval 
+
 ---------------------------------------------------------------------
 
 Duck Typing: o polimorfismo aplicado no Ruby
@@ -1924,19 +2114,6 @@ podemos melhorar o map dessa forma
 def titulos 
 	@biblioteca.livros.map &:titulo 
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
