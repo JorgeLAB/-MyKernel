@@ -2042,6 +2042,119 @@ end
 
 instance_eval e class_eval 
 
+Possibilita abrir a classe e estar "capturando" valores mesmo que sejam privados
+
+class Teste
+	@telefone = "555"
+	def initialize
+		@nome="AlgumNome"
+	end
+end
+
+Teste.new.instance_eval { @nome }  # consigo estar fazendo get em nome que é uma variável privada da classe Teste
+
+Possibita também definirmos métodos em runtime, abrindo o bloco da instância
+
+teste = Teste.new
+
+teste.instance_eval do
+	def metodo1
+		puts "method1"
+	end
+  def metodo1
+		puts "method1"
+	end
+end
+
+puts teste.metodo1
+
+Mas a diferença de se usar class_eval e instace_eval para uma classe exemplo
+
+Teste.instance_eval do
+	def metodo1
+		puts "method1"
+	end
+  def metodo1
+		puts "method1"
+	end
+end
+
+Teste.metodo1        # Veja, estamos criando método de classe
+
+Teste.class_eval do
+	def metodo_de_instancia
+		puts "method1"
+	end
+  def metodo1
+		puts "method1"
+	end
+end
+
+Teste.new.metodo_de_instancia   # Veja, estamos criando método de instância. 
+
+Monkey Patching / dynamic runtime patching  - Um exemplo seria usar o class_eval para alterar uma gem que não está atendendo em um determinado ponto => https://pt.stackoverflow.com/questions/285190/o-que-%C3%A9-monkey-patch
+
+Podemos modificar Constante de sistema para atender nossas necessidades, Como assim Botine? Vamos ter como exemplo 
+a classe de sistema String.
+
+String.class_eval do
+	def metodo_de_instancia
+		puts "Definindo um novo comportamento à instância de classe String"
+	end
+end
+
+"testando".metodo_de_instancia
+
+String.instance_eval # ou class << String
+  def metodo_de_class
+  	puts "Esse é um método de classe."
+  end
+end
+
+String.metodo_de_class
+
+
+
+alias_method 
+
+send(<recebe_uma_string_com_um_metodo_da_instancia>) ou send(<recebe_uma_string_com_um_metodo_da_instancia>, &bloco)
+
+Tipos de Hook - quando se realiza uma ação é executada outra ação
+
+APP Hooks
+Web Hook ( Exemplo Gateway de pagamento )
+SQL Jobs ( Trigger )
+
+Assista = https://www.youtube.com/watch?v=uOOWUqwDgLE&list=PLEdPHGYbHhldWUFs2Q-jSzXAv3NXh4wu0&index=19&ab_channel=DaniloAparecido-Torne-seumprogramador
+
+included
+extended
+inherited
+
+Missings
+
+def const_missing()
+end
+
+const_set(nome_da_classe, Class.new)
+
+--------------------------------------------------------------------
+
+Como definir classes dinâmicamente em runtime
+
+criando_uma_classe = "teste"
+criando_uma_classe.capitalize! # necessário capitalizar a primeira letra pois classes possuem a primeira letra em maiusculo
+eval("class #{ criando_uma_classe } end") # fazendo a criação
+criando_uma_classe = Object.const_get(criando_uma_classe) # retorna o objeto
+
+puts criando_uma_classe # retornará uma classe 
+
+Como definir classes e métodos dinâmicamente 
+
+https://www.youtube.com/watch?v=03nk3PVoIJA&list=PLEdPHGYbHhldWUFs2Q-jSzXAv3NXh4wu0&index=17&ab_channel=DaniloAparecido-Torne-seumprogramador
+
+
+
 ---------------------------------------------------------------------
 
 Duck Typing: o polimorfismo aplicado no Ruby
@@ -2466,7 +2579,9 @@ Bookmark - Control + F2 ( fazer a marcação)
 
 shift + alt + l                                                        ** Lorem Ipsum text
 
-control+shift + L => cursor para cima e para baixo                     ** seleciona todo o começo de linha bom para comentar rápido 
+control+shift + L => cursor para cima e para baixo                     ** na realidade cursor no final das linhas 
+
+
 
 Control + F9                                                           ** Ordem alfabetica um arquivo texto no sublime
 
@@ -2483,7 +2598,21 @@ control+G                                                          ** Nós vamos
 
 control + [                                                        ** Avançar linha
 control + ]                                                        ** recuar linha 
-  
+
+Indo em  Preferences > Key binding podemos modificar a forma como se realiza commentários 
+
+[
+	{
+	    "keys": ["ctrl+1"],
+	    "command": "toggle_comment",
+	    "args": { "block": false } 
+	}
+	,
+	{   "keys": ["ctrl+shift+1"],
+	    "command": "toggle_comment",
+	    "args": { "block": true }
+	}
+]  
 
 ------------------------- >Terminal - Linux  -------------------------------------
 
