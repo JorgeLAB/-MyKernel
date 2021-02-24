@@ -3033,3 +3033,13 @@ set mouse=a
 leviatnan1 - ~/.backup$ grep leviathan bookmarks.html 
 leviathan2 - ougahZi8Ta (ltrace) -
 
+Rails Summit 2009 -
+
+Marcos Tapajós
+Damien Katz - CounchDB
+Load Balancers
+MVCC - Mult version 
+
+Vinicius Teles 
+
+Rich Kilmer
