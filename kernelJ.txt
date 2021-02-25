@@ -1085,15 +1085,11 @@ links de onde obter os padrões em português:
 	https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/pt-BR.yml
 	https://gist.github.com/mateusg/924555
 
-
+FATAL: Listen error: unable to monitor directories for changes.
+sudo sh -c "echo fs.inotify.max_user_watches=524288 >> /etc/sysctl.conf"
+sudo sysctl -p 
  
 -------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
 
 ---------------------------------------------------------------------------------------------------
 
@@ -1484,6 +1480,22 @@ it{ is_expected.to belong_to <model>}
 it{ is_expected.to have_many(:games).dependent(:restrict_with_error) }
 it { is_expected.to have_one <model> }
 
+Criando um alias para métodos no rspec > rails_helper.rb
+
+RSpec.configure do |config|
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.use_transactional_fixtures = true
+  config.infer_spec_type_from_file_location!
+  config.filter_rails_from_backtrace!
+  config.alias_it_behaves_like_to :it_has_behavior_of, 'has behavior of' # Nesse ponto podemos estar modificando a descrição
+end
+
+Flags para poder ver as descrições do rspec 
+
+rspec spec/models/license_spec.rb -f d
+
+
+-------------------------------------------------------------------------------------------------------
 
 get                                                             ++ Adquirir dados do banco
 pos                                                             ++ inserir dados
