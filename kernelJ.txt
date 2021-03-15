@@ -27,7 +27,7 @@ npm install -g @angular/cli                                                  => 
 sudo npm install -g @angular/cli --allow-root
 ng new my-app                                                                => criando um app cli
 ng serve --open                                                              => Ligar o servidor
-https://localhost:4200/.	
+https://localhost:4200/.  
 ng generate component <nome>                                                 => Gerando componente
 ng generate service <caminho>                                                => Necessário para conectar Angular com rails
 
@@ -46,7 +46,7 @@ asdf list all <name>                                                         => 
 asdf global <name> <version> [<version>...]                                  => Setar a versão no computador.
 asdf shell <name> <version> [<version>...]
 asdf local <name> <version> [<version>...] 
-asdf current <name>                                                          => Ver a versão corrente instalada de uma certa linguagem.	
+asdf current <name>                                                          => Ver a versão corrente instalada de uma certa linguagem. 
 
 sudo apt-get install libmysqlclient-dev                                      => Ao realizar o bundle install mysql2 do rails pode dar erro sendo assim faça o seguinte instale esta lib
 
@@ -63,7 +63,7 @@ sudo apt-get install libmysqlclient-dev                                      => 
 <div class="row"></div>
 <div class="col-xs-4"></div>
 <span class="danger"></span>
-<span class="fas fa-thumbs-up"></span>	
+<span class="fas fa-thumbs-up"></span>  
 <i class="fas fa-info-circle"></i>
 <input type="text" class="form-control" placeholder="...<div>" required><div>
 <div class="well"></div>
@@ -81,7 +81,7 @@ sass --watch node_modules/bootstrap/scss:node_modules/bootstrap/compiler     => 
 ** https://docs.docker.com/compose/rails/                                   => Esse tutorial é fundamental para criação de uma imagem ruby
 
 ** Por default temos de usar sudo para rodar o docker 
-sudo apt-get remove docker docker-engine docker.io containerd runc 		          => Apagar versões antigas
+sudo apt-get remove docker docker-engine docker.io containerd runc              => Apagar versões antigas
 sudo systemctl status docker                                                 => Status docker 
 docker docker-subcommand --help                                              => Especifica um comando a ser usado e o descreve 
 docker images                                                                => para vizualizar as imagens do seu pc
@@ -135,7 +135,7 @@ docker-compose run web bash
 ------------------------ >Git --------------------------------------- 
 
 
-git stash                                                                    	=> Irá salvar em cache as alterações não comitadas possibilitando a restauração depois
+git stash                                                                     => Irá salvar em cache as alterações não comitadas possibilitando a restauração depois
 git stash pop                                                                 => restaura o cache com os arquivos modificados da branch 
 git fetch --all;git pull                                                      => Uma forma linear de dar fetch e pull
 
@@ -144,7 +144,7 @@ gitiginore -types                                                             =>
 npm i -g add-gitignore                                                        
 
 gitignore rails                                                               => cria um gitignore para o projeto rails 
-	
+  
 sudo apt-get install git 
 git config --global user.name "myname "
 git config --global user.email "myemail"
@@ -171,7 +171,7 @@ git log                                                                       =>
 git remote                                                                    => ver a situação
 git remote rm <name>                                                          => desfaz conexões
 git remote rename <antigo> <novo>
-git remote add upstream https or ssh 	                                        => setando o repositório remoto
+git remote add upstream https or ssh                                          => setando o repositório remoto
 git push -u origin master                                                     => Primeiro push em um repositório remoto
 git push origin master                                                        => use para dar update nos seus arquivos remotos (Caso recebar erro: git push master --force ) 
 git clone https...                                                            => Faz o clone do repositorio remoto em sua maquina
@@ -180,7 +180,7 @@ git log --oneline                                                             =>
 git log --pretty=oneline                                                      => Mostra histórico em uma linha.
 git log --stat                                                                => Mostra histórico mais completo para sair aperte q
 get log --oneline -S <Algo que se queira buscar>                              => Podemos fazer um search pelo log
-git show <identifier>                                                        	=> Podemos selecionar um commit específicando seu identificador
+git show <identifier>                                                         => Podemos selecionar um commit específicando seu identificador
 git show e420911~1                                                            => Está sintaxe com que podemos utilizar um identificador para acessar seu parent ( use ~1 ou ~2)
 git show :/Second                                                             => Podemos acessar um commit pode por meio do conteúdo de sua mensagem
 git diff                                                                      => Faz a verificação que foi modificado no codigo
@@ -229,6 +229,8 @@ git reset --soft HEAD~2                                                       =>
 
 git reset HEAD <nome_do_arquivo>                                              => remove um arquivo do stage também.
 git reset HEAD *                                                              => Removendo todos os arquivos do stage.
+git reset --hard HEAD~
+
 git reset -- <nome_do_arquivo>                                                => remover um arquivo do stage, lembrar que há um espaço entre -- e o nome
 git add -i                                                                    => com está opção vc pode fazer multiplaz inserções no stage sem usar git add . modo interativo
 git add -p                                                                    => Em um mesmo arquivo com várias modificações posso distinguir os commits.
@@ -239,6 +241,13 @@ git log --pretty=format:"%h - %an, %ar : %s"                                  =>
 git log --pretty=format:"%h %s" --graph                                       => ver com uma estrutura de branchs
 
 git push --set-upstream origin nova-branch                                    => fazem push direto no repositório de origem
+
+git rm -rf --cached .                => Caso você tenha adicionado o gitignore depois do projeto criado. Remover cache.
+git add .
+
+git clean -n                         => Visualiza os arquivos untrackets que serão removido
+git clean -f                         => Faz a remoção desses arquivos
+
 
 ---------------------------------- Git - Diogo  ----------------------------
 
@@ -314,7 +323,7 @@ new Set()                                             => trata de valores único
 new WeakSet()                                         => Ao contrário do Set o WeakSet não aceita tipos primitivo apenas podemos passa objetos; Não é iterável :( mas para o caso de guardar objetos únicos
 
 
-new Map()																							=> Parece com hash do ruby com métodos próprios {'kes' => value}
+new Map()                                             => Parece com hash do ruby com métodos próprios {'kes' => value}
 
 new WeakMap()                                         => Só aceita objetos;
 
@@ -330,7 +339,7 @@ Trailling Comman                                      => Vírgula no final de pa
 Anonymous closure                                     => Modos de criar um módulo
 
 (function (){
-	
+  
 })();
 
 const myModule = (function () {})();                  => Outra forma de criar modularidade;
@@ -445,7 +454,7 @@ class MyComponent extends React.Component {
   }
 };
 -------------------------
-	
+  
 D3
 
 d3 
@@ -461,7 +470,7 @@ append('react')
 
 -----------------------------
 
- document.addEventListener('DOMContentLoaded', function(){})                        ** Destas forma estamos inspecionando nosso interface para que qualquer evento ocorrido seja tratado pelo DOMContentLoaded; JSON API and 	AJAX
+ document.addEventListener('DOMContentLoaded', function(){})                        ** Destas forma estamos inspecionando nosso interface para que qualquer evento ocorrido seja tratado pelo DOMContentLoaded; JSON API and  AJAX
 
 -----------------------------
 
@@ -473,7 +482,7 @@ window.location.href = "/<rota>"                                                
 
 ------------- Husky - editorconfig - Mocha - Chai - eslint - Coverage ( nyc um superset do Istambul.js ) ---------------------------
 
-Common.js                      																** uma observação é o uso de importação nas versões antigas do ECMA não possuem esse recurso o que no obriga a utilizar a lib common.js ( require e module.exports ) mas nas versões na versão mais nova temos o import no js. Instalamos o Babel para fazer a transpilação desse código o que no possibilita empregar em desenvolvimento com browser que usam verões antiga.        
+Common.js                                                     ** uma observação é o uso de importação nas versões antigas do ECMA não possuem esse recurso o que no obriga a utilizar a lib common.js ( require e module.exports ) mas nas versões na versão mais nova temos o import no js. Instalamos o Babel para fazer a transpilação desse código o que no possibilita empregar em desenvolvimento com browser que usam verões antiga.        
 
 describe('<Nome da Classe>', function(){})                    ** descreve os testes de certo arquivo
 
@@ -513,9 +522,9 @@ npm run test:coverage                                       ** executará o cova
 ** vamos fazer com que o código não possa ser subido para o github caso seu coverage seja menor que uma dada porcentagem:
 
 'nyc': {
-	"lines": 80,
-	"functions": 80,
-	"check-coverage": true	
+  "lines": 80,
+  "functions": 80,
+  "check-coverage": true  
 }
 
  "husky": {
@@ -616,9 +625,8 @@ sudo chown mongodb:mongodb /tmp/mongodb-27017.sock
 
 sudo apt update                                  ** update system 
 sudo apt install mysql-server -y                ** instalação da última versão do mysql ( sudo apt install mysql-server )
-	sudo systemctl status mysql.service              ** vericação de "active server"
+  sudo systemctl status mysql.service              ** vericação de "active server"
 sudo mysql_secure_installation_                  ** instalação de segurança
-yM&$z9^%KzXnL%t4BM1RJ*$Lnsw                      ** senha colocada 
 
 sudo systemctl start mysql.service               ** inicializando o servidor
  mysqladmin -u root -p shutdown                  ** parar conexão.
@@ -650,6 +658,252 @@ sudo service mysql stop
 
 use database_that_you_want                        ** use é o comando que carrega a database para ser consultada 
 
+> Criando um novo usuário 
+
+create user usermysql@'%' identified by 'cursomysql';
+
+> Quando utilizamos o % em nosso código, estamos dizendo que este
+usuário poderá acessar o nosso banco a partir de qualquer host. Poderíamos
+ter limitado ao acesso do local apenas, substituindo o % por localhost .
+Ele já está criado, porém não tem nenhuma permissão. Como não precisa-
+mos limitá-lo, vamos conceder direito total a ele. Faremos isso com o seguinte
+comando:
+
+grant all privileges on *.* to usermysql@'%'
+with grant option;
+
+> Mas se quisessemos revogar:
+
+revoke all on *.* from usermysql;
+
+
+COMMANDS
+
+SHOW DATABASES;                                  => Mostrar os DATABASES
+CREATE TABLE nome_tabela ( column1, column2);    => 
+DROP TABLE nome_tabela
+USE name_dataTable                               => Setando um banco de dados
+CHAR - VARCHAR - INT - BLOB - DEC - DATE - DATETIME => Tipos de dados 
+DESC nome_da_tabela                              => Mostra o nome das colunas de uma dada tabela.
+
+ALTER TABLE nome_da_table
+ADD coluna_nome dateType;
+
+ALTER TABLE nome_da_table
+DROP COLUMN coluna_nome;
+ 
+CREATE TABLE nome_tabela(                        => Invalidando Nulos
+  nome VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE nome_tabela(
+  nome VARCHAR(30) DEFAULT 'McLovin'
+);
+
+SELECT * FROM nome_da_tabela 
+WHERE coluna IS NULL;                            => Forma de mapear campos nulos.
+
+'_' e '%'                                        => São caracteres coringas para LIKE 
+
+SELECT * FROM nome_da_tabela
+WHERE coluna LIKE '%' OR coluna2 LIKE '_exto'    => O underscore é para completar um caracter e o % é intervalo.
+
+SELECT * FROM nome_da_tabela
+WHERE column BETWEEN numero_tal AND numero_outro => Utilizando intervalos.
+
+IN and NOT IN                                    => Avaliando conjunto de valores.
+
+SELECT * FROM nome_tabela
+WHERE NOT column LIKE 'valor';                   => Implementando NOT há uma tabela.
+
+DELETE FROM nome_tabela WHERE column = tal_valor => Deleta um registro procurado
+
+UPDATE nome_da_tabela                            => Empregando o UPDATE
+SET coluna_tal = novo_valor
+WHERE nome_de_uma_coluna = dado_valor;
+
+UPDATE nome_da_tabela                            => Podemos transformar em letras maiusculas empregando o UPPER() e LOWER()
+SET UPPER( coluna_varchar_tal )
+WHERE nome_de_uma_coluna = dado_valor_pesquisado;
+
+SHOW CREATE TABLE nome_da_tabela;                => Irá listados os atributos de quando a tabela foi criada.
+
+CREATE TABLE lynn_contatos (
+  id_contato INT NOT NULL AUTO_INCREMENT,
+  sobrenome varchar(40) DEFAULT 'McLovin',
+  primeiro_nome varchar(30) DEFAULT NULL,
+  email varchar(50) DEFAULT NULL,
+  aniverdario date DEFAULT NULL,
+  profissao varchar(30) DEFAULT NULL,
+  local varchar(40) DEFAULT NULL,
+  estado_civil varchar(20) DEFAULT NULL,
+  interesses varchar(100) DEFAULT NULL,
+  procura varchar(100) DEFAULT NULL,
+  sexo char(1) DEFAULT NULL,
+  PRIMARY_KEY (id_contato)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci 
+
+ALTER TABLE lynn_contatos 
+ADD COLUMN id_contato INT NOT NULL AUTO_INCREMENT FIRST, 
+ADD PRIMARY KEY (id_contato);
+
+> Além de first podemos uma outras palavras chaves como BEFORE, AFTER, LAST, ... ( SECOND e THIRD ? ) 
+
+ALTER TABLE nome_tabela
+ADD COLUMN nova_column dataType SECOND;
+
+ALTER TABLE nome_tabela
+ADD COLUMN nova_column dataType
+AFTER outra_coluna;
+
+ALTER TABLE nome_tabela                            => Editando nome da tabela
+RENAME TO novo_nome_tabela; 
+
+ALTER TABLE nome_tabela                            => Podemos alterar o nome de uma coluna 
+RENAME COLUMN antiga_coluna_nome TO novo_nome,
+RENAME COLUMN antiga_outra_coluna_nome TO novo_nome_outra; 
+
+ALTER TABLE nome_tabela             => Com a palavra chave CHANGE além de modificar o nome podemos modificar os tipos.
+CHANGE COLUMN antiga_coluna nova_columa dataType_novo; => nesse deve ter `antiga_coluna nova_columa`
+
+ALTER TABLE nome_tabela             => Usando o change para altera apenas o tipo de uma coluna;
+CHANGE coluna_tal datatype_novo;
+
+ALTER TABLE nome_tabela 						=> Com a palavra chave MODIFY podemos alterar apenas os tipos de dados
+MODIFY COLUMN nome_da_coluna dataType_novo;
+
+ALTER TABLE sua_tabela              => Podemos remover a chave primária 
+DROP PRIMARY  KEY;
+
+Podemos ter apenas um campo autoIncremente por tabela.
+
+INSERT INTO lynn_contatos( sobrenome, primeiro_nome, email, telefone, aniversario, profissao, local, estado_civil, interesses, procura, sexo, altura ) VALUES(
+	'Briethly',
+	'Lynn',
+	'lynn@lynn.com',
+	'212222222',
+	'1996-10-21',
+	'escritor',
+	'sao francisco, CA',
+	'casada',
+	'leitura series cinema',
+	'felicidade',
+	'F',
+	1.80
+);
+
+SELECT COUNT(*)                    => retorna o tamanho da tabela
+FROM nome_da_tabela 
+
+Manipulando String com SQL 
+
+SUBSTRING_INDEX(sua_linha_de_texto, posicao inicial, tamanho)   => Fornece parte de uma linha de texto;
+
+UPPER() e LOWER()  => São conhecidos
+
+REVERSE(sua_linha_de_texto)                               => É isso mesmo um sort invertido
+
+LTRIM() e RTRIM()                                         => Remove espaços vazios das strings
+
+LENGTH()                                                  => Retorna o número de caracteres de uma linha
+
+SELECT local
+FROM nome_da_tabela
+
+
+UPDATE lynn_contatos
+SET estado = RIGHT(local, 2)						# CA
+SET cidade = SUBSTRING(local, ',', 1);  # sao francisco, irá retornar o que há após a vírgula
+
+Usando o CASE 
+
+UPDATE minha_tabela
+
+SET nova_coluna =  
+	CASE 
+		WHEN coluna1 = valor1 # quando ess condição é satisfeita nova_coluna é atribuida.
+			THEN novovalor1     # valor setado
+		WHEN coluna2 = valor2 # quando ess condição é satisfeita nova_coluna é atribuida.
+			THEN novovalor2
+	ELSE novovalor3
+	END; 
+
+Podemos colocar o WHEN e THEN em mesma linha;
+
+Usando o ORDER BY para ordernar alfabeticamente:
+
+SELECT titulo, categoria
+FROM tabela_filme
+WHERE categoria = 'familia'
+ORDER BY titulo;  # Podendo usar ASC e DESC
+
+SELECT SUM(venda)
+FROM tabela_vendas
+WHERE data_inicial = 1996-21-10;  
+
+SELECT primeiro_nome, SUM (venda)
+FROM venda_biscoito
+GROUP BY primeiro_nome
+ORDER BY SUM (venda) DESC;  => Um agrupamento realizado por nome e destacando a soma das vendas.
+
+SELECT primeiro_nome, AVG (venda)
+FROM venda_biscoito
+GROUP BY primeiro_nome;
+
+SELECT primeiro_nome, MAX (venda) # seleciono os valores máximos de cada group 
+FROM venda_biscoito
+GROUP BY primeiro_nome;
+
+SELECT DISTINCT data_venda
+FROM venda_biscoito
+ORDER BY data_venda;
+
+SELECT COUNT( DISTINCT data_venda)
+FROM venda_biscoito;
+
+SELECT name, SUM(venda)
+FROM venda_biscoito
+GROUP BY name
+ORDER BY SUM(venda) DESC
+LIMIT 1,1;                         # Usando-se do limit podemos estar restringindo o número de resgitros retornados da tabela.
+
+LIMIT  # pode ser utilizado com a passagem de um parâmetro ou de dois. Com um aparecerá a quantidade de registros que foram passados e com dois temos o primeiro parâmetro como ponto de início e o segundo quanto ao registro final ( iniciando em 0 );   
+
+--------------------------- > Next ----------------------------
+
+Como iniciar um projeto next.js
+
+Instalando
+
+asdf plugin-add nodejs
+sudo apt-get install gpg
+bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+asdf install nodejs 15.0.1
+asdf global nodejs 15.0.1
+node -v
+
+* Instalando o Yarn 
+   npm install --global yarn
+
+* Create-next-app
+   npm i create-next-app
+
+* Criando um projeto
+   npm create-next-app web
+
+* Instalando o Typescript
+   yarn add @types/node
+   yarn add typescript @types/react
+
+TypeError: Class extends value undefined is not a constructor or null
+
+Caso tenha esse error remove seu arquivo node-modules e reinstale com npm i;  
+
+Sharp Module Installation Error
+
+npm config set ignore-scripts false
+rm -rf node_modules
+npm install
 
 
 --------------------------- >Node.js --------------------------
@@ -697,7 +951,7 @@ npm install mongoose --save                                                  => 
 
 ** Não misture dado de controle com rotas.                                   
 
-RESTFULL                                                                     => Um site que é API e site ao mesmo tempo.	
+RESTFULL                                                                     => Um site que é API e site ao mesmo tempo.  
 
 ------------------------- >NPM ------------------------------
 
@@ -757,7 +1011,7 @@ npx                                                                             
 
 sudo npm install http-server --global                                                           => Pacote de mini servidor local
 
-npm install --save-dev webpack webpack-cli																											=> Instalação do webpack criando o arquivo src, O webpack é estático não se comporta como um server de inicio.
+npm install --save-dev webpack webpack-cli                                                      => Instalação do webpack criando o arquivo src, O webpack é estático não se comporta como um server de inicio.
 
 npx webpack --mode development                                                                  => Ambiente webpack de desenvolvimento para o webpack
 npm install webpack-dev-server --save-dev                                                       => Mine servidor webpack para rodar a app.
@@ -773,14 +1027,14 @@ testes Com Mocha e Chai
 npm test                                                                                        => test setado no package.json
 npm test -- --reporters                                                                         => tipos de visualiazações.
 
-npm i gitignore -g                         																											=> Adicionando o gitignore a um projeto
-gitignore --types 																																							
+npm i gitignore -g                                                                              => Adicionando o gitignore a um projeto
+gitignore --types                                                                               
 
 -------------------------- Python--------------------------- 
 
 Criar virtual venv 
       python3 -m venv .venv
-		source .venv/bin/activate
+    source .venv/bin/activate
       
 Para desativar digite deactive.
 
@@ -803,6 +1057,11 @@ pg_ctlcluster 12 main start
 pg_ctlcluster 12 main status                          ** Verifica se está rodando
 sudo systemctl stop postgresql@12-main                ** Parar o banco
 sudo systemctl start postgresql@12-main               ** Iniciar sever
+
+sudo systemctl start postgresql
+
+>> Nesse site você irá ver mas sobre roles e como realizar a instalção do postgresql
+  - https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart-pt 
 
 
 psql --version                                        ** O psql é o programa de gerenciamento e uso do PostgreSQL pelo usuário local. 
@@ -841,6 +1100,36 @@ DROP DATABASE <nome_do_banco_de_dados_a_ser_excluido> ** Excluir banco de dados
 
 sudo -u postgres createuser -s pguser                ** Criar e setar um superuser
 
+
+
+░██╗░░░░░░░██╗░█████╗░██████╗░███╗░░██╗██╗███╗░░██╗░██████╗░
+░██║░░██╗░░██║██╔══██╗██╔══██╗████╗░██║██║████╗░██║██╔════╝░
+░╚██╗████╗██╔╝███████║██████╔╝██╔██╗██║██║██╔██╗██║██║░░██╗░
+░░████╔═████║░██╔══██║██╔══██╗██║╚████║██║██║╚████║██║░░╚██╗
+░░╚██╔╝░╚██╔╝░██║░░██║██║░░██║██║░╚███║██║██║░╚███║╚██████╔╝
+░░░╚═╝░░░╚═╝░░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚══╝╚═╝╚═╝░░╚══╝░╚═════╝░
+
+Se o server não estiver connectando com o socket 
+Um erro como `connections on Unix domain socket "/var/run/postgresql/.s.PGSQL.5432"?`
+
+É necessário reinstalar seu postgresql ( não necessáriamente só não sei resolver o problema )
+
+1 - Verificar as dependencias de postgres
+
+  dpkg -l | grep postgres 
+
+2 - Logo depois iremos remover todo que houverem ( Exemplo ) 
+
+  sudo apt-get --purge remove  pgdg-keyring postgresql-12 postgresql-client-12 postgresql-client-common postgresql-common
+
+3 - Logo depois reinstale
+
+Se você receber um erro de autenticação de senha você pode realizar esse processo 
+
+FATAL: Peer authentication failed for user "postgres"
+
+https://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge
+
 ----------------------------------------- PHP --------------------------------------------
 
 sudo apt install php7.2-cli                            **Baixando php7
@@ -855,7 +1144,7 @@ sudo service apache2 stop
 
 Control + shift + P Output
 
-control+space                                     	 ** Auto complete
+control+space                                        ** Auto complete
 html>body>div                                        ** Emmet sintaxe
 control+shift+M                                      ** Abre um terminal
 f5                                                   ** Debbuger
@@ -878,8 +1167,8 @@ change-case
 wakatime                                             ** Muito bacana
 ruby on rails 
 ruby-Rubocop
-	gem install rubocop
-	
+  gem install rubocop
+  
 Debuger
 
 gem install ruby-debug-ide
@@ -910,112 +1199,112 @@ logger.info("logger created".red)                                     ** Com a g
 
 > Crie um arquivo Dockerfile e insira:
 
-	FROM ruby:2.5
-	RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
-	WORKDIR /myapp
-	COPY Gemfile /myapp/Gemfile
-	COPY Gemfile.lock /myapp/Gemfile.lock
-	RUN bundle install
-	COPY . /myapp
-	
-	# Add a script to be executed every time the container starts.
-	COPY entrypoint.sh /usr/bin/
-	RUN chmod +x /usr/bin/entrypoint.sh
-	ENTRYPOINT ["entrypoint.sh"]
-	EXPOSE 3000
-	
-	# Start the main process.
-	CMD ["rails", "server", "-b", "0.0.0.0"]
+  FROM ruby:2.5
+  RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+  WORKDIR /myapp
+  COPY Gemfile /myapp/Gemfile
+  COPY Gemfile.lock /myapp/Gemfile.lock
+  RUN bundle install
+  COPY . /myapp
+  
+  # Add a script to be executed every time the container starts.
+  COPY entrypoint.sh /usr/bin/
+  RUN chmod +x /usr/bin/entrypoint.sh
+  ENTRYPOINT ["entrypoint.sh"]
+  EXPOSE 3000
+  
+  # Start the main process.
+  CMD ["rails", "server", "-b", "0.0.0.0"]
 
 > Crie um arquivo Gemfile mas ele será sobrescrito quando o bundle for inicializado.
 
-	source 'https://rubygems.org'
-	git_source(:github) { |repo| "https://github.com/#{repo}.git" }
-	
-	gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
+  source 'https://rubygems.org'
+  git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+  
+  gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
 
 
 > Crie um arquivo Gemfile.lock
 
 > Crie um arquivo chamado entrypoint.sh e insira: Next, provide an entrypoint script to fix a Rails-specific issue that prevents the server from restarting when a certain server.pid file pre-exists. This script will be executed every time the container gets started. entrypoint.sh consists of:
 
-	#!/bin/bash
-	set -e
-	
-	# Remove a potentially pre-existing server.pid for Rails.
-	rm -f /myapp/tmp/pids/server.pid
-	
-	# Then exec the container's main process (what's set as CMD in the Dockerfile).
-	exec "$@"
+  #!/bin/bash
+  set -e
+  
+  # Remove a potentially pre-existing server.pid for Rails.
+  rm -f /myapp/tmp/pids/server.pid
+  
+  # Then exec the container's main process (what's set as CMD in the Dockerfile).
+  exec "$@"
 
 > Crie o arquivo docker-compose.yml (https://docs.docker.com/compose/compose-file/): 
 
-	version: "3.8"
-	services:
-	  db:
-	    image: postgres
-	    volumes:
-	      - ./tmp/db:/var/lib/postgresql/data
-	    environment:
-	      POSTGRES_PASSWORD: password
-	  web:
-	    build: .
-	    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-	    volumes:
-	      - .:/myapp
-	    ports:
-	      - "3000:3000"
-	    depends_on:
-	      - db
+  version: "3.8"
+  services:
+    db:
+      image: postgres
+      volumes:
+        - ./tmp/db:/var/lib/postgresql/data
+      environment:
+        POSTGRES_PASSWORD: password
+    web:
+      build: .
+      command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+      volumes:
+        - .:/myapp
+      ports:
+        - "3000:3000"
+      depends_on:
+        - db
 
 > Criando o projeto - First, Compose builds the image for the web service using the Dockerfile. The --no-deps tells Compose not to start linked services. Then it runs rails new inside a new container, using that image. Once it’s done, you should have generated a fresh app:
 
-	docker-compose run --no-deps web rails new . --force --database=postgresql
+  docker-compose run --no-deps web rails new . --force --database=postgresql
 
 > No caso de estamos em uma distruição linux devemos configurar as permições deste projeto, já que sua criação foi realizada pelo user root:
 
-	sudo chown -R $USER:$USER .
+  sudo chown -R $USER:$USER .
 
 > Por fim devemos construir a imagem novamente sempre que hover modificação no Gemfile. Now that you’ve got a new Gemfile, you need to build the image again. (This, and changes to the Gemfile or the Dockerfile, should be the only times you’ll need to rebuild.)
 
-	docker-compose build 
+  docker-compose build 
 
 > Nesse momento com o projeto já criado vamos configurar o banco de dados:
 
-	default: &default
-	  adapter: postgresql
-	  encoding: unicode
-	  host: db
-	  username: postgres
-	  password: password
-	  pool: 5
-	
-	development:
-	  <<: *default
-	  database: myapp_development
-	
-	
-	test:
-	  <<: *default
-	  database: myapp_test
+  default: &default
+    adapter: postgresql
+    encoding: unicode
+    host: db
+    username: postgres
+    password: password
+    pool: 5
+  
+  development:
+    <<: *default
+    database: myapp_development
+  
+  
+  test:
+    <<: *default
+    database: myapp_test
 
 > Vamos subir a aplicação agora, assim vc não precisará instalar tudo novamente:
-	
-	docker-compose up
+  
+  docker-compose up
 
 > Vamos criar o bando de dados:
-	
-	docker-compose run web rake db:create
+  
+  docker-compose run web rake db:create
 
 > If you make changes to the Gemfile or the Compose file to try out some different configurations, you need to rebuild. Some changes require only docker-compose up --build, but a full rebuild requires a re-run of docker-compose run web bundle install to sync changes in the Gemfile.lock to the host, followed by docker-compose up --build.
 
 Here is an example of the first case, where a full rebuild is not necessary. Suppose you simply want to change the exposed port on the local host from 3000 in our first example to 3001. Make the change to the Compose file to expose port 3000 on the container through a new port, 3001, on the host, and save the changes:
 
-	ports: - "3001:3000"
+  ports: - "3001:3000"
 
 > Vamos fazer a atualização de nosso imagem sem Rodeio:
-	
-	docker-compose up --build
+  
+  docker-compose up --build
 
 > Run rails console
 
@@ -1082,8 +1371,8 @@ mkdir config/locales/pt-BR/{devise,active_record}.yml
 
 links de onde obter os padrões em português:
 
-	https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/pt-BR.yml
-	https://gist.github.com/mateusg/924555
+  https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/pt-BR.yml
+  https://gist.github.com/mateusg/924555
 
 FATAL: Listen error: unable to monitor directories for changes.
 sudo sh -c "echo fs.inotify.max_user_watches=524288 >> /etc/sysctl.conf"
@@ -1156,6 +1445,9 @@ time rails runner ''                                                            
 rails c                                                                                                       => Roda o console
 reload!                                                                                                       => Você pode estar fazendo reload do seu console o/
 Rails.application.credentials.google_secret_key                                                               => Conseguimos ter acesso a keys pelo nosso console rails.
+
+<%= Rails.application.credentials.dig(:development, :password_db) %>                                          => Se quiser implementar em um database.
+
 rails c [ambiente] [opições]                                                                                  => Ambiente = pode se production, development, ...
 rails c --sandbox                                                                                             => Roda o console mais não altera o banco o final
 rails db                                                                                                      => Acessa o console do banco de dados
@@ -1165,12 +1457,12 @@ rails stats                                                                     
 rails
 RAILS_ENV=production rails production                                                                         => Pegando informações da app em produção
 
-layout "Nome_do_template"  	                                                                                  => view/layouts podemos criar mais de um layout assim para referencia-lo, diferenciando do layout principal podemos escrever layout "nome_layout" no controller referente. 
+layout "Nome_do_template"                                                                                     => view/layouts podemos criar mais de um layout assim para referencia-lo, diferenciando do layout principal podemos escrever layout "nome_layout" no controller referente. 
 
 
 
 
-EDITOR=subl rails credentials:edit                                                                            => editando as credentials.yml.enc ( Assim você edita um arquivo que será criptografado para editar a master key) 
+EDITOR=vim rails credentials:edit                                                                            => editando as credentials.yml.enc ( Assim você edita um arquivo que será criptografado para editar a master key) 
 
 rails credentials:show                                                                                        => Mostra o que há em credentials
 rails new myproject --api --database=mysql -T
@@ -1191,7 +1483,7 @@ bin/rails db:seeds                                                              
 
 app/assets/stylesheets/scaffold.scss                                                                          => Podemos estar mudando o estilo de um view 
 
-rails generate migration add_novaColuna_tabela                                                                => gera uma nova coluna, depois disso temos de ir ao migration e adicionar 	add_column  :produto, :descricao, :text ( Veja na Documentação do ActiveRecord )
+rails generate migration add_novaColuna_tabela                                                                => gera uma nova coluna, depois disso temos de ir ao migration e adicionar  add_column  :produto, :descricao, :text ( Veja na Documentação do ActiveRecord )
 rails g migration AddColumnsToUser col1:integer col2:integer .. etc.                                          => gerar mais de uma coluna
 
 bin/rails about                                                                                               => info app
@@ -1219,13 +1511,13 @@ rails console                                                                   
 
 sudo lsof -wni tcp:3000                                                                                       => Verificar servidores ativos
 sudo kill <PID>                                                                                               => Derrubar o servidor com o PID passado.
-	kill -9 $(lsof -i tcp:3000 -t)                                                                                => Derrubar server
+  kill -9 $(lsof -i tcp:3000 -t)                                                                                => Derrubar server
 rake assets:clean && rake assets:precompile                                                                   => limpando cache
 
 
-bin/rails db:migrate:status      	                                                                             =>
+bin/rails db:migrate:status                                                                                    =>
 
-bin/spring  stop        																		                                                   => Para a execução do spring
+bin/spring  stop                                                                                               => Para a execução do spring
 
 before_destroy   :ensure_not_reference_by_any_line_item           (hook method)                               => É um validate como o metodo cascate no SQL, evita que uma produto seja deletado caso esteja presente em carts.
 before_action                                                                                                 => UMa metodos auxiliares que são passados antes de se executar aguma action
@@ -1268,15 +1560,15 @@ RAILS_ENV=production bundle exec rake assets:precompile                         
 
 RAILS_ENV=production rails s                                                                                  => Executar em ambiente de produção
 
-tails -f production.log                                                                                       => Acompanhando erros em produção, já que, não aparecerá no console automáticamente 	
+tails -f production.log                                                                                       => Acompanhando erros em produção, já que, não aparecerá no console automáticamente   
 
 >GEMs
 
 gem install backup -v5.0.0.beta.1                                                                             => Tivo problema para instalar essa gem, depende da versão ruby
 gem devise                                                                                                    => Autenticação
 gem 'devise_token_auth'                                                                                       => 'you want authentication, you need tokens, not cookies refreshes the tokens on each request, and expires them in a short time, so the app is secure'
-	
-gem 'omniAuth'																																																=> Um gem de autenticação via Facebook, google ... pode ser combinado com devise
+  
+gem 'omniAuth'                                                                                                => Um gem de autenticação via Facebook, google ... pode ser combinado com devise
 
 gem 'cancancan'                                                                                               => Autorização 
 gem 'pundit'                                                                                                  => mesma funcionalidade do cancancan contudo está sendo mais usada(2020)
@@ -1438,17 +1730,17 @@ criar a pasta support
 
 > touch spec/support/{factory,shoulda_matchers}.rb 
 
-	RSpec.configure do |config|
-	  config.include FactoryBot::Syntax::Methods
-	end
+  RSpec.configure do |config|
+    config.include FactoryBot::Syntax::Methods
+  end
 
 gem FFAKER                                                      ++ Permite gerar valores aleatórios - Evita dados viciados 
 FFaker::Name.name                                               ++ Gera um nome 
 FFaker::Internet.email                                          ++ gera email fake
 FFaker::Andress.city                                            ++ cidade fake
-  	nickname = FFaker::Name.first_name
-  	kind = %i[knight wizard].sample
-  	level = FFaker::Random.rand(10..99)  
+    nickname = FFaker::Name.first_name
+    kind = %i[knight wizard].sample
+    level = FFaker::Random.rand(10..99)  
 
 gem factory_bot_rails                                           ++ Parecido com o Fixtures do test Há um processo de criação de diretórios
 
@@ -1459,7 +1751,7 @@ testes de request                                               ++ integração 
 rails g controller users index create --no-helper --no-assets --no-controller-specs --no-view-specs --skip-routes
 rails g controller enemies update destroy --no-helper --no-assets --no-controller-specs --no-view-specs --skip-routes
 
-rails destroy controller users                                  ++ Desfaz todo generate realizado de user.	
+rails destroy controller users                                  ++ Desfaz todo generate realizado de user.  
 
 rails g --help                                                  ++ mostrará uma lista com todos os generates
 
@@ -1493,7 +1785,6 @@ end
 Flags para poder ver as descrições do rspec 
 
 rspec spec/models/license_spec.rb -f d
-
 
 -------------------------------------------------------------------------------------------------------
 
@@ -1591,16 +1882,16 @@ Action Jobs
 npx create-react-app                                 ** Criar uma estrutura react SPA. Tendo um server hot reload
 
 class <name> extends React.Components{                ** Component de classes - States ( Uma forma mais antiga)
-		constructor(props){  
-			super(props);
-			this.states = {
-				name: "dados"
-			}
-		}
+    constructor(props){  
+      super(props);
+      this.states = {
+        name: "dados"
+      }
+    }
 
-		render(){
-		
-		}
+    render(){
+    
+    }
 }     
 
 {/*     */}                                         ** Adicinar comentários no React.
@@ -1650,7 +1941,7 @@ class MyComponent extends React.Component {
 this.setState((state, props) => ({
   counter: state.counter + props.increment
 }));
-																																											** Lifecycle react
+                                                                                      ** Lifecycle react
 componentWillMount() 
 componentDidMount() 
 shouldComponentUpdate() 
@@ -1660,7 +1951,7 @@ componentWillUnmount()
 <div style={{color: "red", fontSize:"72px"}}>Big Red</div>                            ** Inserindo estilo inline
 
 ----------------------------------------------------------
-																																											** Podemos criar uma condição inline no render 
+                                                                                      ** Podemos criar uma condição inline no render 
   render() {
     // change code below this line
     
@@ -1712,7 +2003,7 @@ mv src/App.css src/App.scss
 $custom-purple: #694ED8 !default;
 $custom-purple-darker: #6600CC !default;
 
---- API -----------------------------------------	
+--- API ----------------------------------------- 
 
 npm i express-generator
 express --view=no-view <nome-do-projeto-api> 
@@ -1767,27 +2058,27 @@ alias redis-server='redis-server --daemonize yes' to your ~/.bash_profile t     
 crie um arquivo chamado config/redis.yml
 
 ```
-	default: &default
-	  host: 127.0.0.1
-	  port: 6379
+  default: &default
+    host: 127.0.0.1
+    port: 6379
 
-	development:
-	  <<: *default
+  development:
+    <<: *default
 
-	test:
-	  <<: *default
-	  db: 1 
+  test:
+    <<: *default
+    db: 1 
 ``` 
 
 crie um arquivo chamado config/initializers/redis.rb
 
 ```
-	if Rails.env.production?
-		$redis = Redis.new(url: ENV['REDIS_URL']) 
-	else
-		redis_config = YAML.load(File.open(Rails.root.join('config/redis.yml'))).symbolize_keys[Rails.env.to_sym]
-		$redis = Redis.new(redis_config)
-	end
+  if Rails.env.production?
+    $redis = Redis.new(url: ENV['REDIS_URL']) 
+  else
+    redis_config = YAML.load(File.open(Rails.root.join('config/redis.yml'))).symbolize_keys[Rails.env.to_sym]
+    $redis = Redis.new(redis_config)
+  end
 ```
 
 background jobs
@@ -1811,16 +2102,18 @@ rubocop                                              ** Fazer analise de todo o 
 
 --------------------------- >Ruby --------------------------------------------------------
 
+Tell don't ask
+
 sudo apt  install ruby-railties                      ** instalation gem rails utilitaries 
 aptitude purge ruby                                  ** desinstalar ruby
 
 1.upto(7) do |numero|                                ** Esse método realiza uma iteração continua de 1 até 7 parece um range 
-	puts numero
+  puts numero
 end
 
 
 [1,2,3,4,5].inject(:+)                               ** Forma de soma reduzida do inject 
-[1,2,3,4,5].inject(:*)															 ** Forma de multiplicação reduzida do inject
+[1,2,3,4,5].inject(:*)                               ** Forma de multiplicação reduzida do inject
 [1,2,3,4,5].inject(:-)                               ** Forma de subtração reduzida do inject 
 
 [1,2,3,4,5,6,7];select { |valor| valor % 2 == 0 }    ** O select realiza uma filtragem em nosso array.
@@ -1852,7 +2145,7 @@ mento é tão comum que virou um Design Pattern chamado Template Method." Livro 
 
 Thread Safe.                                         ** Quandio temos código sendo executado paralelamente
 
-Parte de Paradigma funcional / funções puras  	----------------------------------------
+Parte de Paradigma funcional / funções puras    ----------------------------------------
 
 nome = "Lucas"
 puts nome.upcase # => LUCAS
@@ -1873,9 +2166,9 @@ ou
 
 numero = "dois"
 valor = if numero == "um" then 1
-					elsif numero == "dois" then 2
-					else 3
-				end
+          elsif numero == "dois" then 2
+          else 3
+        end
 p valor # => 2
 
 a = b = c = 0
@@ -1892,7 +2185,7 @@ p novos_numeros # => [1, 2, 3, 4]
 
 Módulos 
 
-	Módulos não podem ser instanciados a suas únicas funções são de servir
+  Módulos não podem ser instanciados a suas únicas funções são de servir
 de namespace e podermos compartilhar código.
 
 "O que fazemos é um include do módulo criado em uma ou várias classes, e assim as 
@@ -1912,7 +2205,7 @@ clone faz herança do estado atual a uma variável
 a = "Um String qualquer" # temos uma instância de uma String
 
 def a.testando 
-	puts "Estamos adicionando um comportamento a a"
+  puts "Estamos adicionando um comportamento a a"
 end
 
 b = a.clone       # estamos clonando os comportamentos e estado de dada instância "a" à instância "b".
@@ -1921,13 +2214,13 @@ class << a - Podemos estar passando múltiplos métodos à uma instância
 
 class << a
 
-	def primeiro_comportamento
-		puts "primeiro comportamento"
-	end
+  def primeiro_comportamento
+    puts "primeiro comportamento"
+  end
 
-	def segundo_comportamento
-		puts "segundo comportamento"
-	end
+  def segundo_comportamento
+    puts "segundo comportamento"
+  end
 end
 
 dup - Podemos também copiar apenas o estado
@@ -1941,9 +2234,9 @@ Include e Extend
 Include é usado para estender instâncias
 
 Modulo Teste 
-	def teste 
-		puts "Metodo de instância."
-	end
+  def teste 
+    puts "Metodo de instância."
+  end
 end
 
 a = "Uma String" # a é uma instância de String
@@ -1959,20 +2252,20 @@ String.extend Teste   # Estamos estendendo o modulo Teste na class String, agora
 Exemplo com os dois modos - Herança por comportamento
 
 module InstanciaEClasse
-	def instancia
-		"metodo de instancia"
-	end
+  def instancia
+    "metodo de instancia"
+  end
 
-	module Classe
-		def de_classe
-			"metodo de classe"
-		end
-	end
+  module Classe
+    def de_classe
+      "metodo de classe"
+    end
+  end
 end
 
 class Teste
-	include InstanciaEClasse
-	extend InstanciaEClass::Class
+  include InstanciaEClasse
+  extend InstanciaEClass::Class
 end
 
 Teste.new.instancia
@@ -1981,27 +2274,27 @@ Teste.de_classe
 Podemos estar fazendo com um comando só
 
 module InstanciaEClasse
-	def instancia
-		"metodo de instancia"
-	end
+  def instancia
+    "metodo de instancia"
+  end
 
-	def instancia
-		"metodo de instancia"
-	end
+  def instancia
+    "metodo de instancia"
+  end
 
-	def self.included(cls)    # usando o included estendendo os métodos de class cls é class atual é errado usar o self herança por comportamento
-		cls.extend Class
-	end
+  def self.included(cls)    # usando o included estendendo os métodos de class cls é class atual é errado usar o self herança por comportamento
+    cls.extend Class
+  end
 
-	module Classe
-		def de_classe
-			"metodo de classe"
-		end
-	end
+  module Classe
+    def de_classe
+      "metodo de classe"
+    end
+  end
 end
 
 class Teste
-	include InstanciaEClasse
+  include InstanciaEClasse
 end
 
 Teste.new.instancia
@@ -2010,11 +2303,11 @@ Teste.de_classe
 defined_method                # Criando métodos dinâmicos ao invés de se usar o eval, criando em runtime
 
 class Teste
-	def self.definir(valor)
-		define_method(valor) do |param1, param2|
-			puts "#{param1} - #{param2}"
-		end
-	end
+  def self.definir(valor)
+    define_method(valor) do |param1, param2|
+      puts "#{param1} - #{param2}"
+    end
+  end
 end 
 
 Teste.definir("novo_metodo")
@@ -2022,33 +2315,33 @@ Teste.definir("novo_metodo")
 attr_accessor                 # Como é por dentro 
 
 module AtributosDinamicos
-	def atributos(*args)
-		atrs.each do |atr|
-			
-			define_method("#{atr}=") do |value|
-				instance_variable_set "@#{atr}", value
-			end
+  def atributos(*args)
+    atrs.each do |atr|
+      
+      define_method("#{atr}=") do |value|
+        instance_variable_set "@#{atr}", value
+      end
 
-			define_method("#{atr}") do |value|
-				instance_variable_get "@#{atr}"
-			end
+      define_method("#{atr}") do |value|
+        instance_variable_get "@#{atr}"
+      end
 
-		end
-	end
+    end
+  end
 
-	def atributos_somente_leitura(*args)
-		atrs.each do |atr|
-			define_method("#{atr}") do |value|
-				instance_variable_get "@#{atr}"
-			end
-		end
-	end
-end	
+  def atributos_somente_leitura(*args)
+    atrs.each do |atr|
+      define_method("#{atr}") do |value|
+        instance_variable_get "@#{atr}"
+      end
+    end
+  end
+end 
 
 class Teste
-	extend AtributosDinamicos
-	atributos :nome, :telefone
-	# attr_accessor :nome, :telefone ( possui a mesma função )
+  extend AtributosDinamicos
+  atributos :nome, :telefone
+  # attr_accessor :nome, :telefone ( possui a mesma função )
 end
 
 
@@ -2057,10 +2350,10 @@ instance_eval e class_eval
 Possibilita abrir a classe e estar "capturando" valores mesmo que sejam privados
 
 class Teste
-	@telefone = "555"
-	def initialize
-		@nome="AlgumNome"
-	end
+  @telefone = "555"
+  def initialize
+    @nome="AlgumNome"
+  end
 end
 
 Teste.new.instance_eval { @nome }  # consigo estar fazendo get em nome que é uma variável privada da classe Teste
@@ -2070,12 +2363,12 @@ Possibita também definirmos métodos em runtime, abrindo o bloco da instância
 teste = Teste.new
 
 teste.instance_eval do
-	def metodo1
-		puts "method1"
-	end
   def metodo1
-		puts "method1"
-	end
+    puts "method1"
+  end
+  def metodo1
+    puts "method1"
+  end
 end
 
 puts teste.metodo1
@@ -2083,23 +2376,23 @@ puts teste.metodo1
 Mas a diferença de se usar class_eval e instace_eval para uma classe exemplo
 
 Teste.instance_eval do
-	def metodo1
-		puts "method1"
-	end
   def metodo1
-		puts "method1"
-	end
+    puts "method1"
+  end
+  def metodo1
+    puts "method1"
+  end
 end
 
 Teste.metodo1        # Veja, estamos criando método de classe
 
 Teste.class_eval do
-	def metodo_de_instancia
-		puts "method1"
-	end
+  def metodo_de_instancia
+    puts "method1"
+  end
   def metodo1
-		puts "method1"
-	end
+    puts "method1"
+  end
 end
 
 Teste.new.metodo_de_instancia   # Veja, estamos criando método de instância. 
@@ -2110,16 +2403,16 @@ Podemos modificar Constante de sistema para atender nossas necessidades, Como as
 a classe de sistema String.
 
 String.class_eval do
-	def metodo_de_instancia
-		puts "Definindo um novo comportamento à instância de classe String"
-	end
+  def metodo_de_instancia
+    puts "Definindo um novo comportamento à instância de classe String"
+  end
 end
 
 "testando".metodo_de_instancia
 
 String.instance_eval # ou class << String
   def metodo_de_class
-  	puts "Esse é um método de classe."
+    puts "Esse é um método de classe."
   end
 end
 
@@ -2182,9 +2475,9 @@ O método kind_of? verifica se dado objeto é de um tipo
 Outro método seria o respond_to? que faz a verificação por método
 
 def midias_por_categoria(categoria)
-	midias.select do |midia|
-		midia.categoria == categoria if midia.respond_to? :categoria
-	end
+  midias.select do |midia|
+    midia.categoria == categoria if midia.respond_to? :categoria
+  end
 end 
 
 Funções de high-order ----------------------------------------------
@@ -2210,9 +2503,9 @@ Usando o método block_given? caso nenhuma bloco seja passa como parâmetro evit
 de erro.
 
 def livros_por_categoria(categoria)
-	@livros[categoria].each do |livro|
-		yield livro if block_given?
-	end
+  @livros[categoria].each do |livro|
+    yield livro if block_given?
+  end
 end
 
 ------------------------------- Explorando API Ruby Enumerable ---------------------------
@@ -2222,7 +2515,7 @@ Enumerable são esses métodos que permitem iteração de coleções
 Inject é bem parecido com o reduce do JS 
 
 def soma_total
-	@produtos.inject(0) { |total, produto| total += produto.value }
+  @produtos.inject(0) { |total, produto| total += produto.value }
 end
 
 Em poucas linhas estamos fazendo uma soma.
@@ -2231,13 +2524,13 @@ Em poucas linhas estamos fazendo uma soma.
 -------------------------------- Usando o Map ----------------------------------------------
 
 def titulos
-	@biblioteca.livros.map { |livro| livro.titulo }
+  @biblioteca.livros.map { |livro| livro.titulo }
 end
 
 podemos melhorar o map dessa forma
 
 def titulos 
-	@biblioteca.livros.map &:titulo 
+  @biblioteca.livros.map &:titulo 
 end
 
 
@@ -2259,7 +2552,7 @@ classe, instancias , contrutores
 
 meta_programer   attr_accessor, attr_writer, attr_reader                                               ** 
 
-7_000_000_                                           ** Podemos separar numeros grandes com underscore	
+7_000_000_                                           ** Podemos separar numeros grandes com underscore  
 
 {:key => "value", :key => "value"}.values            ** Retorna todos os values
 
@@ -2273,12 +2566,12 @@ runtime - criar methodos durante execução            ** a.methods irá mostrar
 a = objetos
 
 a = lambda do /p/                                    ** O lambda posso passar ou não um parâmetro para uma variável para excutar um bloco contudo apenas um parametro se for colocado /p1, p2, p3 /
-	puts p                                           ** Sou obrigado a char no call 3 argumentos. Só aceita os parâmetros definidos.
+  puts p                                           ** Sou obrigado a char no call 3 argumentos. Só aceita os parâmetros definidos.
 end
 a.call ("Jorge")
 
 a = proc.new do /p,p1,p2/                            ** Com o proc você poderá fazer *args adicionar mais parametros na chamada podem ou não executar todos
-	puts p , p1
+  puts p , p1
 
 end
 
@@ -2286,7 +2579,7 @@ a.call( "jorge", "cozinha")
 
 
 def methodo ( &bloco)                                ** Permite que eu passe um blco em um méthodo, usando um PROC.new é como se fosse um callback do js 
-	bloco
+  bloco
 end.call    #nao entendi o call no final
 
 eval("puts '1,2,3'")                                 ** Executa veja nem usei o #{} no comando  
@@ -2301,7 +2594,7 @@ Polimorfismo
 super
 
 alias_method                                         ** Usar método renomeando o original - uma herança ~ Polimorfismo não perdendo o método original ( cria uma cópia )
-defane_method                                        ** 
+define_method                                        ** 
 modele
 send                                                 ** o send( 'metodo' )  ele tenta achar algum método na instancia tonando dinamico dentro de outro método ; Uma observação o método tem de estar como string      
 
@@ -2316,7 +2609,7 @@ hooks                                                **  Gancho
   jobs                                                 ** executar uma ação em background ou runtime
 
 Module                                               ** Classe superior que pode ser overwrite para modificar hooks como os missing
-missing                                              ** Um elemento do ActivenRecord muito importante const_missing	                                                     ** Mostrar que alguma classe ou constante não existe 
+missing                                              ** Um elemento do ActivenRecord muito importante const_missing                                                      ** Mostrar que alguma classe ou constante não existe 
 method_missing                                       ** Vamos fazer um overwrite, indica que algum método ou atributo exista possivel para um metodo de instancia também Class1.new
 
 <string>.casecmp? <segunda string>                   ** Podemos comparar uma palavra com outra sem case sensitive;
@@ -2324,7 +2617,7 @@ method_missing                                       ** Vamos fazer um overwrite
 
 
 
-	
+  
 Strings em Ruby são mutaveis
 O operador << faz a concatenacao de strings na mesma instancia. 
 Ja o operador + faz concatenacao gerando uma nova string.
@@ -2407,7 +2700,7 @@ nav {
     }
   }
 }
-																													=> Usando o mixin para comprimir estilos em um único seletor;
+                                                          => Usando o mixin para comprimir estilos em um único seletor;
 <style type='text/scss'>
   @mixin border-radius($radius){
     -webkit-border-radius: $radius;
@@ -2429,7 +2722,7 @@ nav {
 
 
 
-																												  => Condições em SASS 
+                                                          => Condições em SASS 
 <style type='text/scss'>
  
   @mixin border-stroke($val){
@@ -2459,10 +2752,10 @@ nav {
 <div id="box"></div>
 
 
-																													=> loop usando o to que "excludes the end number as part of the count";
+                                                          => loop usando o to que "excludes the end number as part of the count";
 
-<style type='text/scss'>																	=> Também temos o through que "includes the end number as part of the count";
-	
+<style type='text/scss'>                                  => Também temos o through que "includes the end number as part of the count";
+  
 @for $j from 1 to 6 {
     .text-#{$j}{
       font-size:15px*$j;
@@ -2478,7 +2771,7 @@ nav {
 <p class="text-5">Hello</p>
 
 
-																													=> Usando map para iterar dados.
+                                                          => Usando map para iterar dados.
 
 <style type='text/scss'>
   $colors: (blue, black, red);
@@ -2547,16 +2840,16 @@ Crie um arquivo chamado config/sidekiq.yml
 
 ```
 ---
-	:concurrency: 5
-	staging:
-	  :concurrency: 10
-	production:
-	  :concurrency: 20
-	:queues:
-	  - critical
-	  - default
-	  - low
-	  - mailers
+  :concurrency: 5
+  staging:
+    :concurrency: 10
+  production:
+    :concurrency: 20
+  :queues:
+    - critical
+    - default
+    - low
+    - mailers
  ```
 
 
@@ -2614,16 +2907,16 @@ control + ]                                                        ** recuar lin
 Indo em  Preferences > Key binding podemos modificar a forma como se realiza commentários 
 
 [
-	{
-	    "keys": ["ctrl+1"],
-	    "command": "toggle_comment",
-	    "args": { "block": false } 
-	}
-	,
-	{   "keys": ["ctrl+shift+1"],
-	    "command": "toggle_comment",
-	    "args": { "block": true }
-	}
+  {
+      "keys": ["ctrl+1"],
+      "command": "toggle_comment",
+      "args": { "block": false } 
+  }
+  ,
+  {   "keys": ["ctrl+shift+1"],
+      "command": "toggle_comment",
+      "args": { "block": true }
+  }
 ]  
 
 ------------------------- >Terminal - Linux  -------------------------------------
@@ -2702,7 +2995,7 @@ sleep 5                                                ** "Adormece" o sistema p
  
 uname -r                                               ** ver a versão kernel linux
 uname -m
- 	
+  
 ps -ef                                                 ** Pesquisar.
 
 sudo dpkg -i arquivo.deb                               ** Instalando um package no linux
@@ -3042,8 +3335,17 @@ set mouse=a
 
 
 ============================
-leviatnan1 - ~/.backup$ grep leviathan bookmarks.html 
-leviathan2 - ougahZi8Ta (ltrace) -
+
+Wargames 
+ssh leviathan1@leviathan.labs.overthewire.org -p 2223
+
+leviatnan1 - ~/.backup$ grep leviathan bookmarks.html => rioGegei8m 
+leviathan2 - ougahZi8Ta (ltrace) - whoami
+leviathan3 - realizar um link simbólico => Ahdiemoo1j 
+
+
+
+
 
 Rails Summit 2009 -
 
