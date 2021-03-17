@@ -225,7 +225,7 @@ git commit --amend -m "Uma nova mensagem"                                     =>
 git commit --amend --no-edit                                                  => O sinalizador --no-edit permite fazer a modificação no commit sem editar sua mensagem; 
 ** Ante adicione os outros arquivos que vc deseja commitar no stage 
 
-git reset --soft HEAD~2                                                       => Eu reseto os comites que fiz até no meu penúltimo, porém não reseto os arquivos que fiz ou modifiquei.
+git reset --soft HEAD~2                                                       => Eu reseto os commites que fiz até no meu penúltimo, porém não reseto os arquivos que fiz ou modifiquei.
 
 git reset HEAD <nome_do_arquivo>                                              => remove um arquivo do stage também.
 git reset HEAD *                                                              => Removendo todos os arquivos do stage.
@@ -769,7 +769,7 @@ CHANGE COLUMN antiga_coluna nova_columa dataType_novo; => nesse deve ter `antiga
 ALTER TABLE nome_tabela             => Usando o change para altera apenas o tipo de uma coluna;
 CHANGE coluna_tal datatype_novo;
 
-ALTER TABLE nome_tabela 						=> Com a palavra chave MODIFY podemos alterar apenas os tipos de dados
+ALTER TABLE nome_tabela             => Com a palavra chave MODIFY podemos alterar apenas os tipos de dados
 MODIFY COLUMN nome_da_coluna dataType_novo;
 
 ALTER TABLE sua_tabela              => Podemos remover a chave primária 
@@ -778,18 +778,18 @@ DROP PRIMARY  KEY;
 Podemos ter apenas um campo autoIncremente por tabela.
 
 INSERT INTO lynn_contatos( sobrenome, primeiro_nome, email, telefone, aniversario, profissao, local, estado_civil, interesses, procura, sexo, altura ) VALUES(
-	'Briethly',
-	'Lynn',
-	'lynn@lynn.com',
-	'212222222',
-	'1996-10-21',
-	'escritor',
-	'sao francisco, CA',
-	'casada',
-	'leitura series cinema',
-	'felicidade',
-	'F',
-	1.80
+  'Briethly',
+  'Lynn',
+  'lynn@lynn.com',
+  '212222222',
+  '1996-10-21',
+  'escritor',
+  'sao francisco, CA',
+  'casada',
+  'leitura series cinema',
+  'felicidade',
+  'F',
+  1.80
 );
 
 SELECT COUNT(*)                    => retorna o tamanho da tabela
@@ -798,6 +798,8 @@ FROM nome_da_tabela
 Manipulando String com SQL 
 
 SUBSTRING_INDEX(sua_linha_de_texto, posicao inicial, tamanho)   => Fornece parte de uma linha de texto;
+
+SUBSTR(sua_coluna_registro, index_inicio_que_desaja_captura)
 
 UPPER() e LOWER()  => São conhecidos
 
@@ -810,9 +812,12 @@ LENGTH()                                                  => Retorna o número d
 SELECT local
 FROM nome_da_tabela
 
+TRIM                                                      => Podemos usar TRIM para fatiar os dados
+
+UPDATE meus_contatos SET interesses = TRIM(RIGHT(interesses, (LENGTH(interesses)- LENGTH(interesses2)-1)));
 
 UPDATE lynn_contatos
-SET estado = RIGHT(local, 2)						# CA
+SET estado = RIGHT(local, 2)            # CA
 SET cidade = SUBSTRING(local, ',', 1);  # sao francisco, irá retornar o que há após a vírgula
 
 Usando o CASE 
@@ -820,13 +825,13 @@ Usando o CASE
 UPDATE minha_tabela
 
 SET nova_coluna =  
-	CASE 
-		WHEN coluna1 = valor1 # quando ess condição é satisfeita nova_coluna é atribuida.
-			THEN novovalor1     # valor setado
-		WHEN coluna2 = valor2 # quando ess condição é satisfeita nova_coluna é atribuida.
-			THEN novovalor2
-	ELSE novovalor3
-	END; 
+  CASE 
+    WHEN coluna1 = valor1 # quando ess condição é satisfeita nova_coluna é atribuida.
+      THEN novovalor1     # valor setado
+    WHEN coluna2 = valor2 # quando ess condição é satisfeita nova_coluna é atribuida.
+      THEN novovalor2
+  ELSE novovalor3
+  END; 
 
 Podemos colocar o WHEN e THEN em mesma linha;
 
@@ -867,7 +872,98 @@ GROUP BY name
 ORDER BY SUM(venda) DESC
 LIMIT 1,1;                         # Usando-se do limit podemos estar restringindo o número de resgitros retornados da tabela.
 
-LIMIT  # pode ser utilizado com a passagem de um parâmetro ou de dois. Com um aparecerá a quantidade de registros que foram passados e com dois temos o primeiro parâmetro como ponto de início e o segundo quanto ao registro final ( iniciando em 0 );   
+LIMIT  # pode ser utilizado com a passagem de um parâmetro ou de dois. Com um aparecerá a quantidade de registros que foram passados e com dois temos o primeiro parâmetro como ponto de início e o segundo quanto ao registro final ( iniciando em 0 );
+
+CREATE TABLE interesses(
+  id_inter INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  interesse VARCHAR(100) NOT NULL,
+  id_contato INT,
+  CONSTRAINT lynn_contatos_id_contato_fk 
+  FOREIGN KEY (id_contato)
+  REFERENCES lynn_contatos (id_contato)
+);
+
+Integridade Referencial - Constraint
+Dependencia Funcional
+Chave Priméria composta
+Dependência Transitória
+
+> Possuem a mesma função de modo diferentes 
+
+  CREATE TABLE profissao(
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    profissao VARCHAR(20)
+  );
+    INSERT INTO profissao (profissao)
+    SELECT profissao FROM tabela_que_quero_dados
+    GROUP BY profissao;
+    ORDER BY profissao;
+
+  CREATE TABLE profissao AS 
+    INSERT INTO profissao (profissao VARCHAR(20))
+    SELECT profissao FROM tabela_que_quero_dados
+    GROUP BY profissao
+    ORDER BY profissao;
+
+  ALTER TABLE profissao
+  ADD COLUMN id INT NOT NULL AUTO_INCREMENT FIRST
+  ADD PRIMARY KEY id;
+
+  CREATE TABLE profissao
+  (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY PRIMARY KEY,
+    profissao VARCHAR(20)
+  ) AS
+
+  INSERT INTO profissao (profissao)
+  SELECT profissao FROM tabela_que_quero_dados
+  GROUP BY profissao
+  ORDER BY profissao;
+
+Conexão Interna - utilizando-se do JOIN # Basicamente é um conexão cruzada com alguns resultados removidos por uma condição de consulta.
+
+* Esse primeiro exemplo é um cenexão cartesiana tabela_tal X tabela_tal
+
+  SELECT b.brinquedo, g.garoto
+  FROM brinquedo AS b
+  CROSS brinquedo AS b
+  CROSS JOIN 
+  garotos AS g;
+
+  SELECT briquendos.brinquedo, garotos.garoto FROM brinquedo, garoto # Faz o mesmo BLZ.
+
+
+Conexões internas - Parte 2 podemos realizar o seguinte introduzindo conexões INNER JOIN
+
+  SELECT tabela1.coluna, tabela2.coluna 
+  FROM tabela1
+    INNER JOIN 
+    tabela2
+  ON uma_condicao; # o where pode ser empregado aqui;
+
+Conexões com equijoin - podemos iqualar chaver primarias e estrageiras de tabelas achando um resultado cruzado.
+
+  SELECT tabela1.coluna_tal, tabela2.coluna
+  FROM tabela1
+    INNER JOIN
+    tabela2
+  ON tabela1.id_tabela = tabela2.id_tabela
+
+Conexões não-equijoin - Combinando registros que possuem chave estrangeira e primaria de outra tabela diferentes. Conexões internas que testam desigualdade.
+
+  SELECT tabela1.coluna_tal, tabela2.coluna
+  FROM tabela1
+    INNER JOIN
+    tabela2
+  ON tabela1.id_tabela <> tabela2.id_tabela
+
+Conexão Natural - Parece muito com uma conexão interna equijoin contudo com a condição definida da iqualdade entre chaves ( estrangeira e primária ).
+
+  SELECT tabela1.coluna_tal, tabela2.coluna
+  FROM tabela1
+    NATURAL JOIN
+    tabela2
+
 
 --------------------------- > Next ----------------------------
 
@@ -2918,6 +3014,13 @@ Indo em  Preferences > Key binding podemos modificar a forma como se realiza com
       "args": { "block": true }
   }
 ]  
+
+Manipulando TAGS
+
+Control + SHIFT + J  => Selecionar elemento em mesma indentação
+
+ALT + SHIFT + W  => Cria abre e fecha tags qualquer
+
 
 ------------------------- >Terminal - Linux  -------------------------------------
 
