@@ -964,6 +964,109 @@ Conexão Natural - Parece muito com uma conexão interna equijoin contudo com a 
     NATURAL JOIN
     tabela2
 
+Adicionando uma constraint 
+
+ALTER TABLE tabela_tal
+add CONSTRAINT tabela_tal_com_tabela_tal_fk
+foreign key (coluna_associadla)
+references com_tabela_tal (coluna_associada)
+on delete no action
+on update no action;
+
+alter table comivenda drop foreign key 
+tabela_tal_com_tabela_tal_fk;
+
+SELECT c_codiclien, c_razaclien
+FROM comclien
+WHERE n_numeclien IN (1,2);               # Utilizando a instrução IN para consultar um intervalo
+
+SELECT c_codiclien, c_razaclien
+FROM comclien
+WHERE n_numeclien NOT IN (1,2);            # Utilizando a instrunção de não contido
+
+
+> Aqui temos uma alternativa ao Join com sub consulta, não é recomendado tem
+pouca performance além disso o código não fica muito legível.
+
+SELECT c_codivenda Cod_Venda,
+	(SELECT c_razaclien
+	FROM comclien
+	WHERE n_numeclien = comvenda.n_numeclien) Nome_Cliente
+FROM comvenda;
+
+
+> No caso do join podemos utilizar de um meio mas informal e comum
+
+SELECT c_razaclien, c_codivenda Cod_Venda
+FROM comvenda, comclien
+WHERE comvenda.n_numeclien = comclien.n_numeclien;
+
+> Há também a forma mais formal de ser realizada 
+
+SELECT c_codiclien codigo, c_razaclien razao_social, c_codivenda codi_venda
+FROM comvenda
+	join comclien on
+	comvenda.n_numeclien = comclien.n_numeclien
+order by c_razaclien;
+
+> Como fazer um agrupamento com um join 
+
+SELECT c_codiclien, c_razaclien
+	FROM comclien, comvenda
+	WHERE comvenda.n_numeclien = comclien.n_numeclien
+group by c_codiclien, c_razaclien
+order by c_razaclien;
+
+> Podemos fazer a contagem de cada registro agrupado:
+
+SELECT c_codiclien, c_razaclien, count(n_numevenda) Qtde
+	FROM comclien, comvenda
+	WHERE comvenda.n_numeclien = comclien.n_numeclien
+group by c_codiclien, c_razaclien
+order by c_razaclien;
+
+> Usando a cláusula having count()
+
+SELECT c_razaclien, count(n_numevenda) AS numero_de_vendas
+FROM comclien, comvenda
+WHERE comvenda.n_numeclien = comclien.n_numeclien
+group by n_razaclien
+HAVING numero_de_vendas > 2; # ou having count(n_numevenda) > 2;
+
+> Podemos usar CONCAT () para termos a concatenação de registros
+
+SELECT concat(c_razaforne,' - fone: ', c_foneforne) AS concatenacao
+FROM comforne;
+
+> Com o CONCAT_WS() podemos definir um separador entre os registros
+
+select concat_ws(';',c_codiclien, c_razaclien, c_nomeclien)  # o primeiro parâmetro define o separador
+from comclien
+where c_razaclien like 'GREA%';
+
+> ALGUMAS FUNÇÕES DE CÁLCULO 
+
+ROUND para arredondamento:
+
+select round('213.142',2)
+from dual;
+
+FORMAT para formatação:
+
+select format('21123.142',2) from dual;
+
+TRUNCATE para arredondar também
+
+select truncate(max(n_totavenda),0) maior_venda
+from comvenda;
+
+Sqrt() obter o quandrado
+
+select sqrt(4);
+
+pi(), sen(), cos(), tan()
+
+
 
 --------------------------- > Next ----------------------------
 
