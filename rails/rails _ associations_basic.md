@@ -1,8 +1,116 @@
 # Rails - Associations Basics
 
+## The Types of Associations
+
+Rails suporta 6 tipos de associações:
+
+* *belongs_to*
+* *has_one* 
+* *has_many*
+* *has_many :through* 
+* *has_one :through*
+* *has_and_belongs_to_many*
+
+### belongs_to 
+
+​	Adiciona uma relação com outro model, cada instância do model declarada se conecta a uma outra instância.
+
+```ruby
+class Book < ApplicationRecord 
+	belongs_to :author
+end
+```
+
+ Ou seja um livro uni-se a um único **author**.
+
+I - Repare um detalhe o *:author* está no singular por um motivo, o Rails irá inferir automaticamente o nome declarado ao model associado caso esteja *:authors* o Rails não irá reconhecer. Ex: `Book.create(authors: @author)`
+
+Sua migration correspondente é da seguinte forma:
+
+```ruby
+class CreateBooks < ActiveRecord::Migration[6.0]
+	def change
+	  create_table :authors do |t|
+        t.string :name
+		t.timestamps
+	  end 
+	end
+	
+	create_table :books dos |t|
+	  t.belongs_to :author
+	  t.datetime :published_at
+	  t.timestamps
+	end
+  end
+end
+```
+
+> When used alone, `belongs_to` produces a one-directional one-to-one connection. Therefore each book in the above example "knows" its author, but the authors don't know about their books. To setup a [bi-directional association](https://guides.rubyonrails.org/association_basics.html#bi-directional-associations) - use `belongs_to` in combination with a `has_one` or `has_many` on the other model.
+>
+> `belongs_to` does not ensure reference consistency, so depending on the use case, you might also need to add a database-level foreign key constraint on the reference column, like this:
+
+ ```ruby
+create_table :books do |t|
+  t.belongs_to :author, foreign_key: true
+  #...
+end
+ ```
+
+### has_one 
+
+Indica que um outro model tem uma referência com este model. Esse model pode rebecer informações por meio dessa associação.
+
+```ruby
+class Supplier < ApplicationRecord 
+	has_one :account
+end
+```
+
+Isto quer dizer que o id estrangeiro dessa associação ficará em *:account* .
+
+ 
+
+|   suppliers    | has_one |       accounts        |
+| :------------: | :-----: | :-------------------: |
+| Model Supplier |         |     Model Account     |
+|    id: int     |         |        id:int         |
+|  name:string   |         |    supplier_id:int    |
+|                |         | account_number:string |
+
+A migration correspondente seria assim: 
+
+```ruby
+class CreateSuppliers < ActiveRecord::Migration[6.0]
+  def change 
+  	create_table :suppliers do |t|
+    	t.string :name 
+        t.timestamps
+    end
+      
+    create_table :accounts do |t|
+    	t.belongs_to :suppliers
+        t.string :account_number
+        t.timestamps
+    end
+  end
+end
+```
+
+### has_many 
+
+
+
+
+
+
+
+
+
+
+
 ## Self Joins
 
-​	Podemos criar um model que poderá se relacionar o sigo mesmo. Um exemplo seria entre gerentes e subordinados, todos são empregados. Trataremos nosso modelo da seguinte forma: 
+​	Podemos criar um model que poderá se relacionar com sigo mesmo. Um exemplo seria entre gerentes e subordinados, todos são empregados. Trataremos nosso modelo da seguinte forma: 
 
 ```ruby
 class Employee < ApplicationRecord
@@ -189,7 +297,7 @@ Podemos customizar estes hooks da seguinte forma usando query padronizadas:
 Deve confirmar associação quando a condição de busca for atendida:
 
 ```ruby
-class Book < ApplicatioRecord
+class Book < ApplicationRecord
 	belongs_to :author, -> { where active: true}
 end
 ```
