@@ -642,7 +642,7 @@ sudo apt-get update                              ** dar um update
 
 sudo apt-get install apache2 php7.0-common php7.0-cli php7.0 libapache2-mod-php7.0                              ** Instalação do php7
 
-
+p
 create table comclien_bkp as( select * from comclien where c_estaclien = 'SP');                                 ** Basicamente estou criando uma tabela com atributos de outra 
 
 
@@ -1579,8 +1579,6 @@ sudo sysctl -p
  
 -------------------------------------------------------------------------------------------------------------------------------
 
----------------------------------------------------------------------------------------------------
-
 API
 
 gem "rack-cors"                              ** permite que outros sites nos chame 
@@ -1947,6 +1945,8 @@ config.include FactoryBot::Syntax::Methods                      ++ incluir dentr
 
 testes de request                                               ++ integração de model, controller, server um teste mais global
 
+# Controllers devem ser adaptadores. Não devem possuir regras de negócio, apenas regras de fluxo e exibição.
+
 rails g controller users index create --no-helper --no-assets --no-controller-specs --no-view-specs --skip-routes
 rails g controller enemies update destroy --no-helper --no-assets --no-controller-specs --no-view-specs --skip-routes
 
@@ -1984,6 +1984,29 @@ end
 Flags para poder ver as descrições do rspec 
 
 rspec spec/models/license_spec.rb -f d
+
+
+> Error ao executar algumas classes do Faker
+
+I18n::MissingTranslationData (translation missing: en.faker.commerce.department)
+
+solução: 
+
+Modifique seu application possibilitando mais de um locale:
+
+config.i18n.available_locales = %i[pt-BR en]
+
+
+
+---------------------------------- Usando Minitest --------------------------------------------------------------
+
+def setup
+end
+
+def teardown
+endk
+
+
 
 -------------------------------------------------------------------------------------------------------
 
@@ -2666,6 +2689,8 @@ Duck Typing: o polimorfismo aplicado no Ruby
 Duck Typing considera o que um objeto pode fazer e não de qual tipo ele é, que-
 brando a ligação com a classe do objeto criado.
 
+"A ideia do duck typing é que um tipo em Ruby não é definido por uma classe ou interface mas pelo uso que se faz dos objetos."
+
 if midia.kind_of? Midia
 
 O método kind_of? verifica se dado objeto é de um tipo
@@ -3102,6 +3127,9 @@ control+G                                                          ** Nós vamos
 
 control + [                                                        ** Avançar linha
 control + ]                                                        ** recuar linha 
+
+control + shift + [                                                ** Encolher uma bloco de código
+control + shift + ]                                                ** Expandir um bloco de código
 
 Indo em  Preferences > Key binding podemos modificar a forma como se realiza commentários 
 
