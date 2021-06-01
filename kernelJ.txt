@@ -621,6 +621,11 @@ Geralmente é um erro de permissão para uso da porta adequada ( TODO: Pesquisar
 sudo chown -R mongodb:mongodb /var/lib/mongodb 
 sudo chown mongodb:mongodb /tmp/mongodb-27017.sock
 
+Suponha que você startou seu mongodb pelo docker-compose sendo assim você poderá realizar
+o acesso ao mongo especificando uma porta
+
+mongo --port 27017
+
 -------------------- >MySQL - SQL----------------------
 
 sudo apt update                                  ** update system 
@@ -1373,7 +1378,7 @@ Debuger
 gem install ruby-debug-ide
 gem install debase
 
-
+Control + seta                                       ** Movimentação de cursor entre palavras
 
  
 -------------------------- >Rails----------------------------- 

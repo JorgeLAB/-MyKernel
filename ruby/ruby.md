@@ -14,5 +14,4 @@
 >
 
 > O principal problema aqui, é que em Ruby **não existe o conceito de encapsulamento entre os objetos envolvidos no uso da herança.** O mesmo problema acontece com variáveis de instância (que por padrão são sempre privadas), que podem ser alteradas nas superclasses, e afetar algum outro comportamento das subclasses que utilizam as variáveis alteradas.
->
-> 
+
