@@ -100,9 +100,6 @@ docker build -t my_awesome_app .                                             => 
 ls
 
 
-
-
-
 ** Fato interessante nosso containers podem se transformar em imagens que podemos usar para gerar outros containers
 docker commit -m "What you did to the image" -a "Author Name" container_id repository/new_image_name             => Criar uma imagem de um container    
 docker commit -m "added Node.js" -a "sammy" d9b100f2f636 sammy/ubuntu-nodejs                                     => Um exemplo
@@ -556,6 +553,12 @@ heroku pg:psql                                        => heroku dbconsole
 heroku run rake db:migrate                            => faz a migração para o banco de dados heroku
 
 echo $DATABASE_URL                                    => Irá motrar o caminho do banco definido pelo usuário ( remoto server)
+
+
+-------------------- >Mac -----------------------------
+
+
+
 
 
 -------------------- >MongoDB -------------------------
@@ -3596,3 +3599,135 @@ MVCC - Mult version
 Vinicius Teles 
 
 Rich Kilmer
+
+---------------------------------------
+
+###### Editor to big files - VIM ######
+
+open vim - vim /path/to/file.txt
+i        - Unlock editor
+esc      - Exit editor
+:wq      - Quit vim
+
+######################## Other tips ########################
+
+* get your own ip
+ifconfig | grep "inet " | grep -v 127.0.0.1
+
+* kill all process related to port X
+lsof -t -i tcp:X | xargs kill
+
+* Fix openssl issue
+brew switch openssl 1.0.2t
+
+* How install openssl
+	- 1.0 (because is no more available)
+		brew uninstall openssl; brew uninstall openssl; brew install https://github.com/tebelorg/Tump/releases/download/v1.0.0/openssl.rb; brew switch openssl 1.0.2t
+	- 1.1 (because is no more available)
+		brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/8b9d6d688f483a0f33fcfc93d433de501b9c3513/Formula/openssl.rb
+
+* Convert xlsx to csv
+ssconvert Book1.xlsx newfile.csv
+/\ To install in mac: brew install gnumeric | To install in Linux: apt-get install gnumeric
+
+* Completely remove Xcode and CLT from MacOS
+rm -rf /Applications/Xcode.app ~/Library/Caches/com.apple.dt.Xcode ~/Library/Developer ~/Library/MobileDevice ~/Library/Preferences/com.apple.dt.Xcode.plist ~/Library/Preferences/com.apple.dt.Xcode.plist /System/Library/Receipts/com.apple.pkg.XcodeExtensionSupport.bom /System/Library/Receipts/com.apple.pkg.XcodeExtensionSupport.plist /System/Library/Receipts/com.apple.pkg.XcodeSystemResources.bom /System/Library/Receipts/com.apple.pkg.XcodeSystemResources.plist /private/var/db/receipts/com.apple.pkg.Xcode.bom /Library/Developer/CommandLineTools
+
+* Install rvm ruby 2.1.3 on Big Sur
+CFLAGS="-Wno-error=implicit-function-declaration" rvm install 2.1.3 --disable-binary --with-openssl-dir=$(brew --prefix openssl@1.0)
+
+* Install rmagick with imagemagick@6
+PKG_CONFIG_PATH=/usr/local/Cellar/imagemagick@6/6.9.12-7/lib/pkgconfig/ gem install rmagick -v '2.13.4'
+
+* Install mysql2:
+- Mac
+gem install mysql2 -v '0.3.19' -- --with-ldflags=-L/usr/local/opt/openssl/lib --with-cppflags=-I/usr/local/opt/openssl/include
+or if mysql@5.6 is updated to 5.6.46, reverting to 5.6.43 \/
+brew reinstall https://raw.githubusercontent.com/Homebrew/homebrew-core/f171f1c74/Formula/mysql@5.6.rb
+brew pin mysql@5.6
+- Linux
+sudo apt-get install libmysqlclient-dev
+
+* Install nokogiri
+brew install libxml2
+gem install nokogiri -v '1.6.6.2' -- --use-system-libraries --with-xml2-include=/usr/local/opt/libxml2/include/libxml2
+or
+gem install nokogiri -v '1.6.8' -- --use-system-libraries --with-xml2-dir=$(brew --prefix libxml2) --with-xslt-dir=$(brew --prefix libxslt)
+
+* Install puma
+gem install puma -v '3.4.0' -- --with-opt-dir=$(brew --prefix openssl@1.0)
+
+* Install ffi
+brew install automake autoconf libtool
+gem install ffi -v '1.9.21' -- --with-cflags="-Wno-error=implicit-function-declaration"
+
+* Library not loaded: /usr/local/opt/readline/lib/libreadline.7.dylib
+ln -s /usr/local/opt/readline/lib/libreadline.8.0.dylib /usr/local/opt/readline/lib/libreadline.7.dylib
+or
+ln -s /usr/local/opt/readline/lib/libreadline.7.0.dylib /usr/local/opt/readline/lib/libreadline.6.dylib
+
+* Download Audio (MP3) from any video in anywhere
+youtube-dl --audio-format mp3 -o '~/Music/Musics/%(title)s.%(ext)s' -x URL
+youtube-dl --audio-format mp3 -o '~/Music/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' -x URL_PLAYLIST
+
+youtube-dl.exe --audio-format mp3 --playlist-start 1 --playlist-end 79 -o "C:\%HOMEPATH%\Desktop\%%(playlist)s/%%(playlist_index)s - %%(title)s.%%(ext)s" -x URL_PLAYLIST
+
+* Download Video (MP4) from any video in anywhere
+youtube-dl --format mp4 -o '~/Movies/%(title)s.%(ext)s' URL
+
+* My hack challenge
+http://hackchallenger.rf.gd/
+
+################ Install Ruby/RVM/Rails/Git ################
+
+https://gorails.com/setup/ubuntu/17.04
+
+##################### Sublime Packages #####################
+
+A File Icon
+Alignment
+All Autocomplete
+GitGutter
+BracketHighlighter
+Color Highlight
+Sass
+Pretty JSON
+Pretty Ruby
+JSON Reindent
+Indent XML
+Better CoffeeScript
+SublimeLinter-haml
+
+########################### RVM ############################
+
+rvm get master => Get lastiest version of rvm
+
+* try update certificates if can't connect to source rubygem
+rvm osx-ssl-certs status all
+rvm osx-ssl-certs update all
+
+* Install using old openssl
+rvm install ruby-2.1.4 --with-openssl-dir='/usr/local/opt/openssl@1.0'
+
+############### My Personal Updates in Mac ###############
+
+http://bashrcgenerator.com/  => Create your own bash config code
+
+- Add new command in last line of bash_profile
+echo 'alias <command-name>="<command-action>"' >> ~/.bash_profile
+
+- Install gitx
+brew install --cask rowanj-gitx
+
+- My Oh-My-Zsh Config
+  ZSH_THEME="af-magic"
+  plugins=(
+    git
+    bundler
+    rake
+    rvm
+    ruby
+    brew
+    zsh-syntax-highlighting
+    zsh_reload
+  )
