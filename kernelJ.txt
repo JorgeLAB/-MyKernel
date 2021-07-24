@@ -69,12 +69,7 @@ sudo apt-get install libmysqlclient-dev                                      => 
 <div class="well"></div>
 
 
-sass --watch node_modules/bootstrap/scss:node_modules/bootstrap/compiler     => ao empregar o bootstrap pelo node temos de compilar o código scss
-
-
-
-
-
+sass --watch node_modules/bootstrap/scss:node_modules/bootstrap/compiler     => ao empregar o bootstrap pelo node temos de compilar o código osx-ssl-certs
 
 ------------------------ >Docker ------------------------------------
 
@@ -118,7 +113,7 @@ docker top <container_id>                                                    => 
 
 
 docker run -it --rm --user "$(id -u):(id -g)" -v "$PWD":/usr/src/app -w /usr/src/app rails rails --skip-bundle new my_new_app
-
+	
 Docker-compose
 
 ** Para abrir o terminar interatirativo no docker-compose
@@ -196,7 +191,7 @@ git config --global alias.co checkout                                         =>
 git config --global credential.helper "cache --timeout=86400"                 => lembrando da senha.
 
 git submodule add <url/do/repositório> <destino/do/submódulo>                 => Trabalho submodulos no git ( um repositorio dentro de outro )
-git checkout HEAD~1                                                           => Depois de commitado podemos retornar um commit 
+git checkout HEAD~1                                                         => Depois de commitado podemos retornar um commit 
 
 
 git reflog                                                                    => Com este comando vc poderá recuperar identificadores antes de um merge ou rebase. Com isso podemos usar um reset --hard para voltar ao estado deste commit apontado.
@@ -3097,8 +3092,9 @@ Plugins
  - A file icon 
  - View in Browser
  - ColorHighlight
+ - Copy Relative Path
 
-
+Copia o caminho relativo - Super + i                                   ** ( Copia o caminho relativo do arquivo )
 Goto anything - Control + p                                            ** ( Faz uma busca de arquivos)
 Command Palette - Control + shift + p                                  ** ( Faz uma busca por atalho )
 Multiple Selection - Shift + alt + P                                   ** ( Multipla seleção )
@@ -3159,6 +3155,8 @@ Manipulando TAGS
 Control + SHIFT + J  => Selecionar elemento em mesma indentação
 
 ALT + SHIFT + W  => Cria abre e fecha tags qualquer
+
+CONTROL + 0      => Abre o menu com folders e files permitindo a seleção. 
 
 
 ------------------------- >Terminal - Linux  -------------------------------------
@@ -3429,6 +3427,7 @@ shift + ZZ           => Salvar e sair (comando mais rápido)
 yy                   => Copiar uma linha (2 yy) ou (3 yy) multiplas linhas
 p                    => Colar
 dd                   => recortar linha e para colar é o p.
+:[start],[final]d    => é possível remover múltiplas linhas.
 
 d                    => deleta.
 v                    => modo visual ( Agora você conseguirá selecionar trechos de código com as *setas - não o mouse)
@@ -3463,6 +3462,8 @@ n                    => Irá pular os valores das buscas.
 :set nonu            => desabilitar a numeração 
 
 :ab <novoatalho> <umaPalavra_que_voce_deseja_substituir>               => Criando atalho
+
+:noh                 => Remove hilight de search
 
 :set ai              => Auto identação.
 :set noai            => Desativando a auto-identação.
