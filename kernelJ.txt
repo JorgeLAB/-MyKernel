@@ -159,6 +159,7 @@ git push origin --delete <nome>                                               =>
 git rebase origin master                                                      => Pesquisar ( Resolução de !reject  master -> master)
 
 git push -f origin master                                                     => push forçado.
+git push origin <branch> --force-with-leave                                   => Uma forma de realizar force não destrutivo, ou seja, se houver commits de outro 
 git log                                                                       => mostrará os commits - verifica alteracoes realizadas
 git remote                                                                    => ver a situação
 git remote rm <name>                                                          => desfaz conexões
