@@ -129,6 +129,7 @@ docker-compose run web bash
 
 git stash                                                                     => Irá salvar em cache as alterações não comitadas possibilitando a restauração depois
 git stash pop                                                                 => restaura o cache com os arquivos modificados da branch 
+git stash save -u 'Mensagem'                                                  => Criando um stash comentado
 git fetch --all;git pull                                                      => Uma forma linear de dar fetch e pull
 
 gitiginore -types                                                             => lista de todos os tipo Ruby rails node ....
@@ -1542,7 +1543,6 @@ Solução deletar o file master e seu config/
 > Rodar o console rails 
 
 docker-compose run web bundle exec rails c
-
 
 Job
 
