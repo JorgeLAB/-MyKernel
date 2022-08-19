@@ -3159,6 +3159,7 @@ ALT + SHIFT + W  => Cria abre e fecha tags qualquer
 
 CONTROL + 0      => Abre o menu com folders e files permitindo a seleção. 
 
+Control + [ ou ] => Podemos pular as linhas por linhas vazias.
 
 ------------------------- >Terminal - Linux  -------------------------------------
 
